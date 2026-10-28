@@ -3,8 +3,10 @@ import re
 import subprocess
 from pathlib import Path
 
+import memes
 from captions import overlaps, paginate
 from normalize import normalize
+from probe import probe
 from project import Project
 from transcribe import normalize_text, words_of
 from util import ffmpeg, is_fresh, read_json, seal, write_json
@@ -44,14 +46,34 @@ def resolve_span(spec: dict, cut_map: dict, words: list) -> tuple[float, float]:
     return round(start, 3), round(min(end, cut_map["duration"]), 3)
 
 
-def overlay_rect(kind: str, project: Project) -> list:
+def pip_box(project: Project) -> tuple[int, int]:
+    canvas, pip = project.style["canvas"], project.style["pip"]
+    return even(canvas["width"] * pip["width"]), even(canvas["height"] * pip["max_height"])
+
+
+def overlay_rect(kind: str, project: Project, source: Path) -> list:
     width, height = project.style["canvas"]["width"], project.style["canvas"]["height"]
     if kind == "fullscreen":
         return [0, 0, width, height]
-    pip = project.style["pip"]
-    w = even(width * pip["width"])
-    h = even(w * height / width)
-    return [round(width * pip["left"]), round(height * (1 - pip["bottom"])) - h, w, h]
+    pip, info = project.style["pip"], probe(source)
+    return [round(width * pip["left"]), round(height * (1 - pip["bottom"])) - info["height"],
+            info["width"], info["height"]]
+
+
+def resolve_source(project: Project, src: str) -> Path:
+    return memes.resolve(src) if memes.is_giphy(src) else project.path(src)
+
+
+def flash_spans(project: Project, cut_map: dict, overlays: list) -> list:
+    transitions = project.style["transitions"]
+    length = transitions["flash_frames"] / project.style["canvas"]["fps"]
+    starts = {o["start"] for o in overlays if o["type"] == "fullscreen"}
+    previous_broll = True
+    for clip in sorted(cut_map["clips"].values(), key=lambda c: c["start"]):
+        if clip["broll"] and not previous_broll:
+            starts.add(clip["start"])
+        previous_broll = clip["broll"]
+    return [{"start": round(t, 3), "end": round(t + length, 3)} for t in sorted(starts)]
 
 
 def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: dict) -> dict:
@@ -60,9 +82,11 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
     for spec in project.config.get("inserts", []):
         start, end = resolve_span(spec, cut_map, words)
         src_in = spec.get("src_in", 0.0)
-        path = normalize(project, project.path(spec["src"]), [src_in, src_in + end - start])
+        box = pip_box(project) if spec["type"] == "pip" else None
+        path = normalize(project, resolve_source(project, spec["src"]), [src_in, src_in + end - start],
+                         box=box, loop=spec.get("loop", memes.is_giphy(spec["src"])))
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
-                         "rect": overlay_rect(spec["type"], project)})
+                         "rect": overlay_rect(spec["type"], project, path), "chroma": spec.get("chroma")})
         if spec.get("text"):
             texts.append({"style": spec.get("text_style", "promo"), "text": spec["text"], "start": start, "end": end})
     for spec in project.config.get("texts", []):
@@ -80,6 +104,7 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         "base": str(cut_path),
         "overlays": overlays,
         "texts": texts,
+        "flashes": flash_spans(project, cut_map, overlays),
         "captions": {"pages": pages},
     }
 
@@ -107,16 +132,31 @@ def loudnorm_filter(project: Project, measured: dict) -> str:
             f":offset={measured['target_offset']}:linear=true")
 
 
-def video_graph(timeline: dict, ass_path: Path, fonts_dir: Path, preview: dict | None) -> list:
+def chroma_key(chroma: dict | str | None) -> str:
+    if not chroma:
+        return ""
+    settings = chroma if isinstance(chroma, dict) else {"color": chroma}
+    color = settings["color"].replace("#", "0x")
+    return f",chromakey={color}:{settings.get('similarity', 0.15)}:{settings.get('blend', 0.08)}"
+
+
+def flash_boxes(flashes: list, transitions: dict) -> str:
+    color = transitions["flash_color"].replace("#", "0x")
+    return "".join(f",drawbox=x=0:y=0:w=iw:h=ih:t=fill:color={color}@{transitions['flash_opacity']}"
+                   f":enable='between(t,{f['start']},{f['end']})'" for f in flashes)
+
+
+def video_graph(timeline: dict, ass_path: Path, project: Project, preview: dict | None) -> list:
     graph, current = [], "0:v"
     for k, overlay in enumerate(timeline["overlays"], start=1):
         x, y, w, h = overlay["rect"]
         start, end = overlay["start"], overlay["end"]
-        graph.append(f"[{k}:v]setpts=PTS-STARTPTS+{start}/TB,scale={w}:{h}[ov{k}]")
+        graph.append(f"[{k}:v]setpts=PTS-STARTPTS+{start}/TB,scale={w}:{h}{chroma_key(overlay.get('chroma'))}[ov{k}]")
         graph.append(f"[{current}][ov{k}]overlay={x}:{y}:eof_action=pass:enable='between(t,{start},{end})'[base{k}]")
         current = f"base{k}"
+    flashes = flash_boxes(timeline["flashes"], project.style["transitions"])
     tail = f",scale={preview['width']}:{preview['height']}:flags=lanczos" if preview else ""
-    graph.append(f"[{current}]ass=filename='{ass_path}':fontsdir='{fonts_dir}'{tail}[vout]")
+    graph.append(f"[{current}]null{flashes},ass=filename='{ass_path}':fontsdir='{project.fonts_dir}'{tail}[vout]")
     return graph
 
 
@@ -124,7 +164,7 @@ def export(project: Project, timeline: dict, ass_path: Path, cut_key: str, previ
     settings = project.style["export"]
     preview_settings = project.style["preview"] if preview else None
     measured = measure_loudness(project, Path(timeline["base"]), cut_key)
-    graph = video_graph(timeline, ass_path, project.fonts_dir, preview_settings)
+    graph = video_graph(timeline, ass_path, project, preview_settings)
     graph.append(f"[0:a]{loudnorm_filter(project, measured)},aresample={settings['sample_rate']}[aout]")
     inputs = ["-i", timeline["base"]]
     for overlay in timeline["overlays"]:

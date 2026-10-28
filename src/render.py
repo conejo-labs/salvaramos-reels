@@ -48,6 +48,7 @@ def normalized_clips(project: Project) -> list:
             "frames": round(probe(path)["duration"] * fps),
             "silence": spec.get("silence_cut", not broll),
             "captions": spec.get("captions", not broll),
+            "broll": broll,
         })
     return clips
 
