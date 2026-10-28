@@ -8,7 +8,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 from captions import ass_color, ass_time, caption_word, display, paginate, word_states  # noqa: E402
 from compose import resolve_point, resolve_span  # noqa: E402
 from cut import merge_ranges  # noqa: E402
-from transcribe import keep_word, normalize_text  # noqa: E402
+from transcribe import corrected, normalize_text, words_of  # noqa: E402
 
 PAGING = {"max_words": 3, "max_duration": 1.2, "break_gap": 0.3, "tail": 0.15}
 
@@ -80,10 +80,15 @@ def test_normalize_text_ignores_case_accents_and_punctuation():
     assert normalize_text("¿Fútbol?") == "futbol"
 
 
-def test_keep_word_drops_words_inside_muted_spans():
-    assert not keep_word(w("gracias", 5.0, 5.4), [(4.0, 6.0)])
-    assert keep_word(w("hola", 1.0, 1.2), [(4.0, 6.0)])
-    assert not keep_word(w("Concepción", 5.8, 6.4), [(4.0, 6.0)])
+def test_words_of_places_each_clip_at_its_timeline_start_and_skips_missing_clips():
+    transcript = {"clips": {"b": {"key": "k", "segments": [{"words": [w("chao", 0.5, 0.7)]}]},
+                            "a": {"key": "k", "segments": [{"words": [w("hola", 0.1, 0.3), w("tú", 0.4, 0.5)]}]},
+                            "gone": {"key": "k", "segments": [{"words": [w("x", 0, 1)]}]}}}
+    cut_map = {"clips": {"a": {"start": 0.0}, "b": {"start": 10.0}}}
+    words = words_of(transcript, cut_map)
+    assert [x["word"] for x in words] == ["hola", "tú", "chao"]
+    assert words[2]["start"] == 10.5
+    assert [x["starts_segment"] for x in words] == [True, False, True]
 
 
 CUT_MAP = {"duration": 30.0, "clips": {"intro": {"start": 5.0, "end": 12.0}}}
@@ -107,3 +112,19 @@ def test_resolve_span_defaults_to_clip_end_and_clamps_to_duration():
 def test_page_does_not_spill_into_next_clip():
     pages = paginate([w("UdeC", 1.0, 1.4)], PAGING, boundaries=[0.0, 1.45])
     assert pages[0]["end"] == 1.45
+
+
+def test_corrections_keep_timing_when_word_count_matches_and_respace_when_not():
+    words = [w("una", 0.0, 0.2), w("entrega", 0.2, 0.6), w("última", 0.6, 1.0), w("hora", 1.0, 1.2)]
+    fixed = corrected(words, "entrega última", "entrega a última")
+    assert [x["word"] for x in fixed] == ["una", "entrega", "a", "última", "hora"]
+    assert fixed[1]["start"] == 0.2 and fixed[3]["end"] == 1.0
+    assert corrected(words, "hora", "hora.")[3] == w("hora.", 1.0, 1.2)
+
+
+def test_corrections_apply_only_to_their_clip():
+    transcript = {"clips": {"a": {"segments": [{"words": [w("puto", 0, 1)]}]},
+                            "b": {"segments": [{"words": [w("puto", 0, 1)]}]}}}
+    cut_map = {"clips": {"a": {"start": 0.0}, "b": {"start": 5.0}}}
+    words = words_of(transcript, cut_map, [{"clip": "a", "find": "puto", "replace": "punto"}])
+    assert [x["word"] for x in words] == ["punto", "puto"]

@@ -45,16 +45,18 @@ def covering(timeline: dict, span: dict) -> list:
 
 
 def write_minutaje(project: Project, cut_map: dict, transcript: dict, timeline: dict) -> Path:
-    words = words_of(transcript)
+    words = words_of(transcript, cut_map, project.config.get("transcription", {}).get("corrections", []))
+    speed = timeline["speed"]
     lines = [f"# Minutaje — {project.config.get('title', project.slug)}", "",
-             f"Duración del reel: {mmss(cut_map['duration'])}. «Raw» son segundos del archivo original "
-             "(lo que va en `trim`); «Reel» es el tiempo en el video final, ya sin silencios.", "",
+             f"Duración del reel: {mmss(cut_map['duration'] / speed)} (a {speed}×). «Raw» son segundos del archivo "
+             "original (lo que va en `trim`); «Reel» es el tiempo en el video final, ya sin silencios y acelerado.", "",
              "| Reel | Clip | Raw | Tramo del raw | Qué se dice / qué es | Tapado por |",
              "|---|---|---|---|---|---|"]
     for spec in project.config["clips"]:
         span = cut_map["clips"][spec["id"]]
         cover = ", ".join(covering(timeline, span))
-        lines.append(f"| {mmss(span['start'])}–{mmss(span['end'])} | {spec['id']} | `{source_name(spec)}` | "
+        lines.append(f"| {mmss(span['start'] / speed)}–{mmss(span['end'] / speed)} | {spec['id']} | "
+                     f"`{source_name(spec)}` | "
                      f"{raw_ranges(spec)} | {clip_content(spec, words, span).replace('|', '/')} | {cover} |")
     output = project.dir / "minutaje.md"
     output.write_text("\n".join(lines) + "\n")

@@ -91,7 +91,7 @@ def flash_spans(project: Project, cut_map: dict, overlays: list) -> list:
 
 
 def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: dict) -> dict:
-    words = words_of(transcript)
+    words = words_of(transcript, cut_map, project.config.get("transcription", {}).get("corrections", []))
     overlays, texts = [], []
     for spec in project.config.get("inserts", []):
         start, end = resolve_span(spec, cut_map, words)
@@ -109,7 +109,8 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         texts += clip_texts(spec, cut_map["clips"][spec["id"]])
     for spec in project.config.get("texts", []):
         start, end = resolve_span(spec, cut_map, words)
-        texts.append({"style": spec["style"], "text": spec["text"], "start": start, "end": end})
+        texts.append({"style": spec["style"], "text": spec["text"], "start": start, "end": end,
+                      "reveal": spec.get("reveal")})
 
     hidden = [(t["start"], t["end"]) for t in texts if t["style"] == "promo"] \
         if project.style["captions"]["hide_during_promo"] else []
@@ -119,6 +120,7 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
     return {
         "canvas": project.style["canvas"],
         "duration": cut_map["duration"],
+        "speed": project.config.get("speed", 1.0),
         "base": str(cut_path),
         "overlays": overlays,
         "texts": texts,
@@ -173,7 +175,8 @@ def video_graph(timeline: dict, ass_path: Path, project: Project, preview: dict 
         graph.append(f"[{current}][ov{k}]overlay={x}:{y}:eof_action=pass:enable='between(t,{start},{end})'[base{k}]")
         current = f"base{k}"
     flashes = flash_boxes(timeline["flashes"], project.style["transitions"])
-    tail = f",scale={preview['width']}:{preview['height']}:flags=lanczos" if preview else ""
+    speed = f",setpts=PTS/{timeline['speed']}" if timeline["speed"] != 1 else ""
+    tail = speed + (f",scale={preview['width']}:{preview['height']}:flags=lanczos" if preview else "")
     graph.append(f"[{current}]null{flashes},ass=filename='{ass_path}':fontsdir='{project.fonts_dir}'{tail}[vout]")
     return graph
 
@@ -183,7 +186,8 @@ def export(project: Project, timeline: dict, ass_path: Path, cut_key: str, previ
     preview_settings = project.style["preview"] if preview else None
     measured = measure_loudness(project, Path(timeline["base"]), cut_key)
     graph = video_graph(timeline, ass_path, project, preview_settings)
-    graph.append(f"[0:a]{loudnorm_filter(project, measured)},aresample={settings['sample_rate']}[aout]")
+    tempo = f"atempo={timeline['speed']}," if timeline["speed"] != 1 else ""
+    graph.append(f"[0:a]{tempo}{loudnorm_filter(project, measured)},aresample={settings['sample_rate']}[aout]")
     inputs = ["-i", timeline["base"]]
     for overlay in timeline["overlays"]:
         inputs += ["-i", overlay["src"]]

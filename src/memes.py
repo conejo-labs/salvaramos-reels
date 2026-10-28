@@ -58,7 +58,8 @@ def is_meme_slot(spec: dict) -> bool:
 
 def meme_slots(project) -> list:
     clips, cut_map = project.config["clips"], read_json(project.build / "cut_map.json")
-    words = words_of(read_json(project.dir / "transcript.json"))
+    corrections = project.config.get("transcription", {}).get("corrections", [])
+    words = words_of(read_json(project.dir / "transcript.json"), cut_map, corrections)
     rows = []
     for index, spec in enumerate(clips):
         if not is_meme_slot(spec):

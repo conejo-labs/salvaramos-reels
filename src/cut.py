@@ -4,6 +4,7 @@ from fractions import Fraction
 from pathlib import Path
 
 from project import Project
+from transcribe import Whisper, pcm16k
 from util import code_signature, digest, ffmpeg, file_signature, is_fresh, read_json, run, seal, write_json
 
 SAMPLE_RATE = 48000
@@ -25,7 +26,7 @@ def merge_ranges(ranges: list, min_gap: int, min_keep: int, total: int) -> list:
     return [(s, e) for s, e in merged if e - s >= min_keep]
 
 
-def loud_ranges(project: Project, clip_path: Path, total_frames: int) -> list:
+def loud_ranges(project: Project, clip_path: Path) -> list:
     settings, fps = project.style["cut"], project.style["canvas"]["fps"]
     timeline = project.build / "cut" / f"{clip_path.stem}.v3"
     timeline.parent.mkdir(exist_ok=True)
@@ -34,8 +35,25 @@ def loud_ranges(project: Project, clip_path: Path, total_frames: int) -> list:
         capture_output=True)
     data = read_json(timeline)
     rate = Fraction(data["timebase"])
-    ranges = [(round(item["offset"] / rate * fps), round((item["offset"] + item["dur"]) / rate * fps))
-              for item in data["v"][0]]
+    return [(round(item["offset"] / rate * fps), round((item["offset"] + item["dur"]) / rate * fps))
+            for item in data["v"][0]]
+
+
+def spoken_ranges(project: Project, whisper: Whisper, clip_path: Path) -> list:
+    cache = project.build / "cut" / f"{clip_path.stem}.words.json"
+    if cache.exists():
+        segments = read_json(cache)
+    else:
+        segments = whisper.segments(pcm16k(clip_path))
+        write_json(cache, segments)
+    pad, fps = project.style["cut"]["word_pad"], project.style["canvas"]["fps"]
+    return [(round((w["start"] - pad) * fps), round((w["end"] + pad) * fps))
+            for segment in segments for w in segment["words"]]
+
+
+def keep_ranges(project: Project, whisper: Whisper, clip_path: Path, total_frames: int) -> list:
+    settings, fps = project.style["cut"], project.style["canvas"]["fps"]
+    ranges = loud_ranges(project, clip_path) + spoken_ranges(project, whisper, clip_path)
     return merge_ranges(ranges, round(settings["min_gap"] * fps), round(settings["min_keep"] * fps), total_frames)
 
 
@@ -80,13 +98,13 @@ def cut(project: Project, clips: list) -> tuple[Path, dict]:
     if is_fresh(output, key) and map_path.exists():
         return output, read_json(map_path)
 
-    plan = []
+    plan, whisper = [], Whisper(project)
     for index, clip in enumerate(clips):
         whole = [(0, clip["frames"])]
         if clip["keep"]:
             ranges = [(a, min(b, clip["frames"])) for a, b in clip["keep"]]
         elif clip["silence"] and settings["silence"]:
-            ranges = loud_ranges(project, clip["path"], clip["frames"])
+            ranges = keep_ranges(project, whisper, clip["path"], clip["frames"])
         else:
             ranges = whole
         plan.append((index, clip, ranges or whole))

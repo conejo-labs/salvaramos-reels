@@ -50,6 +50,16 @@ texts:
     outline_color: "#000000"
     center_y: 0.68
     max_lines: 2
+  headline:
+    font: Anton
+    font_file: Anton-Regular.ttf
+    size: 150
+    uppercase: true
+    color: "#E10600"
+    outline: 8
+    outline_color: "#FFFFFF"
+    center_y: 0.2
+    max_lines: 2
   promo:
     font: Anton
     font_file: Anton-Regular.ttf
@@ -69,8 +79,9 @@ pip:
 
 cut:
   silence: true
+  word_pad: 0.12
   threshold: 0.04
-  margin: 0.2
+  margin: 0.1
   min_gap: 0.15
   min_keep: 0.25
   fade: 0.01

@@ -24,9 +24,16 @@ si el hash no cambió, se salta.
 
 - **`build/timeline.json` es el contrato para migrar a Remotion**: tiempos ya resueltos, overlays con su
   rect en px, textos y páginas de subtítulos. Un backend nuevo lee eso más `style.yaml`; no relee el config.
-- **`transcript.json` es del usuario.** Se escribe solo si no existe. Si el corte cambia, el render se
-  detiene y deja la versión nueva en `build/transcript.auto.json`; `--retranscribe` la reemplaza dejando
-  un `.bak.json`.
+- **`transcript.json` se transcribe clip por clip** y cada clip guarda la `key` de lo que usó del raw: si un
+  clip cambia, solo ese se retranscribe y su versión anterior pasa a `previous`.
+- **Las correcciones de subtítulos van en `transcription.corrections` del config**, no en `transcript.json`:
+  `{find, replace}` sobre palabras exactas (con `clip` opcional) y se aplican después de cada transcripción,
+  así sobreviven a cualquier recorte.
+- El corte de silencios conserva la unión de lo que suena (auto-editor, `cut.threshold`) y de cada palabra que
+  Whisper detecta en el clip con `cut.word_pad` de margen: así no corta palabras dichas en voz baja.
+- `speed` en el config acelera todo el reel al exportar (`setpts` + `atempo`, sin cambiar el tono). El timeline
+  y el ASS van en tiempo sin acelerar; `timeline.json` trae `speed` para el backend que lo lea.
+- Un texto con `reveal: <segundos>` aparece letra por letra en ese tiempo y queda completo hasta su `until`.
 - **Los tiempos de `inserts` y `texts` son del timeline final**, y conviene anclarlos (`at: {clip: id}`,
   `at: {word: …}`) en vez de usar segundos: los cortes de silencio mueven todo lo que viene después.
 - Tipos de clip, según la clave que traen:

@@ -13,7 +13,7 @@ from normalize import normalize
 from probe import probe
 from project import Project, load, trim_ranges
 from review import contact_sheet
-from transcribe import StaleTranscript, transcribe
+from transcribe import transcribe
 from util import ROOT
 
 REQUIRED_FILTERS = {"ass", "loudnorm", "tile", "drawtext", "drawbox", "overlay", "zscale", "tonemap"}
@@ -89,7 +89,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Renderiza un reel desde projects/<slug>")
     parser.add_argument("project", type=Path)
     parser.add_argument("--preview", action="store_true", help="primeros segundos a baja resolución")
-    parser.add_argument("--retranscribe", action="store_true", help="reemplaza transcript.json (deja respaldo)")
+    parser.add_argument("--retranscribe", action="store_true", help="vuelve a transcribir todos los clips (lo anterior queda en previous)")
     args = parser.parse_args()
 
     check_environment()
@@ -104,10 +104,7 @@ def main() -> None:
     done(started, f"({len(cut_map['segments'])} segmentos, {cut_map['duration']:.1f}s)")
 
     started = step("transcribe")
-    try:
-        transcript = transcribe(project, cut_path, cut_map, args.retranscribe)
-    except StaleTranscript as stale:
-        sys.exit(str(stale))
+    transcript = transcribe(project, cut_path, cut_map, args.retranscribe)
     done(started)
 
     started = step("compose")

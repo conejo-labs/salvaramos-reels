@@ -1,18 +1,12 @@
 import re
-import shutil
 import subprocess
 import unicodedata
-from datetime import datetime
 from pathlib import Path
 
 import numpy as np
 
 from project import Project
-from util import is_fresh, read_json, seal, write_json
-
-
-class StaleTranscript(Exception):
-    pass
+from util import digest, read_json, write_json
 
 
 def normalize_text(text: str) -> str:
@@ -21,9 +15,10 @@ def normalize_text(text: str) -> str:
     return re.sub(r"[^\w ]", "", stripped).strip()
 
 
-def pcm16k(path: Path) -> np.ndarray:
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-i", str(path), "-vn", "-ac", "1", "-ar", "16000",
-                          "-f", "f32le", "-"], capture_output=True, check=True).stdout
+def pcm16k(path: Path, start: float = 0.0, duration: float | None = None) -> np.ndarray:
+    window = ["-ss", f"{start:.3f}"] + (["-t", f"{duration:.3f}"] if duration else [])
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", *window, "-i", str(path), "-vn", "-ac", "1",
+                          "-ar", "16000", "-f", "f32le", "-"], capture_output=True, check=True).stdout
     return np.frombuffer(raw, dtype=np.float32)
 
 
@@ -32,59 +27,104 @@ def whisper_device() -> tuple[str, str]:
     return ("cuda", "float16") if ctranslate2.get_cuda_device_count() > 0 else ("cpu", "int8")
 
 
-def muted_spans(cut_map: dict) -> list:
-    return [(c["start"], c["end"]) for c in cut_map["clips"].values() if not c["captions"]]
+class Whisper:
+    def __init__(self, project: Project):
+        self.settings = project.style["transcription"]
+        self.vocabulary = self.settings["vocabulary"] + project.config.get("transcription", {}).get("vocabulary", [])
+        self.hallucinations = {normalize_text(h) for h in self.settings["hallucinations"]}
+        self.model = None
+
+    def segments(self, audio: np.ndarray) -> list:
+        if self.model is None:
+            from faster_whisper import WhisperModel
+            device, compute_type = whisper_device()
+            self.model = WhisperModel(self.settings["model"], device=device, compute_type=compute_type)
+        segments, _ = self.model.transcribe(audio, language=self.settings["language"],
+                                            initial_prompt=", ".join(self.vocabulary), word_timestamps=True,
+                                            vad_filter=True)
+        kept = []
+        for segment in segments:
+            if segment.no_speech_prob > self.settings["no_speech_threshold"]:
+                continue
+            if normalize_text(segment.text) in self.hallucinations:
+                continue
+            words = [{"word": w.word.strip(), "start": round(w.start, 3), "end": round(w.end, 3)}
+                     for w in segment.words if w.word.strip()]
+            if words:
+                kept.append({"words": words})
+        return kept
 
 
-def keep_word(word: dict, muted: list) -> bool:
-    middle = (word["start"] + word["end"]) / 2
-    return not any(start <= middle < end or start <= word["start"] < end for start, end in muted)
+def clip_key(spec: dict, cut_map: dict) -> str:
+    used = [(s["src_start"], s["src_end"]) for s in cut_map["segments"] if s["clip"] == spec["id"]]
+    return digest(spec.get("src"), spec.get("trim"), used)
 
 
-def run_whisper(project: Project, audio_source: Path, cut_map: dict) -> dict:
-    from faster_whisper import WhisperModel
-
-    settings = project.style["transcription"]
-    vocabulary = settings["vocabulary"] + project.config.get("transcription", {}).get("vocabulary", [])
-    hallucinations = {normalize_text(h) for h in settings["hallucinations"]}
-    device, compute_type = whisper_device()
-    model = WhisperModel(settings["model"], device=device, compute_type=compute_type)
-    segments, _ = model.transcribe(pcm16k(audio_source), language=settings["language"],
-                                   initial_prompt=", ".join(vocabulary), word_timestamps=True, vad_filter=True)
-    muted = muted_spans(cut_map)
-    kept = []
-    for segment in segments:
-        if segment.no_speech_prob > settings["no_speech_threshold"]:
+def transcribe(project: Project, cut_path: Path, cut_map: dict, retranscribe: bool = False) -> dict:
+    path = project.dir / "transcript.json"
+    transcript = read_json(path) if path.exists() else {}
+    clips, previous = transcript.get("clips", {}), transcript.get("previous", {})
+    whisper, changed = Whisper(project), []
+    captioned = {spec["id"]: spec for spec in project.config["clips"] if cut_map["clips"][spec["id"]]["captions"]}
+    for clip_id, spec in captioned.items():
+        key, entry = clip_key(spec, cut_map), clips.get(clip_id)
+        if entry and entry["key"] == key and not retranscribe:
             continue
-        if normalize_text(segment.text) in hallucinations:
-            continue
-        words = [{"word": w.word.strip(), "start": round(w.start, 3), "end": round(w.end, 3)} for w in segment.words]
-        words = [w for w in words if w["word"] and keep_word(w, muted)]
-        if words:
-            kept.append({"words": words})
-    return {"cut_key": cut_map["key"], "model": settings["model"], "device": device, "segments": kept}
-
-
-def transcribe(project: Project, audio_source: Path, cut_map: dict, retranscribe: bool = False) -> dict:
-    manual = project.dir / "transcript.json"
-    if manual.exists() and not retranscribe:
-        transcript = read_json(manual)
-        if transcript.get("cut_key") == cut_map["key"]:
-            return transcript
-        auto = project.build / "transcript.auto.json"
-        if not is_fresh(auto, cut_map["key"]):
-            write_json(auto, run_whisper(project, audio_source, cut_map))
-            seal(auto, cut_map["key"])
-        raise StaleTranscript(
-            f"{manual} se transcribió sobre otro corte. La versión nueva quedó en {auto}. "
-            "Pasa tus correcciones a mano o usa --retranscribe (respalda la actual antes de reemplazarla).")
-    if manual.exists():
-        backup = manual.with_name(f"transcript.{datetime.now():%Y%m%d-%H%M%S}.bak.json")
-        shutil.copy2(manual, backup)
-    transcript = run_whisper(project, audio_source, cut_map)
-    write_json(manual, transcript)
+        if entry:
+            previous[clip_id] = entry
+        span = cut_map["clips"][clip_id]
+        audio = pcm16k(cut_path, span["start"], span["end"] - span["start"])
+        clips[clip_id] = {"key": key, "segments": whisper.segments(audio)}
+        changed.append(clip_id)
+    for clip_id in [c for c in clips if c not in captioned]:
+        previous[clip_id] = clips.pop(clip_id)
+        changed.append(clip_id)
+    transcript = {"model": project.style["transcription"]["model"], "clips": clips}
+    if previous:
+        transcript["previous"] = previous
+    if changed or not path.exists():
+        write_json(path, transcript)
+        print(f"  transcribí o retiré: {', '.join(changed)}", flush=True)
     return transcript
 
 
-def words_of(transcript: dict) -> list:
-    return [dict(w, starts_segment=i == 0) for segment in transcript["segments"] for i, w in enumerate(segment["words"])]
+def respaced(span: list, replacement: list) -> list:
+    if len(span) == len(replacement):
+        return [dict(w, word=new) for w, new in zip(span, replacement)]
+    start, end = span[0]["start"], span[-1]["end"]
+    total, cursor, words = sum(len(r) for r in replacement), start, []
+    for new in replacement:
+        length = (end - start) * len(new) / total
+        words.append({"word": new, "start": round(cursor, 3), "end": round(cursor + length, 3)})
+        cursor += length
+    return words
+
+
+def corrected(words: list, find: str, replace: str) -> list:
+    old, new = find.split(" "), replace.split(" ")
+    result, i = [], 0
+    while i < len(words):
+        if [w["word"] for w in words[i:i + len(old)]] == old:
+            result += respaced(words[i:i + len(old)], new)
+            i += len(old)
+        else:
+            result.append(words[i])
+            i += 1
+    return result
+
+
+def words_of(transcript: dict, cut_map: dict, corrections: list = ()) -> list:
+    words = []
+    for clip_id, entry in transcript["clips"].items():
+        if clip_id not in cut_map["clips"]:
+            continue
+        offset = cut_map["clips"][clip_id]["start"]
+        rules = [c for c in corrections if c.get("clip", clip_id) == clip_id]
+        for segment in entry["segments"]:
+            fixed = segment["words"]
+            for rule in rules:
+                fixed = corrected(fixed, rule["find"], rule["replace"])
+            for i, word in enumerate(fixed):
+                words.append({"word": word["word"], "start": round(word["start"] + offset, 3),
+                              "end": round(word["end"] + offset, 3), "starts_segment": i == 0})
+    return sorted(words, key=lambda w: w["start"])

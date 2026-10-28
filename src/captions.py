@@ -158,11 +158,29 @@ def text_events(project: Project, texts: list, layout: Layout) -> list:
         fit = layout.fit(widest + 2 * style["outline"])
         center_y = layout.height * style["center_y"]
         layout.check_bottom(center_y, sum(scales) * style["size"] * fit, f"El texto '{item['text']}'")
+        position = f"\\an5\\pos({layout.center_x:.0f},{center_y:.0f})"
+        if item.get("reveal"):
+            events += typewriter(item, lines, f"{{{position}\\fscx{fit * 100:.0f}\\fscy{fit * 100:.0f}}}")
+            continue
         secondary = ass_color(style.get("secondary_color", style["color"]))
         body = lines[0] + "".join(f"\\N{{\\c{secondary}&{scale_tags(fit * s, pop)}}}{line}"
                                   for line, s in zip(lines[1:], scales[1:]))
-        prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f}){scale_tags(fit, pop)}}}"
+        prefix = f"{{{position}{scale_tags(fit, pop)}}}"
         events.append((item["start"], item["end"], item["style"], prefix + body))
+    return events
+
+
+def typewriter(item: dict, lines: list, prefix: str) -> list:
+    text = "\n".join(lines)
+    letters = [i for i, char in enumerate(text) if not char.isspace()]
+    step = item["reveal"] / len(letters)
+    events = []
+    for k, position in enumerate(letters):
+        start = item["start"] + k * step
+        end = item["start"] + (k + 1) * step if k + 1 < len(letters) else item["end"]
+        shown, hidden = text[:position + 1], text[position + 1:]
+        body = shown.replace("\n", "\\N") + "{\\alpha&HFF&}" + hidden.replace("\n", "\\N")
+        events.append((round(start, 3), round(end, 3), item["style"], prefix + body))
     return events
 
 
