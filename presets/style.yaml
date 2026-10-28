@@ -15,11 +15,12 @@ captions:
   font_file: Montserrat-Black.ttf
   size: 84
   uppercase: true
-  color: "#FFFFFF"
-  active_color: "#FFD400"
+  color: "#DCD1BF"
+  active_color: "#29422C"
+  active_outline_color: "#DCD1BF"
   active_scale: 1.25
   outline: 7
-  outline_color: "#000000"
+  outline_color: "#29422C"
   center_y: 0.68
   paging:
     max_words: 3
@@ -34,20 +35,21 @@ texts:
     font_file: Montserrat-Black.ttf
     size: 88
     uppercase: true
-    color: "#FFD400"
+    color: "#29422C"
     outline: 8
-    outline_color: "#000000"
+    outline_color: "#DCD1BF"
     center_y: 0.22
   nametag:
     font: Montserrat Black
     font_file: Montserrat-Black.ttf
     size: 96
     uppercase: true
-    color: "#FFD400"
-    secondary_color: "#FFFFFF"
+    color: "#29422C"
+    secondary_color: "#DCD1BF"
+    secondary_outline_color: "#29422C"
     secondary_scale: 0.5
     outline: 7
-    outline_color: "#000000"
+    outline_color: "#DCD1BF"
     center_y: 0.68
     max_lines: 2
   headline:
@@ -55,9 +57,9 @@ texts:
     font_file: Anton-Regular.ttf
     size: 150
     uppercase: true
-    color: "#E10600"
+    color: "#29422C"
     outline: 8
-    outline_color: "#FFFFFF"
+    outline_color: "#DCD1BF"
     center_y: 0.2
     max_lines: 2
   promo:
@@ -65,9 +67,9 @@ texts:
     font_file: Anton-Regular.ttf
     size: 150
     uppercase: true
-    color: "#E10600"
+    color: "#29422C"
     outline: 8
-    outline_color: "#FFFFFF"
+    outline_color: "#DCD1BF"
     center_y: 0.45
     max_lines: 2
 
@@ -79,11 +81,13 @@ pip:
 
 cut:
   silence: true
-  word_pad: 0.12
-  threshold: 0.04
-  margin: 0.1
-  min_gap: 0.15
-  min_keep: 0.25
+  floor_percentile: 10
+  above_floor_db: 10
+  min_db: -52
+  max_db: -36
+  pad: 0.08
+  min_gap: 0.12
+  min_keep: 0.12
   fade: 0.01
 
 transitions:

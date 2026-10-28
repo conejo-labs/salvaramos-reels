@@ -6,7 +6,7 @@ from pathlib import Path
 
 from captions import write_ass
 from compose import build_timeline, export, save_timeline
-from cut import auto_editor_bin, cut
+from cut import cut
 import memes
 from minutaje import write_minutaje
 from normalize import normalize
@@ -25,8 +25,6 @@ def check_environment() -> None:
     missing = REQUIRED_FILTERS - available
     if missing:
         sys.exit(f"Al ffmpeg instalado le faltan filtros: {', '.join(sorted(missing))}")
-    if not auto_editor_bin():
-        sys.exit("No encuentro auto-editor: instala requirements.txt en el venv")
 
 
 def step(label: str):

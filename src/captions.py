@@ -123,6 +123,8 @@ def caption_events(project: Project, pages: list, layout: Layout) -> list:
     font = project.font_file(style["font_file"])
     size, scale, outline = style["size"], style["active_scale"], style["outline"]
     base, active = ass_color(style["color"]), ass_color(style["active_color"])
+    active_outline = ass_color(style.get("active_outline_color", style["outline_color"]))
+    base_outline = ass_color(style["outline_color"])
     center_y = layout.height * style["center_y"]
     layout.check_bottom(center_y, size * scale + 2 * outline, "Los subtítulos")
 
@@ -136,8 +138,8 @@ def caption_events(project: Project, pages: list, layout: Layout) -> list:
         fit = layout.fit(widest + 2 * outline)
         for i, (start, end) in enumerate(word_states(page)):
             entering = pop if i == 0 else None
-            normal = f"\\c{base}&{scale_tags(fit, entering)}"
-            big = f"\\c{active}&{scale_tags(fit * scale, entering)}"
+            normal = f"\\c{base}&\\3c{base_outline}&{scale_tags(fit, entering)}"
+            big = f"\\c{active}&\\3c{active_outline}&{scale_tags(fit * scale, entering)}"
             body = " ".join("{" + (big if j == i else normal) + "}" + t for j, t in enumerate(texts))
             prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f})}}"
             events.append((start, end, "caption", prefix + body))
@@ -163,7 +165,8 @@ def text_events(project: Project, texts: list, layout: Layout) -> list:
             events += typewriter(item, lines, f"{{{position}\\fscx{fit * 100:.0f}\\fscy{fit * 100:.0f}}}")
             continue
         secondary = ass_color(style.get("secondary_color", style["color"]))
-        body = lines[0] + "".join(f"\\N{{\\c{secondary}&{scale_tags(fit * s, pop)}}}{line}"
+        secondary_outline = ass_color(style.get("secondary_outline_color", style["outline_color"]))
+        body = lines[0] + "".join(f"\\N{{\\c{secondary}&\\3c{secondary_outline}&{scale_tags(fit * s, pop)}}}{line}"
                                   for line, s in zip(lines[1:], scales[1:]))
         prefix = f"{{{position}{scale_tags(fit, pop)}}}"
         events.append((item["start"], item["end"], item["style"], prefix + body))

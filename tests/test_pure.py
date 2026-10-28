@@ -7,7 +7,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
 
 from captions import ass_color, ass_time, caption_word, display, paginate, word_states  # noqa: E402
 from compose import resolve_point, resolve_span  # noqa: E402
-from cut import merge_ranges  # noqa: E402
+from cut import merge_ranges, runs, voice_threshold  # noqa: E402
+import numpy as np  # noqa: E402
 from transcribe import corrected, normalize_text, words_of  # noqa: E402
 
 PAGING = {"max_words": 3, "max_duration": 1.2, "break_gap": 0.3, "tail": 0.15}
@@ -128,3 +129,14 @@ def test_corrections_apply_only_to_their_clip():
     cut_map = {"clips": {"a": {"start": 0.0}, "b": {"start": 5.0}}}
     words = words_of(transcript, cut_map, [{"clip": "a", "find": "puto", "replace": "punto"}])
     assert [x["word"] for x in words] == ["punto", "puto"]
+
+
+def test_runs_finds_each_stretch_above_threshold():
+    assert [(int(a), int(b)) for a, b in runs(np.array([0, 1, 1, 0, 0, 1, 0, 1]) > 0)] == [(1, 3), (5, 6), (7, 8)]
+
+
+def test_voice_threshold_follows_the_noise_floor_within_limits():
+    settings = {"floor_percentile": 10, "above_floor_db": 10, "min_db": -52, "max_db": -36}
+    assert voice_threshold(np.full(100, -60.0), settings) == -50.0
+    assert voice_threshold(np.full(100, -20.0), settings) == -36.0
+    assert voice_threshold(np.full(100, -75.0), settings) == -52.0
