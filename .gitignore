@@ -3,3 +3,5 @@ __pycache__/
 .pytest_cache/
 projects/*/raw/
 projects/*/build/
+.env
+assets/memes/giphy/
