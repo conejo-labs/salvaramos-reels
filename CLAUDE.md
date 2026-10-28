@@ -29,8 +29,9 @@ si el hash no cambió, se salta.
 - **Las correcciones de subtítulos van en `transcription.corrections` del config**, no en `transcript.json`:
   `{find, replace}` sobre palabras exactas (con `clip` opcional) y se aplican después de cada transcripción,
   así sobreviven a cualquier recorte.
-- El corte de silencios conserva la unión de lo que suena (auto-editor, `cut.threshold`) y de cada palabra que
-  Whisper detecta en el clip con `cut.word_pad` de margen: así no corta palabras dichas en voz baja.
+- El corte de silencios mide el volumen de cada clip cada 10 ms y conserva lo que supera su piso de ruido
+  (percentil `cut.floor_percentile`) más `cut.above_floor_db`, acotado entre `min_db` y `max_db`. Si una palabra
+  dicha muy bajo se pierde, el clip lleva `silence_cut: false` o un `trim` que empiece un poco antes.
 - `speed` en el config acelera todo el reel al exportar (`setpts` + `atempo`, sin cambiar el tono). El timeline
   y el ASS van en tiempo sin acelerar; `timeline.json` trae `speed` para el backend que lo lea.
 - Un texto con `reveal: <segundos>` aparece letra por letra en ese tiempo y queda completo hasta su `until`.
