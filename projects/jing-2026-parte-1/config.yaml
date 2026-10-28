@@ -1,6 +1,6 @@
 title: "JING 2026 · Parte 1 — ¿Buen cálculo o entrega a última hora?"
 
-speed: 1.4
+speed: 1.0
 
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, la K, cábala, spikeball, dodgeball]
@@ -11,6 +11,8 @@ transcription:
     - {clip: tomas-calculo, find: "con un buen", replace: "Como un buen"}
     - {clip: tomas-cabala, find: "ninguna,", replace: "Ninguna,"}
     - {find: "Salva Ramos,", replace: "SalvaRamos,"}
+    - {find: "Salva Ramos", replace: "SalvaRamos"}
+    - {clip: tomas-calculo, find: "como un buen", replace: "Como un buen"}
 
 clips:
   - id: hook
@@ -57,7 +59,8 @@ clips:
     trim: [22.6, 24.5]
   - id: tomas-calculo
     src: raw/IMG_1693.MOV
-    trim: [23.8, 27.8]
+    trim: [23.55, 27.8]
+    silence_cut: false
   - id: branco-calculo
     src: raw/IMG_0653.MOV
     trim: [27.5, 33.6]
