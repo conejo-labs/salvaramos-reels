@@ -1,95 +1,64 @@
-title: "JING 2026 — ¿Ramos o final?"
+title: "JING 2026 · Parte 1 — ¿Buen cálculo o entrega a última hora?"
 
 transcription:
-  vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
-               Universidad de los Andes, Adolfo Ibáñez, Santa María, la K, cábala]
+  vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, la K, cábala, spikeball, dodgeball]
 
 clips:
   - id: hook
     src: raw/IMG_1699.MOV
     trim: [14.0, 23.8]
+  - id: meme-hook
+    meme: mirada-hacia-arriba
+    trim: [2.0, 4.8]
   - id: intro
     src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
     trim: [0.6, 8.6]
-
-  - id: ignacia-quien
-    src: raw/IMG_1705.MOV
-    trim: [[3.55, 4.25], [5.65, 6.45]]
-    nametag: "Ignacia\nU. de los Andes · Just Dance"
-  - id: pregunta-ramos
-    src: raw/IMG_1705.MOV
-    trim: [23.05, 26.2]
-    title: "¿Pasar todos los ramos\no ganar la final?"
     cover:
       - {src: raw/IMG_1687.MOV, src_in: 8.0}
       - {src: raw/IMG_1742.MOV, src_in: 3.0}
-      - {src: raw/IMG_1756.MOV, src_in: 0.5}
-  - id: ignacia
-    src: raw/IMG_1705.MOV
-    trim: [26.4, 29.8]
-  - id: vicente-quien
-    src: raw/IMG_1700.MOV
-    trim: [[2.7, 3.75], [4.98, 6.0]]
-    nametag: "Vicente\nUC · Fútbol tenis"
-  - id: vicente
-    src: raw/IMG_1700.MOV
-    trim: [47.2, 52.8]
-  - id: voley-quien
-    src: raw/IMG_1724.MOV
-    trim: [[3.6, 5.2], [6.1, 6.9]]
-    nametag: "Ignacia y Bárbara\nUSM · Vóleibol"
-  - id: voley
-    src: raw/IMG_1724.MOV
-    trim: [42.1, 46.9]
-  - id: sebastian-quien
-    src: raw/IMG_1752.MOV
-    trim: [[4.35, 5.2], [6.78, 7.85]]
-    nametag: "Sebastián\nU. Adolfo Ibáñez · Mario Kart"
-  - id: sebastian
-    src: raw/IMG_1752.MOV
-    trim: [43.7, 48.0]
-  - id: pedro-quien
-    src: raw/IMG_1763.MOV
-    trim: [8.05, 11.2]
-    nametag: "Pedro\nCoordinador general UdeC"
-  - id: pedro
-    src: raw/IMG_1763.MOV
-    trim: [30.5, 37.0]
+      - {src: raw/IMG_1701.MOV, src_in: 0.5}
+      - {src: raw/IMG_1735.MOV, src_in: 8.0}
 
   - id: montserrat-quien
     src: raw/IMG_0648.MOV
     trim: [[2.38, 3.95], [9.8, 11.6]]
     nametag: "Montserrat\nUC · Spikeball"
+  - id: tomas-quien
+    src: raw/IMG_1693.MOV
+    trim: [[5.15, 6.6], [9.3, 11.5]]
+    nametag: "Tomás\nUC · Fútbol"
+  - id: branco-quien
+    src: raw/IMG_0653.MOV
+    trim: [[0.72, 3.3], [5.95, 7.6]]
+    nametag: "Branco\nUC · Básquetbol"
+  - id: martin-quien
+    src: raw/IMG_1695.MOV
+    trim: [[3.88, 4.85], [9.35, 10.2]]
+    nametag: "Martín\nUC · Dodgeball"
+
   - id: pregunta-calculo
     src: raw/IMG_0648.MOV
     trim: [18.0, 22.4]
     title: "¿Buen cálculo o entrega\na última hora?"
     cover:
       - {src: raw/IMG_1745.MOV, src_in: 3.0}
-      - {src: raw/IMG_1747.MOV, src_in: 2.0}
       - {src: raw/IMG_1737.MOV, src_in: 5.0}
-  - id: montserrat
+  - id: montserrat-calculo
     src: raw/IMG_0648.MOV
     trim: [22.6, 24.5]
-  - id: tomas-quien
-    src: raw/IMG_1693.MOV
-    trim: [[5.15, 6.6], [9.3, 11.5]]
-    nametag: "Tomás\nUC · Fútbol"
-  - id: tomas
+  - id: meme-ultima-hora
+    meme: manos-en-la-cabeza-sale-corriendo
+    trim: [0.0, 3.0]
+  - id: tomas-calculo
     src: raw/IMG_1693.MOV
     trim: [23.8, 27.8]
-  - id: branco-quien
-    src: raw/IMG_0653.MOV
-    trim: [[0.72, 3.3], [5.95, 7.6]]
-    nametag: "Branco\nUC · Básquetbol"
-  - id: branco
+  - id: meme-estetico
+    meme: basile-los-genios-hacen-eso
+    trim: [0.0, 2.8]
+  - id: branco-calculo
     src: raw/IMG_0653.MOV
     trim: [27.5, 33.6]
 
-  - id: martin-quien
-    src: raw/IMG_1695.MOV
-    trim: [[3.88, 4.85], [9.35, 10.2]]
-    nametag: "Martín\nUC · Dodgeball"
   - id: pregunta-cabala
     src: raw/IMG_1697.MOV
     trim: [7.38, 10.65]
@@ -97,50 +66,42 @@ clips:
     cover:
       - {src: raw/IMG_1726.MOV, src_in: 2.0}
       - {src: raw/IMG_1698.MOV, src_in: 4.0}
-  - id: martin
+  - id: tomas-cabala
+    src: raw/IMG_1693.MOV
+    trim: [35.3, 38.1]
+  - id: martin-cabala
     src: raw/IMG_1697.MOV
     trim: [[10.7, 15.25], [16.6, 24.2]]
+  - id: meme-bano
+    meme: ibai-carcajada
+    trim: [0.0, 2.8]
 
-  - id: nicolas-quien
-    src: raw/IMG_1766.MOV
-    trim: [[2.82, 3.9], [7.75, 8.7]]
-    nametag: "Nicolás\nUC · Balonmano"
-  - id: pregunta-asistencia
-    src: raw/IMG_1766.MOV
-    trim: [58.1, 65.6]
-    title: "¿Titular en el campeonato o\nasistencia libre todo el semestre?"
-    cover:
-      - {src: raw/IMG_1737.MOV, src_in: 10.0}
-      - {src: raw/IMG_1731.MOV, src_in: 6.0}
-  - id: nicolas
-    src: raw/IMG_1766.MOV
-    trim: [65.65, 72.0]
-
-  - id: cta
+  - id: pregunta-rival
     src: raw/IMG_0653.MOV
-    trim: [66.8, 71.0]
-  - id: endcard
-    src: raw/IMG_1760.MOV
-    trim: [0.0, 3.0]
-    broll: true
+    trim: [50.6, 54.3]
+    title: "¿Qué le dirías al rival\nen una frase?"
+    cover:
+      - {src: raw/IMG_1749.MOV, src_in: 2.0}
+      - {src: raw/IMG_1750.MOV, src_in: 2.0}
+  - id: montserrat-rival
+    src: raw/IMG_0648.MOV
+    trim: [33.7, 37.4]
+  - id: meme-ojito
+    meme: the-rock-ceja
+    trim: [1.5, 4.2]
+  - id: branco-rival
+    src: raw/IMG_0653.MOV
+    trim: [54.7, 60.2]
+  - id: meme-ganar
+    meme: messi-que-mira-bobo
+    trim: [0.0, 4.6]
 
-inserts:
-  - type: fullscreen
-    src: raw/IMG_0650.MOV
-    at: {clip: intro}
-    duration: 4.0
-  - type: fullscreen
-    src: raw/IMG_1707.MOV
-    at: {clip: intro, offset: 4.0}
-    until: {clip: intro}
-    flash: false
-  - type: fullscreen
-    src: raw/IMG_1756.MOV
-    src_in: 2.0
-    at: {clip: cta}
-    text: "¿Ramos o final?\nCon SalvaRamos, las dos"
+  - id: parte-2
+    src: raw/IMG_1760.MOV
+    trim: [0.0, 3.5]
+    broll: true
 
 texts:
   - style: promo
-    text: "Prepara tus exámenes\nlink en la bio"
-    at: {clip: endcard}
+    text: "¿Ramos o final?\nmira la parte 2 en el perfil"
+    at: {clip: parte-2}

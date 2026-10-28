@@ -1,0 +1,135 @@
+title: "JING 2026 · Parte 2 — ¿Ramos o final?"
+
+transcription:
+  vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
+               Universidad de los Andes, Santa María, vóleibol]
+
+clips:
+  - id: hook
+    src: raw/7adfe5c0-1511-4a4e-89e7-6103e43878fc.mp4
+    trim: [35.0, 39.15]
+    broll: true
+    gain_db: 0
+  - id: hook-congelado
+    src: raw/7adfe5c0-1511-4a4e-89e7-6103e43878fc.mp4
+    freeze: 39.15
+    duration: 2.0
+    look: bw
+    sfx: suspenso
+  - id: intro
+    src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
+    trim: [0.6, 8.6]
+    cover:
+      - {src: raw/IMG_1685.MOV, src_in: 2.0}
+      - {src: raw/IMG_1746.MOV, src_in: 10.0}
+      - {src: raw/IMG_1747.MOV, src_in: 2.0}
+      - {src: raw/IMG_1702.MOV, src_in: 15.0}
+
+  - id: ignacia-quien
+    src: raw/IMG_1705.MOV
+    trim: [[3.55, 4.25], [5.65, 6.45]]
+    nametag: "Ignacia\nU. de los Andes · Just Dance"
+  - id: vicente-quien
+    src: raw/IMG_1700.MOV
+    trim: [[2.7, 3.75], [4.98, 6.0]]
+    nametag: "Vicente\nUC · Fútbol tenis"
+  - id: voley-quien
+    src: raw/IMG_1724.MOV
+    trim: [[3.6, 5.2], [6.1, 6.9]]
+    nametag: "Ignacia y Bárbara\nUSM · Vóleibol"
+  - id: pedro-quien
+    src: raw/IMG_1763.MOV
+    trim: [8.05, 11.2]
+    nametag: "Pedro\nCoordinador general UdeC"
+
+  - id: pregunta-ramos
+    src: raw/IMG_1705.MOV
+    trim: [23.05, 26.2]
+    title: "¿Pasar todos los ramos\no ganar la final?"
+    cover:
+      - {src: raw/IMG_1687.MOV, src_in: 3.0}
+      - {src: raw/IMG_1756.MOV, src_in: 0.5}
+  - id: meme-pregunta-ramos
+    meme: the-rock-lentes-pensativo
+    trim: [0.0, 2.6]
+  - id: ignacia-ramos
+    src: raw/IMG_1705.MOV
+    trim: [26.4, 29.8]
+  - id: vicente-ramos
+    src: raw/IMG_1700.MOV
+    trim: [47.2, 52.8]
+  - id: meme-final
+    meme: speed-grito
+    trim: [3.5, 6.0]
+  - id: voley-ramos
+    src: raw/IMG_1724.MOV
+    trim: [42.1, 46.9]
+  - id: meme-contradiccion
+    meme: youtuber-que
+    trim: [0.0, 2.8]
+  - id: pedro-ramos
+    src: raw/IMG_1763.MOV
+    trim: [30.5, 37.0]
+  - id: meme-comprometido
+    meme: shia-aplauso-lento
+    trim: [2.0, 5.0]
+
+  - id: pregunta-rival
+    src: raw/IMG_1705.MOV
+    trim: [11.8, 14.95]
+    title: "¿A qué universidad quieren\nganarle sí o sí?"
+    cover:
+      - {src: raw/IMG_1737.MOV, src_in: 12.0}
+      - {src: raw/IMG_1742.MOV, src_in: 6.0}
+  - id: ignacia-rival
+    src: raw/IMG_1705.MOV
+    trim: [15.0, 19.2]
+  - id: voley-rival
+    src: raw/IMG_1724.MOV
+    trim: [17.3, 22.9]
+  - id: pedro-rival
+    src: raw/IMG_1763.MOV
+    trim: [19.75, 22.6]
+  - id: meme-rivalidad
+    meme: perro-mirada-de-reojo
+    trim: [1.0, 4.0]
+
+  - id: pregunta-favorita
+    src: raw/IMG_1705.MOV
+    trim: [33.75, 39.3]
+    title: "¿Quién llega como favorita\ny quién puede sorprender?"
+    cover:
+      - {src: raw/IMG_1748.MOV, src_in: 1.0}
+      - {src: raw/IMG_1759.MOV, src_in: 1.0}
+  - id: ignacia-favorita
+    src: raw/IMG_1705.MOV
+    trim: [40.1, 46.4]
+  - id: vicente-favorita
+    src: raw/IMG_1700.MOV
+    trim: [30.4, 39.0]
+  - id: meme-aplicados
+    meme: esqueletos-riendo
+    trim: [5.0, 8.0]
+  - id: voley-favorita
+    src: raw/IMG_1724.MOV
+    trim: [27.2, 28.3]
+  - id: pedro-favorita
+    src: raw/IMG_1763.MOV
+    trim: [53.3, 62.1]
+
+  - id: cta
+    src: raw/IMG_1756.MOV
+    trim: [2.0, 5.0]
+    broll: true
+  - id: endcard
+    src: raw/IMG_1760.MOV
+    trim: [0.0, 3.0]
+    broll: true
+
+texts:
+  - style: promo
+    text: "¿Ramos o final?\nCon SalvaRamos, las dos"
+    at: {clip: cta}
+  - style: promo
+    text: "Prepara tus exámenes\nlink en la bio"
+    at: {clip: endcard}

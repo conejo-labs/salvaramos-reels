@@ -6,3 +6,4 @@ projects/*/build/
 .env
 assets/memes/giphy/
 assets/memes/pack/
+projects/*/transcript.*.bak.json
