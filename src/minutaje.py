@@ -17,12 +17,22 @@ def clip_content(spec: dict, words: list, span: dict) -> str:
         return "Presentación: " + spec["nametag"].replace("\n", " · ")
     if spec.get("title"):
         return "Pregunta: " + spec["title"].replace("\n", " ")
+    if spec.get("meme"):
+        return f"Meme: {spec['meme']}"
+    if "freeze" in spec:
+        return f"Congelado {spec['duration']} s" + (f" + {spec['sfx']}" if spec.get("sfx") else "")
     if spec.get("broll"):
         return "b-roll"
     return spoken_in(words, span["start"], span["end"])
 
 
+def source_name(spec: dict) -> str:
+    return f"memes/{spec['meme']}" if spec.get("meme") else Path(spec["src"]).name
+
+
 def raw_ranges(spec: dict) -> str:
+    if "freeze" in spec:
+        return f"frame {mmss(spec['freeze'])}"
     ranges = trim_ranges(spec.get("trim"))
     return " + ".join(f"{mmss(a)}–{mmss(b)}" for a, b in ranges) if ranges else "completo"
 
@@ -44,7 +54,7 @@ def write_minutaje(project: Project, cut_map: dict, transcript: dict, timeline: 
     for spec in project.config["clips"]:
         span = cut_map["clips"][spec["id"]]
         cover = ", ".join(covering(timeline, span))
-        lines.append(f"| {mmss(span['start'])}–{mmss(span['end'])} | {spec['id']} | `{Path(spec['src']).name}` | "
+        lines.append(f"| {mmss(span['start'])}–{mmss(span['end'])} | {spec['id']} | `{source_name(spec)}` | "
                      f"{raw_ranges(spec)} | {clip_content(spec, words, span).replace('|', '/')} | {cover} |")
     output = project.dir / "minutaje.md"
     output.write_text("\n".join(lines) + "\n")

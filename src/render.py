@@ -7,12 +7,14 @@ from pathlib import Path
 from captions import write_ass
 from compose import build_timeline, export, save_timeline
 from cut import auto_editor_bin, cut
+import memes
 from minutaje import write_minutaje
 from normalize import normalize
 from probe import probe
 from project import Project, load, trim_ranges
 from review import contact_sheet
 from transcribe import StaleTranscript, transcribe
+from util import ROOT
 
 REQUIRED_FILTERS = {"ass", "loudnorm", "tile", "drawtext", "drawbox", "overlay", "zscale", "tonemap"}
 
@@ -36,15 +38,38 @@ def done(started: float, detail: str = "") -> None:
     print(f"  listo en {time.monotonic() - started:.1f}s {detail}", flush=True)
 
 
+def clip_kind(spec: dict) -> str:
+    if spec.get("meme"):
+        return "meme"
+    if "freeze" in spec:
+        return "freeze"
+    return "broll" if spec.get("broll") else "speech"
+
+
+def normalized_clip(project: Project, spec: dict, kind: str, span: list | None) -> Path:
+    look = spec.get("look")
+    if kind == "meme":
+        memes_style = project.style["memes"]
+        meme_span = span or [0.0, memes_style["max_seconds"]]
+        gain = spec.get("gain_db", memes.gain_for(spec["meme"], memes_style["target_mean_db"]))
+        return normalize(project, memes.path_of(spec["meme"]), meme_span, gain, framing="blur", look=look)
+    if kind == "freeze":
+        sfx = ROOT / "assets/sfx" / f"{spec['sfx']}.wav" if spec.get("sfx") else None
+        at = spec["freeze"]
+        return normalize(project, project.path(spec["src"]), [at, at + spec["duration"]], spec.get("gain_db", 0.0),
+                         look=look, freeze=True, audio_src=sfx)
+    gain = spec.get("gain_db", project.style["audio"]["broll_gain_db"] if kind == "broll" else 0.0)
+    return normalize(project, project.path(spec["src"]), span, gain, look=look)
+
+
 def normalized_clips(project: Project) -> list:
-    fps, broll_gain = project.style["canvas"]["fps"], project.style["audio"]["broll_gain_db"]
+    fps = project.style["canvas"]["fps"]
     clips = []
     for spec in project.config["clips"]:
-        broll = spec.get("broll", False)
+        kind = clip_kind(spec)
         ranges = trim_ranges(spec.get("trim"))
         span = [ranges[0][0], ranges[-1][1]] if ranges else None
-        path = normalize(project, project.path(spec["src"]), span,
-                         spec.get("gain_db", broll_gain if broll else 0.0))
+        path = normalized_clip(project, spec, kind, span)
         keep = [(round((a - span[0]) * fps), round((b - span[0]) * fps)) for a, b in ranges] \
             if len(ranges) > 1 else None
         has_own_text = bool(spec.get("nametag") or spec.get("title"))
@@ -53,9 +78,9 @@ def normalized_clips(project: Project) -> list:
             "path": path,
             "frames": round(probe(path)["duration"] * fps),
             "keep": keep,
-            "silence": spec.get("silence_cut", not broll),
-            "captions": spec.get("captions", not (broll or has_own_text)),
-            "broll": broll,
+            "kind": kind,
+            "silence": spec.get("silence_cut", kind == "speech"),
+            "captions": spec.get("captions", kind == "speech" and not has_own_text),
         })
     return clips
 

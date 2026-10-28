@@ -29,11 +29,18 @@ si el hash no cambió, se salta.
   un `.bak.json`.
 - **Los tiempos de `inserts` y `texts` son del timeline final**, y conviene anclarlos (`at: {clip: id}`,
   `at: {word: …}`) en vez de usar segundos: los cortes de silencio mueven todo lo que viene después.
-- Los clips `broll: true` no se cortan por silencio, no llevan subtítulos y bajan su audio
-  (`audio.broll_gain_db`).
+- Tipos de clip, según la clave que traen:
+  - por defecto, **voz**: se corta por silencio y lleva subtítulos;
+  - `broll: true`: sin corte de silencio ni subtítulos, con el audio bajado (`audio.broll_gain_db`);
+  - `meme: <id>`: pausa con el audio del meme, centrado sobre una copia desenfocada; `trim` es dentro del meme;
+  - `freeze: <segundo>` + `duration`: congela ese frame, con `look` (p. ej. `bw`) y `sfx` de `assets/sfx/`.
+- Un clip con `nametag` o `title` no lleva subtítulos (el texto los reemplaza). `cover` tapa el clip con b-roll
+  repartido en partes iguales y deja su audio: así se presentan las preguntas con la voz del entrevistador.
+- `trim` acepta varios rangos (`[[a, b], [c, d]]`) para armar una frase con palabras exactas del mismo raw.
 - **Los videos de `assets/memes/pack/` no están en git**: viven solo en esta máquina. `assets/memes/catalog.yaml`
-  los describe (qué son, audio, encuadre, uso y si son aptos para la marca); un insert los usa con
-  `src: ../../assets/memes/pack/<id>.mp4`.
+  los describe (qué son, audio, encuadre, uso); `volumen_medio_db` fija la ganancia que iguala su volumen.
+- `assets/sfx/suspenso.wav` es sintético (generado con ffmpeg): reemplázalo por uno real con el mismo nombre.
+- Las partes de un mismo evento comparten los raws: `projects/<evento>-parte-2/raw` es un symlink a la parte 1.
 
 ## Entorno (WSL)
 

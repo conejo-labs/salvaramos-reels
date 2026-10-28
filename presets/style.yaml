@@ -85,6 +85,16 @@ transitions:
   pop_from: 0.8
   pop_ms: 90
 
+memes:
+  max_seconds: 3.0
+  target_mean_db: -20
+  blur:
+    radius: 30
+    brightness: -0.15
+
+looks:
+  bw: "hue=s=0,eq=contrast=1.2"
+
 audio:
   broll_gain_db: -10
   loudness: -14

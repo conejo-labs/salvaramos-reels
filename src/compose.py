@@ -3,7 +3,6 @@ import re
 import subprocess
 from pathlib import Path
 
-import memes
 from captions import overlaps, paginate
 from normalize import normalize
 from probe import probe
@@ -12,6 +11,7 @@ from transcribe import normalize_text, words_of
 from util import ffmpeg, is_fresh, read_json, seal, write_json
 
 OVERLAY_STACKING = {"pip": 0, "fullscreen": 1}
+FLASHED_KINDS = {"broll", "meme"}
 
 
 def even(value: float) -> int:
@@ -60,10 +60,6 @@ def overlay_rect(kind: str, project: Project, source: Path) -> list:
             info["width"], info["height"]]
 
 
-def resolve_source(project: Project, src: str) -> Path:
-    return memes.resolve(src) if memes.is_giphy(src) else project.path(src)
-
-
 def cover_overlays(project: Project, spec: dict, span: dict) -> list:
     covers, overlays = spec.get("cover", []), []
     share = (span["end"] - span["start"]) / max(1, len(covers))
@@ -71,7 +67,7 @@ def cover_overlays(project: Project, spec: dict, span: dict) -> list:
         start = round(span["start"] + k * share, 3)
         end = round(span["end"] if k == len(covers) - 1 else start + share, 3)
         src_in = cover.get("src_in", 0.0)
-        path = normalize(project, resolve_source(project, cover["src"]), [src_in, src_in + end - start])
+        path = normalize(project, project.path(cover["src"]), [src_in, src_in + end - start])
         overlays.append({"type": "fullscreen", "src": str(path), "start": start, "end": end,
                          "rect": overlay_rect("fullscreen", project, path), "chroma": None, "flash": k == 0})
     return overlays
@@ -86,11 +82,11 @@ def flash_spans(project: Project, cut_map: dict, overlays: list) -> list:
     transitions = project.style["transitions"]
     length = transitions["flash_frames"] / project.style["canvas"]["fps"]
     starts = {o["start"] for o in overlays if o["type"] == "fullscreen" and o["flash"]}
-    previous_broll = True
+    previous_kind = None
     for clip in sorted(cut_map["clips"].values(), key=lambda c: c["start"]):
-        if clip["broll"] and not previous_broll:
+        if clip["start"] > 0 and clip["kind"] in FLASHED_KINDS and clip["kind"] != previous_kind:
             starts.add(clip["start"])
-        previous_broll = clip["broll"]
+        previous_kind = clip["kind"]
     return [{"start": round(t, 3), "end": round(t + length, 3)} for t in sorted(starts)]
 
 
@@ -101,8 +97,8 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         start, end = resolve_span(spec, cut_map, words)
         src_in = spec.get("src_in", 0.0)
         box = pip_box(project) if spec["type"] == "pip" else None
-        path = normalize(project, resolve_source(project, spec["src"]), [src_in, src_in + end - start],
-                         box=box, loop=spec.get("loop", memes.is_giphy(spec["src"])))
+        path = normalize(project, project.path(spec["src"]), [src_in, src_in + end - start],
+                         box=box, loop=spec.get("loop", False))
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
                          "rect": overlay_rect(spec["type"], project, path), "chroma": spec.get("chroma"),
                          "flash": spec.get("flash", spec["type"] == "fullscreen")})

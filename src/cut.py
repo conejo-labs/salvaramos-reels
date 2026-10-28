@@ -73,7 +73,7 @@ def segment_filter(source: str, n: int, start: int, end: int, fps: int, fade: fl
 def cut(project: Project, clips: list) -> tuple[Path, dict]:
     settings, canvas = project.style["cut"], project.style["canvas"]
     transitions, fps = project.style["transitions"], canvas["fps"]
-    key = digest([(c["id"], file_signature(c["path"]), c["keep"], c["silence"], c["captions"], c["broll"])
+    key = digest([(c["id"], file_signature(c["path"]), c["keep"], c["silence"], c["captions"], c["kind"])
                   for c in clips],
                  settings, transitions, canvas, code_signature(__file__))
     output, map_path = project.build / "cut.mkv", project.build / "cut_map.json"
@@ -108,7 +108,7 @@ def cut(project: Project, clips: list) -> tuple[Path, dict]:
                              "start": cursor / fps, "end": (cursor + end - start) / fps, "motion": motion})
             cursor += end - start
         clip_spans[clip["id"]] = {"start": segments[-count]["start"], "end": cursor / fps,
-                                  "captions": clip["captions"], "broll": clip["broll"]}
+                                  "captions": clip["captions"], "kind": clip["kind"]}
     graph.append("".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]")
 
     ffmpeg(*inputs, "-filter_complex", ";".join(graph), "-map", "[v]", "-map", "[a]",
