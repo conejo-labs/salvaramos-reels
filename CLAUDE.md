@@ -31,6 +31,9 @@ si el hash no cambió, se salta.
   `at: {word: …}`) en vez de usar segundos: los cortes de silencio mueven todo lo que viene después.
 - Los clips `broll: true` no se cortan por silencio, no llevan subtítulos y bajan su audio
   (`audio.broll_gain_db`).
+- **Los videos de `assets/memes/pack/` no están en git**: viven solo en esta máquina. `assets/memes/catalog.yaml`
+  los describe (qué son, audio, encuadre, uso y si son aptos para la marca); un insert los usa con
+  `src: ../../assets/memes/pack/<id>.mp4`.
 
 ## Entorno (WSL)
 

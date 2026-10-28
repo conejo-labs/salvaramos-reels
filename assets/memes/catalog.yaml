@@ -1,0 +1,713 @@
+fuente: "Pack De Memes (Ayuda Para YouFubers).zip (sha256 a0b0f398be6dcb403049955e2aef3c375c87797312628c56db0582d15ea3a115)"
+verificado: "2026-10-27: 76 MP4 válidos, sin ejecutables ni datos ocultos; Windows Defender sin amenazas"
+carpeta: assets/memes/pack
+
+memes:
+  - id: aguanta-la-risa-gorra
+    archivo: aguanta-la-risa-gorra.mp4
+    duracion: 5.7
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Hombre de gorra mira serio, aguanta y estalla de risa."
+    audio: "Risa."
+    volumen_medio_db: -13.0
+    tono: [risa, incredulidad]
+    uso: "Cuando alguien dice que va a estudiar todo el ramo el día antes."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121904.mp4"
+  - id: aguantar-la-risa-terapia
+    archivo: aguantar-la-risa-terapia.mp4
+    duracion: 11.2
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: imagen
+    que_es: "Sketch: hombre aguanta la risa en una sesión de terapia mientras otro se va."
+    audio: "«Bleh.»"
+    volumen_medio_db: -17.8
+    tono: [risa, contener]
+    uso: "Escuchar una excusa absurda sin poder reírse."
+    original: "km_Pack Continuo_1080p_60f_20241229_114131.mp4"
+  - id: alien-dientes
+    archivo: alien-dientes.mp4
+    duracion: 8.6
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Alien de máscara se pone dientes postizos y sonríe."
+    audio: "«¿Eh?»"
+    volumen_medio_db: -17.9
+    tono: [absurdo, confusión]
+    uso: "Un resultado que no tiene sentido; una respuesta incomprensible."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121208.mp4"
+  - id: aplauso-calvo
+    archivo: aplauso-calvo.mp4
+    duracion: 4.5
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Hombre calvo frente a una biblioteca aplaudiendo con sonrisa satisfecha."
+    audio: "Aplausos suaves; volumen bajo."
+    volumen_medio_db: -31.3
+    tono: [aprobación, sarcasmo]
+    uso: "Felicitar al alumno que resolvió el ejercicio, o aplaudir con ironía una mala idea."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_120857.mp4"
+  - id: auronplay-fiesta-de-la-luna
+    archivo: auronplay-fiesta-de-la-luna.mp4
+    duracion: 20.1
+    resolucion: 1280x720
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Auronplay saluda y baila con luces RGB que cambian de color."
+    audio: "«Venga, vámonos chicos, estáis todos invitados a la fiesta de la luna» y luego música."
+    volumen_medio_db: -13.1
+    tono: [celebración, euforia]
+    uso: "Aprobar el ramo, cerrar el semestre. Es largo (20 s): recortar con src_in."
+    original: "Auronplay bailando - meme(720P_HD).mp4"
+  - id: basile-los-genios-hacen-eso
+    archivo: basile-los-genios-hacen-eso.mp4
+    duracion: 5.5
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Alfio «Coco» Basile sonriendo en una entrevista en vivo."
+    audio: "«Tiene que cerrar el estadio. Los genios hacen eso.» Volumen bajo."
+    volumen_medio_db: -30.3
+    tono: [admiración, genialidad]
+    uso: "Celebrar una resolución brillante o un truco de cálculo."
+    original: "km_20241228-Copiar_1080p_60f_20241229_122153.mp4"
+  - id: bateman-sonrisa
+    archivo: bateman-sonrisa.mp4
+    duracion: 5.5
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Patrick Bateman (American Psycho) con sonrisa satisfecha."
+    audio: "Sin voz."
+    volumen_medio_db: -12.6
+    tono: [satisfacción, aprobación]
+    uso: "Cuando el ejercicio sale a la primera."
+    original: "km_20241228-Copiar_1080p_60f_20241229_122249.mp4"
+  - id: chico-no-no-no
+    archivo: chico-no-no-no.mp4
+    duracion: 13.5
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Chico con audífonos se toma la cara y se desespera."
+    audio: "«¡No! ¡No! ¡No!» Audio saturado."
+    volumen_medio_db: -4.9
+    tono: [desesperación]
+    uso: "Ver la nota; perder el archivo sin guardar."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114737.mp4"
+  - id: chico-se-va-por-la-puerta
+    archivo: chico-se-va-por-la-puerta.mp4
+    duracion: 6.4
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Chico se acerca a la cámara, se da vuelta y sale por una puerta con algo en la mano."
+    audio: "Sin voz."
+    volumen_medio_db: -26.0
+    tono: [abandono, huida]
+    uso: "Abandonar el ramo; salir de la sala apenas termina la prueba."
+    original: "km_20241228-Copiar_1080p_60f_20241229_122050.mp4"
+  - id: cj-otra-vez
+    archivo: cj-otra-vez.mp4
+    duracion: 7.0
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "CJ (GTA San Andreas) se lleva las manos a la cabeza y se da vuelta."
+    audio: "Sin voz."
+    volumen_medio_db: -16.9
+    tono: [resignación]
+    uso: "Otra vez prueba; repetir el ramo."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_113329.mp4"
+  - id: cn-mirada-picara
+    archivo: cn-mirada-picara.mp4
+    duracion: 2.1
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Personaje animado de Cartoon Network con gorro azul sonríe pícaro."
+    audio: "«See, I'm weird.»"
+    volumen_medio_db: -21.2
+    tono: [picardía]
+    uso: "Cuando tienes un truco para resolver más rápido."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112141.mp4"
+  - id: cranston-barbershop
+    archivo: cranston-barbershop.mp4
+    duracion: 6.3
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Bryan Cranston en SNL con un cuarteto barbershop de trajes a rayas."
+    audio: "Canto a capela; volumen alto."
+    volumen_medio_db: -9.1
+    tono: [anuncio, presentación]
+    uso: "Presentar algo con pompa: un nuevo curso, un resultado."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112702.mp4"
+  - id: croods-tuve-una-idea
+    archivo: croods-tuve-una-idea.mp4
+    duracion: 8.9
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Grug (Los Croods) grita de noche y alza los brazos."
+    audio: "«¡Yo tuve una idea!»"
+    volumen_medio_db: -25.6
+    tono: [idea, euforia]
+    uso: "Antes de mostrar un método de resolución creativo."
+    original: "km_Pack Continuo_1080p_60f_20241229_114113.mp4"
+  - id: dame-lo-mio
+    archivo: dame-lo-mio.mp4
+    duracion: 14.9
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Niño con una escoba reclama algo a otro que está sentado."
+    audio: "«Dame lo mío… lo mío.»"
+    volumen_medio_db: -19.4
+    tono: [reclamo]
+    uso: "Pedir la décima que falta en la revisión de la prueba."
+    original: "km_20241228-Copiar_1080p_60f_20241229_105855.mp4"
+  - id: diablo-que-dificil
+    archivo: diablo-que-dificil.mp4
+    duracion: 12.0
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Entrevista callejera: un señor sentado rodeado de jóvenes que se ríen."
+    audio: "«Diablo, qué difícil me la pusiste… Para mí no está fácil, para ti está fácil.»"
+    volumen_medio_db: -16.2
+    tono: [dificultad, risa]
+    uso: "El ejercicio difícil; el profe que dice que está fácil."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_113304.mp4"
+  - id: diamante-para-el-frio
+    archivo: diamante-para-el-frio.mp4
+    duracion: 8.1
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Niño recibe un billete y se seca la frente con él."
+    audio: "«Pase para acá, diamante para el frío.»"
+    volumen_medio_db: -15.6
+    tono: [dinero, fácil]
+    uso: "Ganarse algo sin esfuerzo; ironía sobre lo «fácil» del ramo."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_115228.mp4"
+  - id: doofenshmirtz-historia-desgarradora
+    archivo: doofenshmirtz-historia-desgarradora.mp4
+    duracion: 9.0
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Doofenshmirtz (Phineas y Ferb) sentado frente a otro personaje y a Perry en una pizarra."
+    audio: "«¿Y ya? ¿Qué quieres decir? ¿Esa es tu historia desgarradora? ¿Esa es tu gran tragedia?» Volumen bajo."
+    volumen_medio_db: -35.0
+    tono: [burla, minimizar]
+    uso: "Responder a una excusa floja («no estudié porque…»)."
+    original: "km_20241228-Copiar_1080p_60f_20241229_122309.mp4"
+  - id: esqueletos-riendo
+    archivo: esqueletos-riendo.mp4
+    duracion: 11.8
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Coro de esqueletos animados riéndose a mandíbula batiente."
+    audio: "Risas de esqueleto; volumen muy alto."
+    volumen_medio_db: -6.2
+    tono: [burla, risa]
+    uso: "Cuando el profe dice «esto es fácil» o alguien admite que no estudió."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_120842.mp4"
+  - id: gorra-roja-se-da-vuelta
+    archivo: gorra-roja-se-da-vuelta.mp4
+    duracion: 3.7
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Hombre de gorra roja habla, se toca la cara y termina dándose vuelta contra la pared."
+    audio: "«¡Vamos!»"
+    volumen_medio_db: -12.3
+    tono: [vergüenza, huida]
+    uso: "Después de equivocarse frente a todos; huir de la pizarra."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121316.mp4"
+  - id: ha-vuelto-esta-vivo
+    archivo: ha-vuelto-esta-vivo.mp4
+    duracion: 10.3
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Robot de Transformers sobre una roca en el desierto."
+    audio: "«¡Claro que sí! ¡Ha vuelto! ¡Está vivo!»"
+    volumen_medio_db: -18.9
+    tono: [regreso, euforia]
+    uso: "Volver a clases; revivir después de la semana de exámenes. Pip: el robot es pequeño en el cuadro."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_115332.mp4"
+  - id: ibai-carcajada
+    archivo: ibai-carcajada.mp4
+    duracion: 4.8
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Ibai riéndose a carcajadas con audífonos."
+    audio: "Carcajada."
+    volumen_medio_db: -13.5
+    tono: [risa]
+    uso: "Reacción a un error absurdo o a una excusa mala."
+    original: "km_20241228-Copiar_1080p_60f_20241229_110011.mp4"
+  - id: kowalski-alguien-haga-algo
+    archivo: kowalski-alguien-haga-algo.mp4
+    duracion: 3.2
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Pingüinos de Madagascar alterados frente a un gráfico."
+    audio: "«¡Alguien tiene que hacer algo, por favor!»"
+    volumen_medio_db: -19.7
+    tono: [pánico, grupo]
+    uso: "Un gráfico o una tabla de datos que nadie entiende."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114913.mp4"
+  - id: la-queso
+    archivo: la-queso.mp4
+    duracion: 6.8
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Escena de serie juvenil: dos chicas conversan en la calle."
+    audio: "«Pues así soy. Y la queso.» «¿La queso?» «La quesoporte.»"
+    volumen_medio_db: -21.5
+    tono: [absurdo]
+    uso: "Cuando alguien se inventa una fórmula o una palabra."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_110701.mp4"
+  - id: manos-en-la-cabeza-sale-corriendo
+    archivo: manos-en-la-cabeza-sale-corriendo.mp4
+    duracion: 4.8
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Chico con las manos en la cabeza, en shock, sale corriendo."
+    audio: "Canción («with my mug on me…»)."
+    volumen_medio_db: -19.2
+    tono: [shock, huida]
+    uso: "Cuando te enteras de que la prueba es hoy."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112725.mp4"
+  - id: mcgregor-shh
+    archivo: mcgregor-shh.mp4
+    duracion: 6.3
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Conor McGregor en el público mira sorprendido y hace «shh» con el dedo."
+    audio: "Ruido de ambiente; volumen bajo."
+    volumen_medio_db: -27.4
+    tono: [secreto, sorpresa]
+    uso: "«No le digas al profe»; guardar el truco para la prueba."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121358.mp4"
+  - id: me-llevan-preso
+    archivo: me-llevan-preso.mp4
+    duracion: 18.8
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Streamer con camiseta de fútbol gesticula, se levanta y vuelve a sentarse."
+    audio: "«A mí me llevan preso como diga lo que opino de esto ahora mismo.»"
+    volumen_medio_db: -17.6
+    tono: [indignación]
+    uso: "Ver la pauta de corrección. Pip: sale del cuadro al levantarse."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_113449.mp4"
+  - id: messi-que-mira-bobo
+    archivo: messi-que-mira-bobo.mp4
+    duracion: 4.6
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Messi entrevistado en el Mundial, mirando de lado."
+    audio: "«¿Qué mirá, bobo? Andá pa' allá.»"
+    volumen_medio_db: -26.2
+    tono: [confrontación]
+    uso: "Responder a quien dijo que no ibas a pasar el ramo."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_113409.mp4"
+  - id: mirada-hacia-arriba
+    archivo: mirada-hacia-arriba.mp4
+    duracion: 9.4
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Hombre de gorra mira de abajo hacia arriba a otro mucho más alto."
+    audio: "Sin voz; volumen alto."
+    volumen_medio_db: -9.6
+    tono: [intimidación]
+    uso: "Tú frente al certamen; tú frente al profe."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112611.mp4"
+  - id: modo-crack
+    archivo: modo-crack.mp4
+    duracion: 7.5
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: imagen
+    que_es: "Chico mirando a cámara con subtítulo en árabe «activar modo crack»."
+    audio: "Música."
+    volumen_medio_db: -20.1
+    tono: [concentración, épico]
+    uso: "Entrar en modo estudio en serio. Pip: el subtítulo se corta en fullscreen."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114851.mp4"
+  - id: mono-oh-no
+    archivo: mono-oh-no.mp4
+    duracion: 6.2
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Mono de El Planeta de los Simios, preocupado en la oscuridad."
+    audio: "«Oh no, oh no.»"
+    volumen_medio_db: -19.0
+    tono: [preocupación]
+    uso: "Darse cuenta de un error a mitad del desarrollo."
+    original: "km_Pack Continuo_1080p_60f_20241229_114053.mp4"
+  - id: necesito-su-ayuda
+    archivo: necesito-su-ayuda.mp4
+    duracion: 10.7
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Hombre con un papel en una entrevista, junto a una mujer."
+    audio: "«Yo necesito su ayuda. ¡Ya no aguanto más!»"
+    volumen_medio_db: -13.4
+    tono: [súplica, cta]
+    uso: "Llamado a tomar clases antes del examen; cierre con promo de SalvaRamos."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_111325.mp4"
+  - id: nino-bailando-calle
+    archivo: nino-bailando-calle.mp4
+    duracion: 7.7
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Niño con capucha bailando en la calle."
+    audio: "Murmullos y tarareo."
+    volumen_medio_db: -24.4
+    tono: [celebración]
+    uso: "Salir de la última prueba."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_111258.mp4"
+  - id: nino-llora-videojuego
+    archivo: nino-llora-videojuego.mp4
+    duracion: 8.2
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Niño jugando consola se pone a llorar."
+    audio: "Gritos: «¡Anthony!»"
+    volumen_medio_db: -14.5
+    tono: [frustración, llanto]
+    uso: "Perder puntos por un error tonto."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_115733.mp4"
+  - id: peluche-como-que-no
+    archivo: peluche-como-que-no.mp4
+    duracion: 4.0
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Títere de peluche mira a cámara."
+    audio: "«¿Qué? ¿Cómo que no?»"
+    volumen_medio_db: -27.5
+    tono: [incredulidad]
+    uso: "Cuando te dicen que no hay prueba recuperativa."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_110717.mp4"
+  - id: perro-cara-cerca
+    archivo: perro-cara-cerca.mp4
+    duracion: 5.0
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Perro blanco con la nariz pegada a la cámara."
+    audio: "Sin voz."
+    volumen_medio_db: -26.6
+    tono: [curiosidad, absurdo]
+    uso: "Mirar de cerca un ejercicio que no se entiende."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_115841.mp4"
+  - id: perro-era-bait
+    archivo: perro-era-bait.mp4
+    duracion: 5.8
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: ambos
+    que_es: "Perro de cara larga con subtítulos quemados: «No se we tranquilo… Todo era bait»."
+    audio: "Canción de fondo."
+    volumen_medio_db: -11.2
+    tono: [broma, alivio]
+    uso: "Cerrar un falso susto («se suspendió la prueba… mentira»). Pip: el subtítulo se corta en fullscreen."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121817.mp4"
+  - id: perro-feliz-a-serio
+    archivo: perro-feliz-a-serio.mp4
+    duracion: 13.6
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Perro negro contento que pasa a mirada seria en blanco y negro."
+    audio: "Sin voz."
+    volumen_medio_db: -17.7
+    tono: [cambio de ánimo]
+    uso: "Antes y después de ver la nota."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_115946.mp4"
+  - id: perro-gritando
+    archivo: perro-gritando.mp4
+    duracion: 5.2
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Perro blanco ladrando y gritando contra la cámara."
+    audio: "Ladridos."
+    volumen_medio_db: -13.1
+    tono: [rabia, caos]
+    uso: "Cuando el ejercicio no da por tercera vez."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121848.mp4"
+  - id: perro-mirada-de-reojo
+    archivo: perro-mirada-de-reojo.mp4
+    duracion: 8.2
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Perro café mira de reojo, nervioso."
+    audio: "Sin voz."
+    volumen_medio_db: -11.6
+    tono: [sospecha, incomodidad]
+    uso: "Cuando un compañero te pide la tarea."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_115402.mp4"
+  - id: perro-no-digas-eso
+    archivo: perro-no-digas-eso.mp4
+    duracion: 5.4
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: ambos
+    que_es: "Perro con subtítulos quemados: «Ey ey ey… Pequeña no digas eso… No digas eso, eres perfecta»."
+    audio: "«Ey, ey, ey, pequeña, no digas eso. No digas eso, eres perfecta.»"
+    volumen_medio_db: -18.2
+    tono: [consuelo, ternura]
+    uso: "Responder a «soy malo para las matemáticas». Pip: el subtítulo se corta en fullscreen."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114835.mp4"
+  - id: perro-sonrisa-incomoda
+    archivo: perro-sonrisa-incomoda.mp4
+    duracion: 7.1
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Beagle con una sonrisa forzada mientras la cámara le hace zoom."
+    audio: "Sin voz."
+    volumen_medio_db: -25.1
+    tono: [incomodidad, nervios]
+    uso: "Cuando te preguntan si estudiaste y dices que sí."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121120.mp4"
+  - id: pingu-noot
+    archivo: pingu-noot.mp4
+    duracion: 8.8
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Pingu en blanco y negro y luego un zoom a su boca abierta."
+    audio: "Bocina «noot noot»."
+    volumen_medio_db: -19.2
+    tono: [sorpresa, ruido]
+    uso: "Corte cómico o interrupción."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_115816.mp4"
+  - id: pokebola-atrapada
+    archivo: pokebola-atrapada.mp4
+    duracion: 5.3
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Chico con una pokébola; la pokébola cae en el pasto."
+    audio: "«Ay, atrapada, ay, ayuda.»"
+    volumen_medio_db: -19.5
+    tono: [atrapado]
+    uso: "Cuando el ramo te atrapa y no hay salida."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_111224.mp4"
+  - id: que-bendicion
+    archivo: que-bendicion.mp4
+    duracion: 5.9
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Chico con audífonos hablando a cámara."
+    audio: "«¡Qué bendición!»"
+    volumen_medio_db: -20.1
+    tono: [alivio, alegría]
+    uso: "Se suspendió la prueba; el ejercicio salió."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112152.mp4"
+  - id: que-estas-haciendo-chamaco
+    archivo: que-estas-haciendo-chamaco.mp4
+    duracion: 4.8
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Chico riéndose junto a un hombre sobre fondo rojo."
+    audio: "«¿Qué estás haciendo, chamaco?» y risa."
+    volumen_medio_db: -14.9
+    tono: [risa, regaño]
+    uso: "Pillar a alguien copiando o haciendo trampa en el ejercicio."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_120007.mp4"
+  - id: quien-sabe
+    archivo: quien-sabe.mp4
+    duracion: 4.5
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Hombre entrevistado en la calle por un noticiero."
+    audio: "«¿Quién sabe? Ahí sí no te puedo decir nada.»"
+    volumen_medio_db: -24.5
+    tono: [duda]
+    uso: "Cuando te preguntan cuánto da el ejercicio."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114904.mp4"
+  - id: risa-podcast
+    archivo: risa-podcast.mp4
+    duracion: 4.1
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: ambos
+    que_es: "Chico en un podcast riéndose a carcajadas."
+    audio: "«¡JAJAJAJA!»"
+    volumen_medio_db: -15.1
+    tono: [risa]
+    uso: "Reacción a una excusa o a un error ridículo."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_110606.mp4"
+  - id: shia-aplauso-lento
+    archivo: shia-aplauso-lento.mp4
+    duracion: 6.1
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Shia LaBeouf aplaudiendo solo en un teatro vacío; los primeros 2 s son un plano oscuro y abierto."
+    audio: "Aplausos; volumen bajo."
+    volumen_medio_db: -32.9
+    tono: [aprobación, sarcasmo]
+    uso: "Aplauso lento a una solución elegante. Usar src_in: 2 para partir en el primer plano."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121333.mp4"
+  - id: speed-grito
+    archivo: speed-grito.mp4
+    duracion: 10.5
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "IShowSpeed grita con la lengua afuera, pegado a la cámara."
+    audio: "«Again.»"
+    volumen_medio_db: -14.6
+    tono: [shock, euforia]
+    uso: "Reacción exagerada a una nota o a un resultado."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_113348.mp4"
+  - id: the-rock-ceja
+    archivo: the-rock-ceja.mp4
+    duracion: 4.7
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "The Rock levanta la ceja y mira de reojo."
+    audio: "«Bye.» Volumen alto."
+    volumen_medio_db: -8.5
+    tono: [sospecha]
+    uso: "Cuando alguien dice que se sacó un 7 sin estudiar."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112113.mp4"
+  - id: the-rock-lentes-pensativo
+    archivo: the-rock-lentes-pensativo.mp4
+    duracion: 4.0
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "The Rock con lentes de sol, pensativo, la mano en la barbilla."
+    audio: "Audio saturado."
+    volumen_medio_db: -3.7
+    tono: [pensar, sospecha]
+    uso: "Analizar un ejercicio sospechosamente fácil."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_113213.mp4"
+  - id: tobey-llorando
+    archivo: tobey-llorando.mp4
+    duracion: 9.3
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Tobey Maguire (Spider-Man) llorando en blanco y negro, entre una multitud."
+    audio: "Voz en inglés casi inaudible; el peso está en la cara."
+    volumen_medio_db: -18.5
+    tono: [tristeza, drama]
+    uso: "Ver la nota del certamen; reprobar por una décima."
+    original: ".trashed-1738251662-km_20241228-Copiar-Copiar_1080p_60f_20241229_121833.mp4"
+  - id: tobey-mirada-seria
+    archivo: tobey-mirada-seria.mp4
+    duracion: 14.2
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Tobey Maguire gira la cabeza lentamente con mirada seria."
+    audio: "Sin voz."
+    volumen_medio_db: -23.1
+    tono: [realización, seriedad]
+    uso: "Darse cuenta de que el certamen es mañana."
+    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121411.mp4"
+  - id: twilight-mira-arriba
+    archivo: twilight-mira-arriba.mp4
+    duracion: 0.9
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Twilight Sparkle (My Little Pony) mira hacia arriba; menos de 1 s."
+    audio: "Efecto corto."
+    volumen_medio_db: -27.0
+    tono: [pensar, transición]
+    uso: "Transición rápida o golpe de «se me ocurrió algo»."
+    original: "km_20241228-Copiar_1080p_60f_20241229_122133.mp4"
+  - id: un-show-mas-como-estan-muchachos
+    archivo: un-show-mas-como-estan-muchachos.mp4
+    duracion: 6.5
+    resolucion: 1920x1080
+    encuadre: pip
+    chiste_en: audio
+    que_es: "Personajes de Un Show Más; zoom a sus caras."
+    audio: "«¿Cómo están, muchachos? Yo los veo a ustedes muy bien.»"
+    volumen_medio_db: -19.8
+    tono: [saludo, ironía]
+    uso: "Abrir un reel o saludar a los que llegan a la semana de exámenes."
+    original: "km_20241228-Copiar_1080p_60f_20241229_110114.mp4"
+  - id: vinicius-primer-hat-trick
+    archivo: vinicius-primer-hat-trick.mp4
+    duracion: 7.3
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: audio
+    que_es: "Vinícius Jr. entrevistado tras un partido."
+    audio: "«Hoy, de una alegría tremenda, mi primer hat-trick en la carrera, mi primer hat-trick en el Bernabéu.»"
+    volumen_medio_db: -23.2
+    tono: [logro, orgullo]
+    uso: "Primer 7; primer ramo aprobado con nota alta."
+    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_111342.mp4"
+  - id: westbrook-what
+    archivo: westbrook-what.mp4
+    duracion: 3.4
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Russell Westbrook en conferencia de prensa pone cara de incredulidad."
+    audio: "«What?»"
+    volumen_medio_db: -20.9
+    tono: [incredulidad]
+    uso: "Cuando el profe dice que entra toda la materia."
+    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114819.mp4"
+  - id: youtuber-que
+    archivo: youtuber-que.mp4
+    duracion: 4.8
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Youtuber se agarra la cabeza y gesticula indignado."
+    audio: "«¿Qué?»"
+    volumen_medio_db: -16.1
+    tono: [confusión, indignación]
+    uso: "Cuando el resultado no coincide con la pauta."
+    original: "km_Pack Continuo_1080p_60f_20241229_114200.mp4"
+  - id: zim-panico
+    archivo: zim-panico.mp4
+    duracion: 8.4
+    resolucion: 1920x1080
+    encuadre: fullscreen
+    chiste_en: imagen
+    que_es: "Zim (Invasor Zim) grita y se esconde bajo las sábanas."
+    audio: "Grito."
+    volumen_medio_db: -22.0
+    tono: [pánico, miedo]
+    uso: "Despertar el día del certamen sin haber estudiado."
+    original: "km_20241228-Copiar_1080p_60f_20241229_122214.mp4"

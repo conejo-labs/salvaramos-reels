@@ -5,3 +5,4 @@ projects/*/raw/
 projects/*/build/
 .env
 assets/memes/giphy/
+assets/memes/pack/
