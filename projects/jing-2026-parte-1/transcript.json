@@ -1,829 +1,1511 @@
 {
-  "cut_key": "c79085d82524c127",
   "model": "large-v3-turbo",
-  "device": "cpu",
-  "segments": [
-    {
-      "words": [
+  "clips": {
+    "hook": {
+      "key": "d6aa57e63fd0577d",
+      "segments": [
         {
-          "word": "¿Qué",
-          "start": 0.0,
-          "end": 0.3
+          "words": [
+            {
+              "word": "¿Qué",
+              "start": 0.14,
+              "end": 0.62
+            },
+            {
+              "word": "es",
+              "start": 0.62,
+              "end": 0.8
+            },
+            {
+              "word": "más",
+              "start": 0.8,
+              "end": 0.9
+            },
+            {
+              "word": "difícil?",
+              "start": 0.9,
+              "end": 1.4
+            },
+            {
+              "word": "¿Un",
+              "start": 1.6,
+              "end": 1.9
+            },
+            {
+              "word": "certamen",
+              "start": 1.9,
+              "end": 2.48
+            },
+            {
+              "word": "de",
+              "start": 2.48,
+              "end": 2.74
+            },
+            {
+              "word": "cálculo",
+              "start": 2.74,
+              "end": 3.28
+            },
+            {
+              "word": "o",
+              "start": 3.28,
+              "end": 4.18
+            },
+            {
+              "word": "meter",
+              "start": 4.18,
+              "end": 5.38
+            },
+            {
+              "word": "un",
+              "start": 5.38,
+              "end": 6.24
+            },
+            {
+              "word": "punto",
+              "start": 6.24,
+              "end": 6.46
+            },
+            {
+              "word": "en",
+              "start": 6.46,
+              "end": 6.6
+            },
+            {
+              "word": "el",
+              "start": 6.6,
+              "end": 6.7
+            },
+            {
+              "word": "último",
+              "start": 6.7,
+              "end": 6.96
+            },
+            {
+              "word": "minuto?",
+              "start": 6.96,
+              "end": 7.54
+            }
+          ]
         },
         {
-          "word": "es",
-          "start": 0.3,
-          "end": 0.42
-        },
-        {
-          "word": "más",
-          "start": 0.42,
-          "end": 0.58
-        },
-        {
-          "word": "difícil?",
-          "start": 0.58,
-          "end": 1.06
-        },
-        {
-          "word": "¿Un",
-          "start": 1.28,
-          "end": 1.56
-        },
-        {
-          "word": "certamen",
-          "start": 1.56,
-          "end": 2.16
-        },
-        {
-          "word": "de",
-          "start": 2.16,
-          "end": 2.42
-        },
-        {
-          "word": "cálculo",
-          "start": 2.42,
-          "end": 2.94
-        },
-        {
-          "word": "o",
-          "start": 2.94,
-          "end": 3.72
-        },
-        {
-          "word": "meter",
-          "start": 3.72,
-          "end": 4.86
-        },
-        {
-          "word": "un",
-          "start": 4.86,
-          "end": 5.74
-        },
-        {
-          "word": "punto",
-          "start": 5.74,
-          "end": 5.96
-        },
-        {
-          "word": "en",
-          "start": 5.96,
-          "end": 6.1
-        },
-        {
-          "word": "el",
-          "start": 6.1,
-          "end": 6.2
-        },
-        {
-          "word": "último",
-          "start": 6.2,
-          "end": 6.48
-        },
-        {
-          "word": "minuto?",
-          "start": 6.48,
-          "end": 7.02
+          "words": [
+            {
+              "word": "Un",
+              "start": 7.8,
+              "end": 8.24
+            },
+            {
+              "word": "certamen",
+              "start": 8.24,
+              "end": 8.64
+            },
+            {
+              "word": "de",
+              "start": 8.64,
+              "end": 8.76
+            },
+            {
+              "word": "cálculo.",
+              "start": 8.76,
+              "end": 9.12
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "intro": {
+      "key": "bf911aae59374e33",
+      "segments": [
         {
-          "word": "Un",
-          "start": 7.18,
-          "end": 7.4
-        },
-        {
-          "word": "certamen",
-          "start": 7.4,
-          "end": 7.78
-        },
-        {
-          "word": "de",
-          "start": 7.78,
-          "end": 7.9
-        },
-        {
-          "word": "cálculo",
-          "start": 7.9,
-          "end": 8.26
+          "words": [
+            {
+              "word": "Hoy",
+              "start": 0.11,
+              "end": 0.65
+            },
+            {
+              "word": "con",
+              "start": 0.65,
+              "end": 0.91
+            },
+            {
+              "word": "SalvaRamos",
+              "start": 0.91,
+              "end": 1.45
+            },
+            {
+              "word": "vamos",
+              "start": 1.45,
+              "end": 1.67
+            },
+            {
+              "word": "a",
+              "start": 1.67,
+              "end": 1.81
+            },
+            {
+              "word": "estar",
+              "start": 1.81,
+              "end": 1.91
+            },
+            {
+              "word": "entrevistando",
+              "start": 1.91,
+              "end": 2.51
+            },
+            {
+              "word": "a",
+              "start": 2.51,
+              "end": 2.93
+            },
+            {
+              "word": "la",
+              "start": 2.93,
+              "end": 3.01
+            },
+            {
+              "word": "gente",
+              "start": 3.01,
+              "end": 3.29
+            },
+            {
+              "word": "de",
+              "start": 3.29,
+              "end": 3.45
+            },
+            {
+              "word": "las",
+              "start": 3.45,
+              "end": 3.57
+            },
+            {
+              "word": "diferentes",
+              "start": 3.57,
+              "end": 3.91
+            },
+            {
+              "word": "universidades",
+              "start": 3.91,
+              "end": 4.59
+            },
+            {
+              "word": "que",
+              "start": 4.59,
+              "end": 4.97
+            },
+            {
+              "word": "vinieron",
+              "start": 4.97,
+              "end": 5.29
+            },
+            {
+              "word": "a",
+              "start": 5.29,
+              "end": 5.39
+            },
+            {
+              "word": "participar",
+              "start": 5.39,
+              "end": 5.77
+            },
+            {
+              "word": "en",
+              "start": 5.77,
+              "end": 6.53
+            },
+            {
+              "word": "los",
+              "start": 6.53,
+              "end": 6.71
+            },
+            {
+              "word": "JING.",
+              "start": 6.71,
+              "end": 6.91
+            },
+            {
+              "word": "¡Vamos!",
+              "start": 7.19,
+              "end": 7.59
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "montserrat-calculo": {
+      "key": "4a7630a99bf4e737",
+      "segments": [
         {
-          "word": "con",
-          "start": 11.88,
-          "end": 12.04
-        },
-        {
-          "word": "Salva",
-          "start": 12.04,
-          "end": 12.26
-        },
-        {
-          "word": "Ramos,",
-          "start": 12.26,
-          "end": 12.54
-        },
-        {
-          "word": "vamos",
-          "start": 12.68,
-          "end": 12.78
-        },
-        {
-          "word": "a",
-          "start": 12.78,
-          "end": 12.9
-        },
-        {
-          "word": "estar",
-          "start": 12.9,
-          "end": 13.0
-        },
-        {
-          "word": "entrevistando",
-          "start": 13.0,
-          "end": 13.62
-        },
-        {
-          "word": "a",
-          "start": 13.62,
-          "end": 14.02
-        },
-        {
-          "word": "la",
-          "start": 14.02,
-          "end": 14.12
-        },
-        {
-          "word": "gente",
-          "start": 14.12,
-          "end": 14.38
-        },
-        {
-          "word": "de",
-          "start": 14.38,
-          "end": 14.54
-        },
-        {
-          "word": "las",
-          "start": 14.54,
-          "end": 14.66
-        },
-        {
-          "word": "diferentes",
-          "start": 14.66,
-          "end": 15.02
-        },
-        {
-          "word": "universidades",
-          "start": 15.02,
-          "end": 15.66
-        },
-        {
-          "word": "que",
-          "start": 15.66,
-          "end": 16.08
-        },
-        {
-          "word": "vinieron",
-          "start": 16.08,
-          "end": 16.36
-        },
-        {
-          "word": "a",
-          "start": 16.36,
-          "end": 16.48
-        },
-        {
-          "word": "participar",
-          "start": 16.48,
-          "end": 16.86
-        },
-        {
-          "word": "en",
-          "start": 16.86,
-          "end": 17.62
-        },
-        {
-          "word": "los",
-          "start": 17.62,
-          "end": 17.82
-        },
-        {
-          "word": "JING",
-          "start": 17.82,
-          "end": 18.0
+          "words": [
+            {
+              "word": "No,",
+              "start": 0.11,
+              "end": 0.59
+            },
+            {
+              "word": "como",
+              "start": 0.75,
+              "end": 0.85
+            },
+            {
+              "word": "una",
+              "start": 0.85,
+              "end": 0.99
+            },
+            {
+              "word": "entrega",
+              "start": 0.99,
+              "end": 1.19
+            },
+            {
+              "word": "a",
+              "start": 1.19,
+              "end": 1.23
+            },
+            {
+              "word": "última",
+              "start": 1.23,
+              "end": 1.35
+            },
+            {
+              "word": "hora",
+              "start": 1.35,
+              "end": 1.61
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "tomas-calculo": {
+      "key": "467e4651cec31d35",
+      "segments": [
         {
-          "word": "¡Vamos!",
-          "start": 18.0,
-          "end": 18.7
+          "words": [
+            {
+              "word": "como",
+              "start": 0.11,
+              "end": 0.59
+            },
+            {
+              "word": "un",
+              "start": 0.59,
+              "end": 0.77
+            },
+            {
+              "word": "buen",
+              "start": 0.77,
+              "end": 0.77
+            },
+            {
+              "word": "cálculo,",
+              "start": 0.77,
+              "end": 1.13
+            },
+            {
+              "word": "siempre",
+              "start": 1.35,
+              "end": 1.57
+            },
+            {
+              "word": "buscamos",
+              "start": 1.57,
+              "end": 2.09
+            },
+            {
+              "word": "lo",
+              "start": 2.09,
+              "end": 2.83
+            },
+            {
+              "word": "estético,",
+              "start": 2.83,
+              "end": 3.17
+            },
+            {
+              "word": "lo",
+              "start": 3.25,
+              "end": 3.33
+            },
+            {
+              "word": "bonito",
+              "start": 3.33,
+              "end": 3.55
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "branco-calculo": {
+      "key": "04560420fbe183ea",
+      "segments": [
         {
-          "word": "No,",
-          "start": 40.12,
-          "end": 40.36
-        },
-        {
-          "word": "como",
-          "start": 40.46,
-          "end": 40.6
-        },
-        {
-          "word": "una",
-          "start": 40.6,
-          "end": 40.72
-        },
-        {
-          "word": "entrega",
-          "start": 40.72,
-          "end": 40.94
-        },
-        {
-          "word": "a",
-          "start": 40.94,
-          "end": 41.02
-        },
-        {
-          "word": "última",
-          "start": 41.02,
-          "end": 41.1
-        },
-        {
-          "word": "hora",
-          "start": 41.1,
-          "end": 41.42
+          "words": [
+            {
+              "word": "Depende",
+              "start": 0.4,
+              "end": 0.76
+            },
+            {
+              "word": "del",
+              "start": 0.76,
+              "end": 0.96
+            },
+            {
+              "word": "día,",
+              "start": 0.96,
+              "end": 1.24
+            },
+            {
+              "word": "en",
+              "start": 1.38,
+              "end": 1.42
+            },
+            {
+              "word": "general,",
+              "start": 1.42,
+              "end": 1.86
+            },
+            {
+              "word": "tal",
+              "start": 2.16,
+              "end": 2.48
+            },
+            {
+              "word": "vez",
+              "start": 2.48,
+              "end": 2.6
+            },
+            {
+              "word": "una",
+              "start": 2.6,
+              "end": 2.74
+            },
+            {
+              "word": "entrega",
+              "start": 2.74,
+              "end": 3.08
+            },
+            {
+              "word": "última",
+              "start": 3.08,
+              "end": 3.2
+            },
+            {
+              "word": "hora,",
+              "start": 3.2,
+              "end": 3.52
+            },
+            {
+              "word": "pero",
+              "start": 3.54,
+              "end": 3.68
+            },
+            {
+              "word": "hoy",
+              "start": 3.68,
+              "end": 3.8
+            },
+            {
+              "word": "día",
+              "start": 3.8,
+              "end": 3.92
+            },
+            {
+              "word": "anduvimos",
+              "start": 3.92,
+              "end": 4.26
+            },
+            {
+              "word": "mejor,",
+              "start": 4.26,
+              "end": 4.58
+            },
+            {
+              "word": "así",
+              "start": 4.76,
+              "end": 4.84
+            },
+            {
+              "word": "debería",
+              "start": 4.84,
+              "end": 5.24
+            },
+            {
+              "word": "un",
+              "start": 5.24,
+              "end": 5.36
+            },
+            {
+              "word": "buen",
+              "start": 5.36,
+              "end": 5.54
+            },
+            {
+              "word": "cálculo",
+              "start": 5.54,
+              "end": 5.94
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "tomas-cabala": {
+      "key": "d985c46fb96ffb04",
+      "segments": [
         {
-          "word": "Como",
-          "start": 41.42,
-          "end": 41.92
-        },
-        {
-          "word": "un",
-          "start": 41.92,
-          "end": 42.04
-        },
-        {
-          "word": "buen",
-          "start": 42.04,
-          "end": 42.16
-        },
-        {
-          "word": "cálculo",
-          "start": 42.16,
-          "end": 42.44
+          "words": [
+            {
+              "word": "Ninguna,",
+              "start": 0.0,
+              "end": 0.58
+            },
+            {
+              "word": "yo",
+              "start": 0.84,
+              "end": 0.92
+            },
+            {
+              "word": "voy",
+              "start": 0.92,
+              "end": 1.1
+            },
+            {
+              "word": "al",
+              "start": 1.1,
+              "end": 1.22
+            },
+            {
+              "word": "partido",
+              "start": 1.22,
+              "end": 1.56
+            },
+            {
+              "word": "y",
+              "start": 1.56,
+              "end": 1.7
+            },
+            {
+              "word": "lo",
+              "start": 1.7,
+              "end": 1.8
+            },
+            {
+              "word": "que",
+              "start": 1.8,
+              "end": 1.9
+            },
+            {
+              "word": "salga",
+              "start": 1.9,
+              "end": 2.18
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "martin-cabala": {
+      "key": "ecda2a9d32ced3a8",
+      "segments": [
         {
-          "word": "Siempre",
-          "start": 42.44,
-          "end": 42.7
-        },
-        {
-          "word": "buscamos...",
-          "start": 42.7,
-          "end": 43.98
+          "words": [
+            {
+              "word": "Bueno,",
+              "start": 0.0,
+              "end": 0.38
+            },
+            {
+              "word": "la",
+              "start": 0.44,
+              "end": 0.52
+            },
+            {
+              "word": "mía",
+              "start": 0.52,
+              "end": 0.84
+            },
+            {
+              "word": "es",
+              "start": 0.84,
+              "end": 1.44
+            },
+            {
+              "word": "ir",
+              "start": 1.44,
+              "end": 1.88
+            },
+            {
+              "word": "al",
+              "start": 1.88,
+              "end": 2.02
+            },
+            {
+              "word": "baño",
+              "start": 2.02,
+              "end": 2.36
+            },
+            {
+              "word": "discapacitado",
+              "start": 2.36,
+              "end": 3.12
+            },
+            {
+              "word": "de",
+              "start": 3.12,
+              "end": 3.22
+            },
+            {
+              "word": "la",
+              "start": 3.22,
+              "end": 3.3
+            },
+            {
+              "word": "K,",
+              "start": 3.3,
+              "end": 3.54
+            },
+            {
+              "word": "al",
+              "start": 3.7,
+              "end": 3.82
+            },
+            {
+              "word": "que",
+              "start": 3.82,
+              "end": 3.92
+            },
+            {
+              "word": "esté",
+              "start": 3.92,
+              "end": 4.06
+            },
+            {
+              "word": "libre.",
+              "start": 4.06,
+              "end": 4.34
+            },
+            {
+              "word": "¿Y",
+              "start": 4.54,
+              "end": 4.74
+            },
+            {
+              "word": "de",
+              "start": 4.74,
+              "end": 4.82
+            },
+            {
+              "word": "cuándo",
+              "start": 4.82,
+              "end": 5.06
+            },
+            {
+              "word": "sigue",
+              "start": 5.06,
+              "end": 5.2
+            },
+            {
+              "word": "eso?",
+              "start": 5.2,
+              "end": 5.38
+            },
+            {
+              "word": "Desde",
+              "start": 6.36,
+              "end": 6.68
+            },
+            {
+              "word": "siempre,",
+              "start": 6.68,
+              "end": 7.14
+            },
+            {
+              "word": "desde",
+              "start": 7.22,
+              "end": 7.36
+            },
+            {
+              "word": "que",
+              "start": 7.36,
+              "end": 7.54
+            },
+            {
+              "word": "entré",
+              "start": 7.54,
+              "end": 7.7
+            },
+            {
+              "word": "a",
+              "start": 7.7,
+              "end": 7.74
+            },
+            {
+              "word": "la",
+              "start": 7.74,
+              "end": 7.82
+            },
+            {
+              "word": "universidad",
+              "start": 7.82,
+              "end": 8.22
+            },
+            {
+              "word": "para",
+              "start": 8.22,
+              "end": 8.38
+            },
+            {
+              "word": "las",
+              "start": 8.38,
+              "end": 8.54
+            },
+            {
+              "word": "pruebas,",
+              "start": 8.54,
+              "end": 8.82
+            },
+            {
+              "word": "para",
+              "start": 8.92,
+              "end": 8.96
+            },
+            {
+              "word": "lo",
+              "start": 8.96,
+              "end": 9.06
+            },
+            {
+              "word": "que",
+              "start": 9.06,
+              "end": 9.16
+            },
+            {
+              "word": "sea,",
+              "start": 9.16,
+              "end": 9.36
+            },
+            {
+              "word": "ahí",
+              "start": 9.86,
+              "end": 9.98
+            },
+            {
+              "word": "va",
+              "start": 9.98,
+              "end": 10.14
+            },
+            {
+              "word": "a",
+              "start": 10.14,
+              "end": 10.18
+            },
+            {
+              "word": "ir",
+              "start": 10.18,
+              "end": 10.24
+            },
+            {
+              "word": "livianito",
+              "start": 10.24,
+              "end": 10.68
+            },
+            {
+              "word": "a",
+              "start": 10.68,
+              "end": 11.08
+            },
+            {
+              "word": "la",
+              "start": 11.08,
+              "end": 11.2
+            },
+            {
+              "word": "que",
+              "start": 11.2,
+              "end": 11.32
+            },
+            {
+              "word": "sea",
+              "start": 11.32,
+              "end": 11.44
+            },
+            {
+              "word": "que",
+              "start": 11.44,
+              "end": 11.54
+            },
+            {
+              "word": "tenga",
+              "start": 11.54,
+              "end": 11.7
+            },
+            {
+              "word": "que",
+              "start": 11.7,
+              "end": 11.8
+            },
+            {
+              "word": "hacer",
+              "start": 11.8,
+              "end": 11.98
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
+    "montserrat-rival": {
+      "key": "a9d018173d901fd8",
+      "segments": [
         {
-          "word": "Depende",
-          "start": 43.98,
-          "end": 44.48
+          "words": [
+            {
+              "word": "Ojo",
+              "start": 0.02,
+              "end": 0.68
+            },
+            {
+              "word": "con",
+              "start": 0.68,
+              "end": 0.9
+            },
+            {
+              "word": "mi",
+              "start": 0.9,
+              "end": 1.06
+            },
+            {
+              "word": "dupla,",
+              "start": 1.06,
+              "end": 1.34
+            },
+            {
+              "word": "ojito",
+              "start": 1.62,
+              "end": 2.08
+            }
+          ]
         },
         {
-          "word": "del",
-          "start": 44.48,
-          "end": 44.7
-        },
-        {
-          "word": "día,",
-          "start": 44.7,
-          "end": 44.96
-        },
-        {
-          "word": "en",
-          "start": 45.04,
-          "end": 45.18
-        },
-        {
-          "word": "general,",
-          "start": 45.18,
-          "end": 45.54
-        },
-        {
-          "word": "tal",
-          "start": 45.82,
-          "end": 46.22
-        },
-        {
-          "word": "vez",
-          "start": 46.22,
-          "end": 46.32
-        },
-        {
-          "word": "una",
-          "start": 46.32,
-          "end": 46.46
-        },
-        {
-          "word": "entrega",
-          "start": 46.46,
-          "end": 46.74
-        },
-        {
-          "word": "a",
-          "start": 46.74,
-          "end": 46.82
-        },
-        {
-          "word": "última",
-          "start": 46.82,
-          "end": 46.94
-        },
-        {
-          "word": "hora,",
-          "start": 46.94,
-          "end": 47.24
-        },
-        {
-          "word": "pero",
-          "start": 47.32,
-          "end": 47.42
-        },
-        {
-          "word": "hoy",
-          "start": 47.42,
-          "end": 47.52
-        },
-        {
-          "word": "día",
-          "start": 47.52,
-          "end": 47.64
-        },
-        {
-          "word": "anduvimos",
-          "start": 47.64,
-          "end": 47.96
-        },
-        {
-          "word": "mejor,",
-          "start": 47.96,
-          "end": 48.3
-        },
-        {
-          "word": "así",
-          "start": 48.44,
-          "end": 48.6
-        },
-        {
-          "word": "debería",
-          "start": 48.6,
-          "end": 48.96
-        },
-        {
-          "word": "un",
-          "start": 48.96,
-          "end": 49.1
-        },
-        {
-          "word": "buen",
-          "start": 49.1,
-          "end": 49.26
-        },
-        {
-          "word": "cálculo",
-          "start": 49.26,
-          "end": 49.66
+          "words": [
+            {
+              "word": "Ojito,",
+              "start": 2.08,
+              "end": 2.94
+            },
+            {
+              "word": "ojito",
+              "start": 3.04,
+              "end": 3.48
+            }
+          ]
         }
       ]
     },
-    {
-      "words": [
-        {
-          "word": "Ninguna,",
-          "start": 52.88,
-          "end": 53.22
-        },
-        {
-          "word": "yo",
-          "start": 53.32,
-          "end": 53.66
-        },
-        {
-          "word": "voy",
-          "start": 53.66,
-          "end": 53.8
-        },
-        {
-          "word": "al",
-          "start": 53.8,
-          "end": 53.98
-        },
-        {
-          "word": "partido",
-          "start": 53.98,
-          "end": 54.3
-        },
-        {
-          "word": "y",
-          "start": 54.3,
-          "end": 54.42
-        },
-        {
-          "word": "lo",
-          "start": 54.42,
-          "end": 54.54
-        },
-        {
-          "word": "que...",
-          "start": 54.54,
-          "end": 54.74
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Bueno,",
-          "start": 54.74,
-          "end": 54.98
-        },
-        {
-          "word": "la",
-          "start": 55.06,
-          "end": 55.16
-        },
-        {
-          "word": "voy",
-          "start": 55.16,
-          "end": 55.36
-        },
-        {
-          "word": "a",
-          "start": 55.36,
-          "end": 55.5
-        },
-        {
-          "word": "ir",
-          "start": 55.5,
-          "end": 56.5
-        },
-        {
-          "word": "al",
-          "start": 56.5,
-          "end": 56.66
-        },
-        {
-          "word": "baño",
-          "start": 56.66,
-          "end": 56.96
-        },
-        {
-          "word": "discapacitado",
-          "start": 56.96,
-          "end": 57.74
-        },
-        {
-          "word": "de",
-          "start": 57.74,
-          "end": 57.86
-        },
-        {
-          "word": "la",
-          "start": 57.86,
-          "end": 57.94
-        },
-        {
-          "word": "K,",
-          "start": 57.94,
-          "end": 58.14
-        },
-        {
-          "word": "al",
-          "start": 58.32,
-          "end": 58.44
-        },
-        {
-          "word": "que",
-          "start": 58.44,
-          "end": 58.58
-        },
-        {
-          "word": "esté",
-          "start": 58.58,
-          "end": 58.7
-        },
-        {
-          "word": "libre",
-          "start": 58.7,
-          "end": 58.96
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "¿Y",
-          "start": 58.96,
-          "end": 59.36
-        },
-        {
-          "word": "de",
-          "start": 59.36,
-          "end": 59.44
-        },
-        {
-          "word": "cuándo",
-          "start": 59.44,
-          "end": 59.68
-        },
-        {
-          "word": "sigue",
-          "start": 59.68,
-          "end": 59.84
-        },
-        {
-          "word": "eso?",
-          "start": 59.84,
-          "end": 60.02
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Desde",
-          "start": 61.02,
-          "end": 61.38
-        },
-        {
-          "word": "siempre,",
-          "start": 61.38,
-          "end": 61.74
-        },
-        {
-          "word": "desde",
-          "start": 61.86,
-          "end": 62.0
-        },
-        {
-          "word": "que",
-          "start": 62.0,
-          "end": 62.14
-        },
-        {
-          "word": "entré",
-          "start": 62.14,
-          "end": 62.3
-        },
-        {
-          "word": "a",
-          "start": 62.3,
-          "end": 62.38
-        },
-        {
-          "word": "la",
-          "start": 62.38,
-          "end": 62.44
-        },
-        {
-          "word": "universidad",
-          "start": 62.44,
-          "end": 62.84
-        },
-        {
-          "word": "para",
-          "start": 62.84,
-          "end": 63.02
-        },
-        {
-          "word": "pruebas,",
-          "start": 63.02,
-          "end": 63.46
-        },
-        {
-          "word": "para",
-          "start": 63.52,
-          "end": 63.6
-        },
-        {
-          "word": "lo",
-          "start": 63.6,
-          "end": 63.7
-        },
-        {
-          "word": "que",
-          "start": 63.7,
-          "end": 63.78
-        },
-        {
-          "word": "sea",
-          "start": 63.78,
-          "end": 64.0
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Ahí",
-          "start": 64.0,
-          "end": 64.6
-        },
-        {
-          "word": "va",
-          "start": 64.6,
-          "end": 64.76
-        },
-        {
-          "word": "a",
-          "start": 64.76,
-          "end": 64.82
-        },
-        {
-          "word": "ir",
-          "start": 64.82,
-          "end": 64.84
-        },
-        {
-          "word": "livianito",
-          "start": 64.84,
-          "end": 65.32
-        },
-        {
-          "word": "a",
-          "start": 65.32,
-          "end": 65.72
-        },
-        {
-          "word": "la",
-          "start": 65.72,
-          "end": 65.84
-        },
-        {
-          "word": "que",
-          "start": 65.84,
-          "end": 65.98
-        },
-        {
-          "word": "sea",
-          "start": 65.98,
-          "end": 66.08
-        },
-        {
-          "word": "que",
-          "start": 66.08,
-          "end": 66.18
-        },
-        {
-          "word": "tenga",
-          "start": 66.18,
-          "end": 66.34
-        },
-        {
-          "word": "que",
-          "start": 66.34,
-          "end": 66.42
-        },
-        {
-          "word": "hacer",
-          "start": 66.42,
-          "end": 66.66
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "con",
-          "start": 73.3,
-          "end": 73.52
-        },
-        {
-          "word": "mi",
-          "start": 73.52,
-          "end": 73.68
-        },
-        {
-          "word": "dupla",
-          "start": 73.68,
-          "end": 73.98
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Ojito",
-          "start": 73.98,
-          "end": 74.78
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Ojito,",
-          "start": 74.78,
-          "end": 75.32
-        },
-        {
-          "word": "ojito",
-          "start": 75.32,
-          "end": 75.88
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Nah,",
-          "start": 75.88,
-          "end": 76.3
-        },
-        {
-          "word": "que",
-          "start": 76.68,
-          "end": 76.8
-        },
-        {
-          "word": "pasémoslo",
-          "start": 76.8,
-          "end": 77.66
-        },
-        {
-          "word": "bien,",
-          "start": 77.66,
-          "end": 78.0
-        },
-        {
-          "word": "pero...",
-          "start": 78.2,
-          "end": 79.16
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Venimos",
-          "start": 79.16,
-          "end": 79.8
-        },
-        {
-          "word": "a",
-          "start": 79.8,
-          "end": 79.88
-        },
-        {
-          "word": "competir,",
-          "start": 79.88,
-          "end": 80.36
-        },
-        {
-          "word": "ya",
-          "start": 80.44,
-          "end": 80.54
-        },
-        {
-          "word": "vamos",
-          "start": 80.54,
-          "end": 80.66
-        },
-        {
-          "word": "a",
-          "start": 80.66,
-          "end": 80.7
-        },
-        {
-          "word": "ganar",
-          "start": 80.7,
-          "end": 81.08
+    "branco-rival": {
+      "key": "24cf7dd656914e7d",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Nada,",
+              "start": 0.0,
+              "end": 0.54
+            },
+            {
+              "word": "que",
+              "start": 0.9,
+              "end": 1.02
+            },
+            {
+              "word": "pasémoslo",
+              "start": 1.02,
+              "end": 1.9
+            },
+            {
+              "word": "bien,",
+              "start": 1.9,
+              "end": 2.22
+            },
+            {
+              "word": "pero",
+              "start": 2.54,
+              "end": 2.8
+            },
+            {
+              "word": "primero",
+              "start": 2.8,
+              "end": 4.0
+            },
+            {
+              "word": "va",
+              "start": 4.0,
+              "end": 4.08
+            },
+            {
+              "word": "a",
+              "start": 4.08,
+              "end": 4.18
+            },
+            {
+              "word": "competir,",
+              "start": 4.18,
+              "end": 4.58
+            },
+            {
+              "word": "ya",
+              "start": 4.66,
+              "end": 4.78
+            },
+            {
+              "word": "vamos",
+              "start": 4.78,
+              "end": 4.88
+            },
+            {
+              "word": "a",
+              "start": 4.88,
+              "end": 4.92
+            },
+            {
+              "word": "ganar",
+              "start": 4.92,
+              "end": 5.2
+            }
+          ]
         }
       ]
     }
-  ]
+  },
+  "previous": {
+    "hook": {
+      "key": "5f27ada2014a956b",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "¿Qué",
+              "start": 0.0,
+              "end": 0.4
+            },
+            {
+              "word": "es",
+              "start": 0.4,
+              "end": 0.58
+            },
+            {
+              "word": "más",
+              "start": 0.58,
+              "end": 0.68
+            },
+            {
+              "word": "difícil?",
+              "start": 0.68,
+              "end": 1.16
+            },
+            {
+              "word": "¿Un",
+              "start": 1.38,
+              "end": 1.68
+            },
+            {
+              "word": "certamen",
+              "start": 1.68,
+              "end": 2.26
+            },
+            {
+              "word": "de",
+              "start": 2.26,
+              "end": 2.5
+            },
+            {
+              "word": "cálculo",
+              "start": 2.5,
+              "end": 3.04
+            },
+            {
+              "word": "o",
+              "start": 3.04,
+              "end": 3.96
+            },
+            {
+              "word": "meter",
+              "start": 3.96,
+              "end": 5.14
+            },
+            {
+              "word": "un",
+              "start": 5.14,
+              "end": 6.02
+            },
+            {
+              "word": "punto",
+              "start": 6.02,
+              "end": 6.24
+            },
+            {
+              "word": "en",
+              "start": 6.24,
+              "end": 6.36
+            },
+            {
+              "word": "el",
+              "start": 6.36,
+              "end": 6.46
+            },
+            {
+              "word": "último",
+              "start": 6.46,
+              "end": 6.72
+            },
+            {
+              "word": "minuto?",
+              "start": 6.72,
+              "end": 7.3
+            }
+          ]
+        },
+        {
+          "words": [
+            {
+              "word": "Un",
+              "start": 7.62,
+              "end": 8.06
+            },
+            {
+              "word": "certamen",
+              "start": 8.06,
+              "end": 8.46
+            },
+            {
+              "word": "de",
+              "start": 8.46,
+              "end": 8.58
+            },
+            {
+              "word": "cálculo.",
+              "start": 8.58,
+              "end": 8.92
+            }
+          ]
+        }
+      ]
+    },
+    "intro": {
+      "key": "d0ad44685ac435a1",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Hoy,",
+              "start": 0.0,
+              "end": 0.48
+            },
+            {
+              "word": "con",
+              "start": 0.66,
+              "end": 0.78
+            },
+            {
+              "word": "SalvaRamos,",
+              "start": 0.78,
+              "end": 1.28
+            },
+            {
+              "word": "vamos",
+              "start": 1.44,
+              "end": 1.5
+            },
+            {
+              "word": "a",
+              "start": 1.5,
+              "end": 1.62
+            },
+            {
+              "word": "estar",
+              "start": 1.62,
+              "end": 1.74
+            },
+            {
+              "word": "entrevistando",
+              "start": 1.74,
+              "end": 2.36
+            },
+            {
+              "word": "a",
+              "start": 2.36,
+              "end": 2.76
+            },
+            {
+              "word": "la",
+              "start": 2.76,
+              "end": 2.84
+            },
+            {
+              "word": "gente",
+              "start": 2.84,
+              "end": 3.12
+            },
+            {
+              "word": "de",
+              "start": 3.12,
+              "end": 3.28
+            },
+            {
+              "word": "las",
+              "start": 3.28,
+              "end": 3.4
+            },
+            {
+              "word": "diferentes",
+              "start": 3.4,
+              "end": 3.76
+            },
+            {
+              "word": "universidades",
+              "start": 3.76,
+              "end": 4.44
+            },
+            {
+              "word": "que",
+              "start": 4.44,
+              "end": 4.82
+            },
+            {
+              "word": "vinieron",
+              "start": 4.82,
+              "end": 5.12
+            },
+            {
+              "word": "a",
+              "start": 5.12,
+              "end": 5.22
+            },
+            {
+              "word": "participar",
+              "start": 5.22,
+              "end": 5.62
+            },
+            {
+              "word": "en",
+              "start": 5.62,
+              "end": 6.36
+            },
+            {
+              "word": "los",
+              "start": 6.36,
+              "end": 6.54
+            },
+            {
+              "word": "JING.",
+              "start": 6.54,
+              "end": 6.74
+            },
+            {
+              "word": "¡Vamos!",
+              "start": 7.04,
+              "end": 7.44
+            }
+          ]
+        }
+      ]
+    },
+    "montserrat-calculo": {
+      "key": "796c79747756efd1",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "No,",
+              "start": 0.0,
+              "end": 0.4
+            },
+            {
+              "word": "como",
+              "start": 0.52,
+              "end": 0.64
+            },
+            {
+              "word": "una",
+              "start": 0.64,
+              "end": 0.78
+            },
+            {
+              "word": "entrega",
+              "start": 0.78,
+              "end": 0.94
+            },
+            {
+              "word": "a",
+              "start": 0.94,
+              "end": 0.963
+            },
+            {
+              "word": "última",
+              "start": 0.963,
+              "end": 1.1
+            },
+            {
+              "word": "hora",
+              "start": 1.1,
+              "end": 1.42
+            }
+          ]
+        }
+      ]
+    },
+    "tomas-calculo": {
+      "key": "569befa493e8a83b",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Como",
+              "start": 0.0,
+              "end": 0.232
+            },
+            {
+              "word": "un",
+              "start": 0.232,
+              "end": 0.348
+            },
+            {
+              "word": "buen",
+              "start": 0.348,
+              "end": 0.58
+            },
+            {
+              "word": "cálculo,",
+              "start": 0.58,
+              "end": 0.94
+            },
+            {
+              "word": "siempre",
+              "start": 1.16,
+              "end": 1.38
+            },
+            {
+              "word": "buscamos",
+              "start": 1.38,
+              "end": 1.9
+            },
+            {
+              "word": "lo",
+              "start": 1.9,
+              "end": 2.64
+            },
+            {
+              "word": "estético,",
+              "start": 2.64,
+              "end": 2.98
+            },
+            {
+              "word": "lo",
+              "start": 3.1,
+              "end": 3.12
+            },
+            {
+              "word": "bonito.",
+              "start": 3.12,
+              "end": 3.38
+            }
+          ]
+        }
+      ]
+    },
+    "branco-calculo": {
+      "key": "f7c3930e4e5d91d2",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Depende",
+              "start": 0.0,
+              "end": 0.66
+            },
+            {
+              "word": "del",
+              "start": 0.66,
+              "end": 0.86
+            },
+            {
+              "word": "día,",
+              "start": 0.86,
+              "end": 1.12
+            },
+            {
+              "word": "en",
+              "start": 1.26,
+              "end": 1.32
+            },
+            {
+              "word": "general,",
+              "start": 1.32,
+              "end": 1.74
+            },
+            {
+              "word": "tal",
+              "start": 2.06,
+              "end": 2.38
+            },
+            {
+              "word": "vez",
+              "start": 2.38,
+              "end": 2.5
+            },
+            {
+              "word": "una",
+              "start": 2.5,
+              "end": 2.62
+            },
+            {
+              "word": "entrega",
+              "start": 2.62,
+              "end": 2.85
+            },
+            {
+              "word": "a",
+              "start": 2.85,
+              "end": 2.883
+            },
+            {
+              "word": "última",
+              "start": 2.883,
+              "end": 3.08
+            },
+            {
+              "word": "hora,",
+              "start": 3.08,
+              "end": 3.42
+            },
+            {
+              "word": "pero",
+              "start": 3.48,
+              "end": 3.58
+            },
+            {
+              "word": "hoy",
+              "start": 3.58,
+              "end": 3.7
+            },
+            {
+              "word": "día",
+              "start": 3.7,
+              "end": 3.82
+            },
+            {
+              "word": "anduvimos",
+              "start": 3.82,
+              "end": 4.14
+            },
+            {
+              "word": "mejor,",
+              "start": 4.14,
+              "end": 4.46
+            },
+            {
+              "word": "así",
+              "start": 4.62,
+              "end": 4.76
+            },
+            {
+              "word": "debería",
+              "start": 4.76,
+              "end": 5.14
+            },
+            {
+              "word": "un",
+              "start": 5.14,
+              "end": 5.26
+            },
+            {
+              "word": "buen",
+              "start": 5.26,
+              "end": 5.44
+            },
+            {
+              "word": "cálculo",
+              "start": 5.44,
+              "end": 5.84
+            }
+          ]
+        }
+      ]
+    },
+    "tomas-cabala": {
+      "key": "56d6aa3f0cb7efcb",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Ninguna,",
+              "start": 0.0,
+              "end": 0.48
+            },
+            {
+              "word": "yo",
+              "start": 1.12,
+              "end": 1.18
+            },
+            {
+              "word": "voy",
+              "start": 1.18,
+              "end": 1.36
+            },
+            {
+              "word": "al",
+              "start": 1.36,
+              "end": 1.5
+            },
+            {
+              "word": "partido",
+              "start": 1.5,
+              "end": 1.84
+            },
+            {
+              "word": "y",
+              "start": 1.84,
+              "end": 1.96
+            },
+            {
+              "word": "lo",
+              "start": 1.96,
+              "end": 2.06
+            },
+            {
+              "word": "que",
+              "start": 2.06,
+              "end": 2.18
+            },
+            {
+              "word": "salga",
+              "start": 2.18,
+              "end": 2.46
+            }
+          ]
+        }
+      ]
+    },
+    "montserrat-rival": {
+      "key": "9743d9e220f88381",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Ojo",
+              "start": 0.0,
+              "end": 0.58
+            },
+            {
+              "word": "con",
+              "start": 0.58,
+              "end": 0.8
+            },
+            {
+              "word": "mi",
+              "start": 0.8,
+              "end": 0.96
+            },
+            {
+              "word": "dupla,",
+              "start": 0.96,
+              "end": 1.24
+            },
+            {
+              "word": "ojito",
+              "start": 1.72,
+              "end": 2.2
+            }
+          ]
+        },
+        {
+          "words": [
+            {
+              "word": "Ojito,",
+              "start": 2.2,
+              "end": 3.02
+            },
+            {
+              "word": "ojito",
+              "start": 3.12,
+              "end": 3.58
+            }
+          ]
+        }
+      ]
+    },
+    "branco-rival": {
+      "key": "8fb82672b88ec987",
+      "segments": [
+        {
+          "words": [
+            {
+              "word": "Nada,",
+              "start": 0.0,
+              "end": 0.54
+            },
+            {
+              "word": "que",
+              "start": 0.9,
+              "end": 1.02
+            },
+            {
+              "word": "pasémoslo",
+              "start": 1.02,
+              "end": 1.9
+            },
+            {
+              "word": "bien,",
+              "start": 1.9,
+              "end": 2.22
+            },
+            {
+              "word": "pero",
+              "start": 2.58,
+              "end": 2.84
+            },
+            {
+              "word": "primero",
+              "start": 2.84,
+              "end": 4.0
+            },
+            {
+              "word": "va",
+              "start": 4.0,
+              "end": 4.08
+            },
+            {
+              "word": "a",
+              "start": 4.08,
+              "end": 4.16
+            },
+            {
+              "word": "competir,",
+              "start": 4.16,
+              "end": 4.58
+            },
+            {
+              "word": "ya",
+              "start": 4.66,
+              "end": 4.78
+            },
+            {
+              "word": "vamos",
+              "start": 4.78,
+              "end": 4.88
+            },
+            {
+              "word": "a",
+              "start": 4.88,
+              "end": 4.92
+            },
+            {
+              "word": "ganar",
+              "start": 4.92,
+              "end": 5.2
+            }
+          ]
+        }
+      ]
+    }
+  }
 }

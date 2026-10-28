@@ -1,8 +1,21 @@
 title: "JING 2026 · Parte 2 — ¿Ramos o final?"
 
+speed: 1.4
+
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
                Universidad de los Andes, Santa María, vóleibol]
+  corrections:
+    - {find: "Salva Ramos,", replace: "SalvaRamos,"}
+    - {clip: ignacia-ramos, find: "pasan", replace: "pasar"}
+    - {clip: ignacia-ramos, find: "No va a pasar", replace: "No, pasar"}
+    - {clip: vicente-ramos, find: "Es el", replace: "Ese es el"}
+    - {clip: pedro-ramos, find: "con UdeC", replace: "con la UdeC"}
+    - {clip: pedro-rival, find: "a la PUC.", replace: "A la PUC."}
+    - {clip: vicente-favorita, find: "siempre favorita,", replace: "siempre es mi favorita,"}
+    - {clip: vicente-favorita, find: "tenés,", replace: "tenemos,"}
+    - {clip: voley-favorita, find: "y la", replace: "Sí, la"}
+    - {clip: pedro-favorita, find: "yo creo", replace: "Yo creo"}
 
 clips:
   - id: hook
@@ -13,12 +26,12 @@ clips:
   - id: hook-congelado
     src: raw/7adfe5c0-1511-4a4e-89e7-6103e43878fc.mp4
     freeze: 39.15
-    duration: 2.0
+    duration: 1.4
     look: bw
     sfx: suspenso
   - id: intro
     src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
-    trim: [0.6, 8.6]
+    trim: [0.5, 8.6]
     cover:
       - {src: raw/IMG_1685.MOV, src_in: 2.0}
       - {src: raw/IMG_1746.MOV, src_in: 10.0}
@@ -118,6 +131,11 @@ clips:
     broll: true
 
 texts:
+  - style: headline
+    text: "SalvaRamos\nen los JING"
+    at: {clip: hook}
+    until: {clip: hook-congelado}
+    reveal: 3.8
   - style: promo
     text: "¿Pasar el ramo o ganar la final?\nCon SalvaRamos, las dos"
     at: {clip: cta}
