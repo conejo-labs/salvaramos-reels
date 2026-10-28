@@ -11,63 +11,114 @@ clips:
   - id: intro
     src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
     trim: [0.6, 8.6]
-  - id: broll-futbol
-    src: raw/IMG_1687.MOV
-    trim: [8.0, 9.3]
-    broll: true
-  - id: broll-handbol
-    src: raw/IMG_1742.MOV
-    trim: [3.0, 4.3]
-    broll: true
-  - id: broll-esports
-    src: raw/IMG_1756.MOV
-    trim: [0.5, 1.8]
-    broll: true
+
+  - id: ignacia-quien
+    src: raw/IMG_1705.MOV
+    trim: [[3.55, 4.25], [5.65, 6.45]]
+    nametag: "Ignacia\nU. de los Andes · Just Dance"
+  - id: pregunta-ramos
+    src: raw/IMG_1705.MOV
+    trim: [23.05, 26.2]
+    title: "¿Pasar todos los ramos\no ganar la final?"
+    cover:
+      - {src: raw/IMG_1687.MOV, src_in: 8.0}
+      - {src: raw/IMG_1742.MOV, src_in: 3.0}
+      - {src: raw/IMG_1756.MOV, src_in: 0.5}
   - id: ignacia
     src: raw/IMG_1705.MOV
-    trim: [23.0, 29.8]
+    trim: [26.4, 29.8]
+  - id: vicente-quien
+    src: raw/IMG_1700.MOV
+    trim: [[2.7, 3.75], [4.98, 6.0]]
+    nametag: "Vicente\nUC · Fútbol tenis"
   - id: vicente
     src: raw/IMG_1700.MOV
     trim: [47.2, 52.8]
+  - id: voley-quien
+    src: raw/IMG_1724.MOV
+    trim: [[3.6, 5.2], [6.1, 6.9]]
+    nametag: "Ignacia y Bárbara\nUSM · Vóleibol"
   - id: voley
     src: raw/IMG_1724.MOV
     trim: [42.1, 46.9]
+  - id: sebastian-quien
+    src: raw/IMG_1752.MOV
+    trim: [[4.35, 5.2], [6.78, 7.85]]
+    nametag: "Sebastián\nU. Adolfo Ibáñez · Mario Kart"
   - id: sebastian
     src: raw/IMG_1752.MOV
     trim: [43.7, 48.0]
+  - id: pedro-quien
+    src: raw/IMG_1763.MOV
+    trim: [8.05, 11.2]
+    nametag: "Pedro\nCoordinador general UdeC"
   - id: pedro
     src: raw/IMG_1763.MOV
     trim: [30.5, 37.0]
-  - id: broll-voley
-    src: raw/IMG_1745.MOV
-    trim: [3.0, 4.3]
-    broll: true
-  - id: broll-pickleball
-    src: raw/IMG_1747.MOV
-    trim: [2.0, 3.3]
-    broll: true
-  - id: broll-futsal
-    src: raw/IMG_1737.MOV
-    trim: [5.0, 6.3]
-    broll: true
+
+  - id: montserrat-quien
+    src: raw/IMG_0648.MOV
+    trim: [[2.38, 3.95], [9.8, 11.6]]
+    nametag: "Montserrat\nUC · Spikeball"
+  - id: pregunta-calculo
+    src: raw/IMG_0648.MOV
+    trim: [18.0, 22.4]
+    title: "¿Buen cálculo o entrega\na última hora?"
+    cover:
+      - {src: raw/IMG_1745.MOV, src_in: 3.0}
+      - {src: raw/IMG_1747.MOV, src_in: 2.0}
+      - {src: raw/IMG_1737.MOV, src_in: 5.0}
   - id: montserrat
     src: raw/IMG_0648.MOV
-    trim: [17.9, 24.5]
+    trim: [22.6, 24.5]
+  - id: tomas-quien
+    src: raw/IMG_1693.MOV
+    trim: [[5.15, 6.6], [9.3, 11.5]]
+    nametag: "Tomás\nUC · Fútbol"
   - id: tomas
     src: raw/IMG_1693.MOV
-    trim: [23.8, 27.5]
+    trim: [23.8, 27.8]
+  - id: branco-quien
+    src: raw/IMG_0653.MOV
+    trim: [[0.72, 3.3], [5.95, 7.6]]
+    nametag: "Branco\nUC · Básquetbol"
   - id: branco
     src: raw/IMG_0653.MOV
     trim: [27.5, 33.6]
+
+  - id: martin-quien
+    src: raw/IMG_1695.MOV
+    trim: [[3.88, 4.85], [9.35, 10.2]]
+    nametag: "Martín\nUC · Dodgeball"
+  - id: pregunta-cabala
+    src: raw/IMG_1697.MOV
+    trim: [7.38, 10.65]
+    title: "¿Qué cábala tienes\nantes de competir?"
+    cover:
+      - {src: raw/IMG_1726.MOV, src_in: 2.0}
+      - {src: raw/IMG_1698.MOV, src_in: 4.0}
   - id: martin
     src: raw/IMG_1697.MOV
-    trim: [7.3, 24.2]
+    trim: [[10.7, 15.25], [16.6, 24.2]]
+
+  - id: nicolas-quien
+    src: raw/IMG_1766.MOV
+    trim: [[2.82, 3.9], [7.75, 8.7]]
+    nametag: "Nicolás\nUC · Balonmano"
+  - id: pregunta-asistencia
+    src: raw/IMG_1766.MOV
+    trim: [58.1, 65.6]
+    title: "¿Titular en el campeonato o\nasistencia libre todo el semestre?"
+    cover:
+      - {src: raw/IMG_1737.MOV, src_in: 10.0}
+      - {src: raw/IMG_1731.MOV, src_in: 6.0}
   - id: nicolas
     src: raw/IMG_1766.MOV
-    trim: [58.1, 72.0]
+    trim: [65.65, 72.0]
+
   - id: cta
     src: raw/IMG_0653.MOV
-    trim: [66.8, 70.6]
+    trim: [66.8, 71.0]
   - id: endcard
     src: raw/IMG_1760.MOV
     trim: [0.0, 3.0]
@@ -82,21 +133,14 @@ inserts:
     src: raw/IMG_1707.MOV
     at: {clip: intro, offset: 4.0}
     until: {clip: intro}
+    flash: false
   - type: fullscreen
     src: raw/IMG_1756.MOV
     src_in: 2.0
     at: {clip: cta}
-    text: "¿RAMOS O FINAL?\nCON SALVARAMOS, LAS DOS"
+    text: "¿Ramos o final?\nCon SalvaRamos, las dos"
 
 texts:
-  - style: title
-    text: "¿PASAR TODOS LOS RAMOS\nO GANAR LA FINAL?"
-    at: {clip: broll-futbol}
-    until: {clip: broll-esports}
-  - style: title
-    text: "¿BUEN CÁLCULO O ENTREGA\nA ÚLTIMA HORA?"
-    at: {clip: broll-voley}
-    until: {clip: broll-futsal}
   - style: promo
-    text: "PREPARA TUS EXÁMENES\nLINK EN LA BIO"
+    text: "Prepara tus exámenes\nlink en la bio"
     at: {clip: endcard}
