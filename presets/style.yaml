@@ -1,0 +1,109 @@
+canvas:
+  width: 1080
+  height: 1920
+  fps: 30
+
+safe_zone:
+  bottom: 0.18
+  right: 0.12
+  left: 0.06
+
+fonts_dir: assets/fonts
+
+captions:
+  font: Montserrat Black
+  font_file: Montserrat-Black.ttf
+  size: 84
+  uppercase: true
+  color: "#FFFFFF"
+  active_color: "#FFD400"
+  active_scale: 1.25
+  outline: 7
+  outline_color: "#000000"
+  center_y: 0.68
+  paging:
+    max_words: 3
+    max_duration: 1.2
+    break_gap: 0.3
+    tail: 0.15
+  hide_during_promo: true
+
+texts:
+  title:
+    font: Montserrat Black
+    font_file: Montserrat-Black.ttf
+    size: 88
+    uppercase: true
+    color: "#FFD400"
+    outline: 8
+    outline_color: "#000000"
+    center_y: 0.22
+  promo:
+    font: Anton
+    font_file: Anton-Regular.ttf
+    size: 150
+    uppercase: true
+    color: "#E10600"
+    outline: 8
+    outline_color: "#FFFFFF"
+    center_y: 0.45
+    max_lines: 2
+
+pip:
+  width: 0.45
+  left: 0.04
+  bottom: 0.20
+
+cut:
+  silence: true
+  threshold: 0.04
+  margin: 0.12
+  min_gap: 0.15
+  min_keep: 0.25
+  fade: 0.01
+
+audio:
+  broll_gain_db: -10
+  loudness: -14
+  true_peak: -1
+  lra: 11
+
+transcription:
+  model: large-v3-turbo
+  language: es
+  no_speech_threshold: 0.6
+  vocabulary:
+    - SalvaRamos
+    - 18SALVARAMOS
+    - ramos
+    - prueba
+    - certamen
+    - cálculo
+    - receso
+    - fonda
+    - terremoto
+  hallucinations:
+    - gracias
+    - gracias por ver el video
+    - suscríbete al canal
+    - amén
+
+normalize:
+  crf: 16
+  preset: veryfast
+
+export:
+  crf: 18
+  preset: slow
+  audio_bitrate: 192k
+  sample_rate: 48000
+
+preview:
+  seconds: 10
+  width: 540
+  height: 960
+  preset: veryfast
+
+review:
+  columns: 6
+  frame_width: 216
