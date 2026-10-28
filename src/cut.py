@@ -1,0 +1,90 @@
+import shutil
+import sys
+from fractions import Fraction
+from pathlib import Path
+
+from project import Project
+from util import code_signature, digest, ffmpeg, file_signature, is_fresh, read_json, run, seal, write_json
+
+SAMPLE_RATE = 48000
+
+
+def auto_editor_bin() -> str:
+    beside_python = Path(sys.executable).parent / "auto-editor"
+    return str(beside_python) if beside_python.exists() else shutil.which("auto-editor")
+
+
+def merge_ranges(ranges: list, min_gap: int, min_keep: int, total: int) -> list:
+    merged = []
+    for start, end in sorted(ranges):
+        start, end = max(0, start), min(total, end)
+        if merged and start - merged[-1][1] < min_gap:
+            merged[-1][1] = max(merged[-1][1], end)
+        else:
+            merged.append([start, end])
+    return [(s, e) for s, e in merged if e - s >= min_keep]
+
+
+def loud_ranges(project: Project, clip_path: Path, total_frames: int) -> list:
+    settings, fps = project.style["cut"], project.style["canvas"]["fps"]
+    timeline = project.build / "cut" / f"{clip_path.stem}.v3"
+    timeline.parent.mkdir(exist_ok=True)
+    run([auto_editor_bin(), clip_path, "--export", "v3", "-o", timeline,
+         "--edit", f"audio:threshold={settings['threshold']}", "--margin", f"{settings['margin']}s"],
+        capture_output=True)
+    data = read_json(timeline)
+    rate = Fraction(data["timebase"])
+    ranges = [(round(item["offset"] / rate * fps), round((item["offset"] + item["dur"]) / rate * fps))
+              for item in data["v"][0]]
+    return merge_ranges(ranges, round(settings["min_gap"] * fps), round(settings["min_keep"] * fps), total_frames)
+
+
+def segment_filter(source: str, n: int, start: int, end: int, fps: int, fade: float) -> str:
+    samples_per_frame = SAMPLE_RATE // fps
+    duration = (end - start) / fps
+    return (
+        f"[v{source}]trim=start_frame={start}:end_frame={end},setpts=PTS-STARTPTS[sv{n}];"
+        f"[a{source}]atrim=start_sample={start * samples_per_frame}:end_sample={end * samples_per_frame},"
+        f"asetpts=PTS-STARTPTS,afade=t=in:d={fade},afade=t=out:st={max(0.0, duration - fade):.4f}:d={fade}[sa{n}]"
+    )
+
+
+def cut(project: Project, clips: list) -> tuple[Path, dict]:
+    settings, fps = project.style["cut"], project.style["canvas"]["fps"]
+    key = digest([(c["id"], file_signature(c["path"]), c["silence"], c["captions"]) for c in clips],
+                 settings, fps, code_signature(__file__))
+    output, map_path = project.build / "cut.mkv", project.build / "cut_map.json"
+    if is_fresh(output, key) and map_path.exists():
+        return output, read_json(map_path)
+
+    plan = []
+    for index, clip in enumerate(clips):
+        whole = [(0, clip["frames"])]
+        ranges = loud_ranges(project, clip["path"], clip["frames"]) if clip["silence"] and settings["silence"] else whole
+        plan.append((index, clip, ranges or whole))
+
+    inputs, graph, labels, segments, clip_spans = [], [], [], [], {}
+    cursor = 0
+    for index, clip, ranges in plan:
+        inputs += ["-i", clip["path"]]
+        count = len(ranges)
+        graph.append(f"[{index}:v]split={count}" + "".join(f"[v{index}_{n}]" for n in range(count)))
+        graph.append(f"[{index}:a]asplit={count}" + "".join(f"[a{index}_{n}]" for n in range(count)))
+        for k, (start, end) in enumerate(ranges):
+            n = len(segments)
+            graph.append(segment_filter(f"{index}_{k}", n, start, end, fps, settings["fade"]))
+            labels.append(f"[sv{n}][sa{n}]")
+            segments.append({"clip": clip["id"], "src_start": start / fps, "src_end": end / fps,
+                             "start": cursor / fps, "end": (cursor + end - start) / fps})
+            cursor += end - start
+        clip_spans[clip["id"]] = {"start": segments[-count]["start"], "end": cursor / fps,
+                                  "captions": clip["captions"]}
+    graph.append("".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]")
+
+    ffmpeg(*inputs, "-filter_complex", ";".join(graph), "-map", "[v]", "-map", "[a]",
+           "-c:v", "libx264", "-crf", project.style["normalize"]["crf"], "-preset", project.style["normalize"]["preset"],
+           "-c:a", "pcm_s16le", output)
+    cut_map = {"key": key, "fps": fps, "duration": cursor / fps, "segments": segments, "clips": clip_spans}
+    write_json(map_path, cut_map)
+    seal(output, key)
+    return output, cut_map
