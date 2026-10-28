@@ -1,5 +1,5 @@
 {
-  "cut_key": "10f4c71b290c63fa",
+  "cut_key": "c79085d82524c127",
   "model": "large-v3-turbo",
   "device": "cpu",
   "segments": [
@@ -13,11 +13,11 @@
         {
           "word": "es",
           "start": 0.3,
-          "end": 0.46
+          "end": 0.42
         },
         {
           "word": "más",
-          "start": 0.46,
+          "start": 0.42,
           "end": 0.58
         },
         {
@@ -27,12 +27,12 @@
         },
         {
           "word": "¿Un",
-          "start": 1.3,
-          "end": 1.58
+          "start": 1.28,
+          "end": 1.56
         },
         {
           "word": "certamen",
-          "start": 1.58,
+          "start": 1.56,
           "end": 2.16
         },
         {
@@ -43,11 +43,11 @@
         {
           "word": "cálculo",
           "start": 2.42,
-          "end": 2.92
+          "end": 2.94
         },
         {
           "word": "o",
-          "start": 2.92,
+          "start": 2.94,
           "end": 3.72
         },
         {
@@ -61,13 +61,13 @@
           "end": 5.74
         },
         {
-          "word": "puto",
+          "word": "punto",
           "start": 5.74,
-          "end": 5.98
+          "end": 5.96
         },
         {
           "word": "en",
-          "start": 5.98,
+          "start": 5.96,
           "end": 6.1
         },
         {
@@ -119,13 +119,18 @@
           "end": 12.04
         },
         {
-          "word": "SalvaRamos,",
+          "word": "Salva",
           "start": 12.04,
+          "end": 12.26
+        },
+        {
+          "word": "Ramos,",
+          "start": 12.26,
           "end": 12.54
         },
         {
           "word": "vamos",
-          "start": 12.7,
+          "start": 12.68,
           "end": 12.78
         },
         {
@@ -176,11 +181,11 @@
         {
           "word": "universidades",
           "start": 15.02,
-          "end": 15.68
+          "end": 15.66
         },
         {
           "word": "que",
-          "start": 15.68,
+          "start": 15.66,
           "end": 16.08
         },
         {
@@ -228,38 +233,62 @@
       "words": [
         {
           "word": "No,",
-          "start": 36.36,
-          "end": 36.62
+          "start": 40.12,
+          "end": 40.36
         },
         {
           "word": "como",
-          "start": 36.78,
-          "end": 36.86
+          "start": 40.46,
+          "end": 40.6
         },
         {
           "word": "una",
-          "start": 36.86,
-          "end": 37.0
+          "start": 40.6,
+          "end": 40.72
         },
         {
           "word": "entrega",
-          "start": 37.0,
-          "end": 37.2
+          "start": 40.72,
+          "end": 40.94
         },
         {
           "word": "a",
-          "start": 37.2,
-          "end": 37.26
+          "start": 40.94,
+          "end": 41.02
         },
         {
           "word": "última",
-          "start": 37.26,
-          "end": 37.36
+          "start": 41.02,
+          "end": 41.1
         },
         {
           "word": "hora",
-          "start": 37.36,
-          "end": 37.68
+          "start": 41.1,
+          "end": 41.42
+        }
+      ]
+    },
+    {
+      "words": [
+        {
+          "word": "Como",
+          "start": 41.42,
+          "end": 41.92
+        },
+        {
+          "word": "un",
+          "start": 41.92,
+          "end": 42.04
+        },
+        {
+          "word": "buen",
+          "start": 42.04,
+          "end": 42.16
+        },
+        {
+          "word": "cálculo",
+          "start": 42.16,
+          "end": 42.44
         }
       ]
     },
@@ -267,13 +296,13 @@
       "words": [
         {
           "word": "Siempre",
-          "start": 41.7,
-          "end": 41.96
+          "start": 42.44,
+          "end": 42.7
         },
         {
           "word": "buscamos...",
-          "start": 41.96,
-          "end": 43.46
+          "start": 42.7,
+          "end": 43.98
         }
       ]
     },
@@ -281,113 +310,113 @@
       "words": [
         {
           "word": "Depende",
-          "start": 46.08,
-          "end": 46.54
+          "start": 43.98,
+          "end": 44.48
         },
         {
           "word": "del",
-          "start": 46.54,
-          "end": 46.76
+          "start": 44.48,
+          "end": 44.7
         },
         {
           "word": "día,",
-          "start": 46.76,
-          "end": 47.04
+          "start": 44.7,
+          "end": 44.96
         },
         {
           "word": "en",
-          "start": 47.16,
-          "end": 47.22
+          "start": 45.04,
+          "end": 45.18
         },
         {
           "word": "general,",
-          "start": 47.22,
-          "end": 47.64
+          "start": 45.18,
+          "end": 45.54
         },
         {
           "word": "tal",
-          "start": 47.92,
-          "end": 48.3
+          "start": 45.82,
+          "end": 46.22
         },
         {
           "word": "vez",
-          "start": 48.3,
-          "end": 48.4
+          "start": 46.22,
+          "end": 46.32
         },
         {
           "word": "una",
-          "start": 48.4,
-          "end": 48.52
+          "start": 46.32,
+          "end": 46.46
         },
         {
           "word": "entrega",
-          "start": 48.52,
-          "end": 48.84
+          "start": 46.46,
+          "end": 46.74
         },
         {
           "word": "a",
-          "start": 48.84,
-          "end": 48.88
+          "start": 46.74,
+          "end": 46.82
         },
         {
           "word": "última",
-          "start": 48.88,
-          "end": 49.02
+          "start": 46.82,
+          "end": 46.94
         },
         {
           "word": "hora,",
-          "start": 49.02,
-          "end": 49.3
+          "start": 46.94,
+          "end": 47.24
         },
         {
           "word": "pero",
-          "start": 49.42,
-          "end": 49.48
+          "start": 47.32,
+          "end": 47.42
         },
         {
           "word": "hoy",
-          "start": 49.48,
-          "end": 49.56
+          "start": 47.42,
+          "end": 47.52
         },
         {
           "word": "día",
-          "start": 49.56,
-          "end": 49.7
+          "start": 47.52,
+          "end": 47.64
         },
         {
           "word": "anduvimos",
-          "start": 49.7,
-          "end": 50.02
+          "start": 47.64,
+          "end": 47.96
         },
         {
           "word": "mejor,",
-          "start": 50.02,
-          "end": 50.4
+          "start": 47.96,
+          "end": 48.3
         },
         {
           "word": "así",
-          "start": 50.56,
-          "end": 50.64
+          "start": 48.44,
+          "end": 48.6
         },
         {
           "word": "debería",
-          "start": 50.64,
-          "end": 51.02
+          "start": 48.6,
+          "end": 48.96
         },
         {
           "word": "un",
-          "start": 51.02,
-          "end": 51.16
+          "start": 48.96,
+          "end": 49.1
         },
         {
           "word": "buen",
-          "start": 51.16,
-          "end": 51.34
+          "start": 49.1,
+          "end": 49.26
         },
         {
           "word": "cálculo",
-          "start": 51.34,
-          "end": 51.74
+          "start": 49.26,
+          "end": 49.66
         }
       ]
     },
@@ -395,28 +424,43 @@
       "words": [
         {
           "word": "Ninguna,",
-          "start": 54.96,
-          "end": 55.3
+          "start": 52.88,
+          "end": 53.22
         },
         {
           "word": "yo",
-          "start": 55.54,
-          "end": 55.72
+          "start": 53.32,
+          "end": 53.66
         },
         {
           "word": "voy",
-          "start": 55.72,
-          "end": 55.86
+          "start": 53.66,
+          "end": 53.8
         },
         {
           "word": "al",
-          "start": 55.86,
-          "end": 56.06
+          "start": 53.8,
+          "end": 53.98
         },
         {
           "word": "partido",
-          "start": 56.06,
-          "end": 56.36
+          "start": 53.98,
+          "end": 54.3
+        },
+        {
+          "word": "y",
+          "start": 54.3,
+          "end": 54.42
+        },
+        {
+          "word": "lo",
+          "start": 54.42,
+          "end": 54.54
+        },
+        {
+          "word": "que...",
+          "start": 54.54,
+          "end": 54.74
         }
       ]
     },
@@ -424,78 +468,78 @@
       "words": [
         {
           "word": "Bueno,",
-          "start": 56.36,
-          "end": 56.98
+          "start": 54.74,
+          "end": 54.98
         },
         {
           "word": "la",
-          "start": 57.14,
-          "end": 57.22
+          "start": 55.06,
+          "end": 55.16
         },
         {
           "word": "voy",
-          "start": 57.22,
-          "end": 57.42
+          "start": 55.16,
+          "end": 55.36
         },
         {
           "word": "a",
-          "start": 57.42,
-          "end": 57.62
+          "start": 55.36,
+          "end": 55.5
         },
         {
           "word": "ir",
-          "start": 57.62,
-          "end": 58.56
+          "start": 55.5,
+          "end": 56.5
         },
         {
           "word": "al",
-          "start": 58.56,
-          "end": 58.72
+          "start": 56.5,
+          "end": 56.66
         },
         {
           "word": "baño",
-          "start": 58.72,
-          "end": 59.02
+          "start": 56.66,
+          "end": 56.96
         },
         {
           "word": "discapacitado",
-          "start": 59.02,
-          "end": 59.8
+          "start": 56.96,
+          "end": 57.74
         },
         {
           "word": "de",
-          "start": 59.8,
-          "end": 59.92
+          "start": 57.74,
+          "end": 57.86
         },
         {
           "word": "la",
-          "start": 59.92,
-          "end": 60.0
+          "start": 57.86,
+          "end": 57.94
         },
         {
           "word": "K,",
-          "start": 60.0,
-          "end": 60.22
+          "start": 57.94,
+          "end": 58.14
         },
         {
-          "word": "para",
-          "start": 60.38,
-          "end": 60.5
+          "word": "al",
+          "start": 58.32,
+          "end": 58.44
         },
         {
           "word": "que",
-          "start": 60.5,
-          "end": 60.62
+          "start": 58.44,
+          "end": 58.58
         },
         {
           "word": "esté",
-          "start": 60.62,
-          "end": 60.76
+          "start": 58.58,
+          "end": 58.7
         },
         {
           "word": "libre",
-          "start": 60.76,
-          "end": 61.02
+          "start": 58.7,
+          "end": 58.96
         }
       ]
     },
@@ -503,28 +547,28 @@
       "words": [
         {
           "word": "¿Y",
-          "start": 61.02,
-          "end": 61.44
+          "start": 58.96,
+          "end": 59.36
         },
         {
           "word": "de",
-          "start": 61.44,
-          "end": 61.5
+          "start": 59.36,
+          "end": 59.44
         },
         {
           "word": "cuándo",
-          "start": 61.5,
-          "end": 61.72
+          "start": 59.44,
+          "end": 59.68
         },
         {
           "word": "sigue",
-          "start": 61.72,
-          "end": 61.9
+          "start": 59.68,
+          "end": 59.84
         },
         {
           "word": "eso?",
-          "start": 61.9,
-          "end": 62.08
+          "start": 59.84,
+          "end": 60.02
         }
       ]
     },
@@ -532,78 +576,73 @@
       "words": [
         {
           "word": "Desde",
-          "start": 63.18,
-          "end": 63.5
+          "start": 61.02,
+          "end": 61.38
         },
         {
           "word": "siempre,",
-          "start": 63.5,
-          "end": 63.82
+          "start": 61.38,
+          "end": 61.74
         },
         {
           "word": "desde",
-          "start": 63.92,
-          "end": 64.08
+          "start": 61.86,
+          "end": 62.0
         },
         {
           "word": "que",
-          "start": 64.08,
-          "end": 64.2
+          "start": 62.0,
+          "end": 62.14
         },
         {
           "word": "entré",
-          "start": 64.2,
-          "end": 64.36
+          "start": 62.14,
+          "end": 62.3
         },
         {
           "word": "a",
-          "start": 64.36,
-          "end": 64.44
+          "start": 62.3,
+          "end": 62.38
         },
         {
           "word": "la",
-          "start": 64.44,
-          "end": 64.5
+          "start": 62.38,
+          "end": 62.44
         },
         {
-          "word": "universidad,",
-          "start": 64.5,
-          "end": 64.9
+          "word": "universidad",
+          "start": 62.44,
+          "end": 62.84
         },
         {
           "word": "para",
-          "start": 65.02,
-          "end": 65.08
-        },
-        {
-          "word": "las",
-          "start": 65.08,
-          "end": 65.24
+          "start": 62.84,
+          "end": 63.02
         },
         {
           "word": "pruebas,",
-          "start": 65.24,
-          "end": 65.5
+          "start": 63.02,
+          "end": 63.46
         },
         {
           "word": "para",
-          "start": 65.58,
-          "end": 65.66
+          "start": 63.52,
+          "end": 63.6
         },
         {
           "word": "lo",
-          "start": 65.66,
-          "end": 65.76
+          "start": 63.6,
+          "end": 63.7
         },
         {
           "word": "que",
-          "start": 65.76,
-          "end": 65.84
+          "start": 63.7,
+          "end": 63.78
         },
         {
           "word": "sea",
-          "start": 65.84,
-          "end": 66.06
+          "start": 63.78,
+          "end": 64.0
         }
       ]
     },
@@ -611,92 +650,87 @@
       "words": [
         {
           "word": "Ahí",
-          "start": 66.06,
-          "end": 66.66
+          "start": 64.0,
+          "end": 64.6
         },
         {
           "word": "va",
-          "start": 66.66,
-          "end": 66.82
+          "start": 64.6,
+          "end": 64.76
         },
         {
           "word": "a",
-          "start": 66.82,
-          "end": 66.88
+          "start": 64.76,
+          "end": 64.82
         },
         {
           "word": "ir",
-          "start": 66.88,
-          "end": 66.9
+          "start": 64.82,
+          "end": 64.84
         },
         {
           "word": "livianito",
-          "start": 66.9,
-          "end": 67.38
+          "start": 64.84,
+          "end": 65.32
         },
         {
           "word": "a",
-          "start": 67.38,
-          "end": 67.78
+          "start": 65.32,
+          "end": 65.72
         },
         {
           "word": "la",
-          "start": 67.78,
-          "end": 67.9
+          "start": 65.72,
+          "end": 65.84
         },
         {
           "word": "que",
-          "start": 67.9,
-          "end": 68.04
+          "start": 65.84,
+          "end": 65.98
         },
         {
           "word": "sea",
-          "start": 68.04,
-          "end": 68.14
+          "start": 65.98,
+          "end": 66.08
         },
         {
           "word": "que",
-          "start": 68.14,
-          "end": 68.24
+          "start": 66.08,
+          "end": 66.18
         },
         {
           "word": "tenga",
-          "start": 68.24,
-          "end": 68.4
+          "start": 66.18,
+          "end": 66.34
         },
         {
           "word": "que",
-          "start": 68.4,
-          "end": 68.52
+          "start": 66.34,
+          "end": 66.42
         },
         {
           "word": "hacer",
-          "start": 68.52,
-          "end": 68.72
+          "start": 66.42,
+          "end": 66.66
         }
       ]
     },
     {
       "words": [
         {
-          "word": "Ojo",
-          "start": 74.92,
-          "end": 75.36
-        },
-        {
           "word": "con",
-          "start": 75.36,
-          "end": 75.58
+          "start": 73.3,
+          "end": 73.52
         },
         {
           "word": "mi",
-          "start": 75.58,
-          "end": 75.76
+          "start": 73.52,
+          "end": 73.68
         },
         {
           "word": "dupla",
-          "start": 75.76,
-          "end": 76.06
+          "start": 73.68,
+          "end": 73.98
         }
       ]
     },
@@ -704,8 +738,8 @@
       "words": [
         {
           "word": "Ojito",
-          "start": 76.06,
-          "end": 76.84
+          "start": 73.98,
+          "end": 74.78
         }
       ]
     },
@@ -713,94 +747,81 @@
       "words": [
         {
           "word": "Ojito,",
-          "start": 76.84,
-          "end": 77.38
+          "start": 74.78,
+          "end": 75.32
         },
         {
           "word": "ojito",
-          "start": 77.38,
-          "end": 77.96
+          "start": 75.32,
+          "end": 75.88
         }
       ]
     },
     {
       "words": [
         {
-          "word": "No,",
-          "start": 80.66,
-          "end": 81.02
+          "word": "Nah,",
+          "start": 75.88,
+          "end": 76.3
         },
         {
           "word": "que",
-          "start": 81.42,
-          "end": 81.54
+          "start": 76.68,
+          "end": 76.8
         },
         {
           "word": "pasémoslo",
-          "start": 81.54,
-          "end": 82.42
+          "start": 76.8,
+          "end": 77.66
         },
         {
-          "word": "bien",
-          "start": 82.42,
-          "end": 82.72
+          "word": "bien,",
+          "start": 77.66,
+          "end": 78.0
+        },
+        {
+          "word": "pero...",
+          "start": 78.2,
+          "end": 79.16
         }
       ]
     },
     {
       "words": [
         {
-          "word": "Pero...",
-          "start": 83.6,
-          "end": 83.96
-        }
-      ]
-    },
-    {
-      "words": [
-        {
-          "word": "Primero",
-          "start": 83.96,
-          "end": 84.58
-        },
-        {
-          "word": "vamos",
-          "start": 84.58,
-          "end": 84.64
+          "word": "Venimos",
+          "start": 79.16,
+          "end": 79.8
         },
         {
           "word": "a",
-          "start": 84.64,
-          "end": 84.68
+          "start": 79.8,
+          "end": 79.88
         },
         {
-          "word": "competir",
-          "start": 84.68,
-          "end": 85.12
-        }
-      ]
-    },
-    {
-      "words": [
+          "word": "competir,",
+          "start": 79.88,
+          "end": 80.36
+        },
         {
-          "word": "Ya",
-          "start": 85.12,
-          "end": 85.3
+          "word": "ya",
+          "start": 80.44,
+          "end": 80.54
         },
         {
           "word": "vamos",
-          "start": 85.3,
-          "end": 85.4
+          "start": 80.54,
+          "end": 80.66
         },
         {
           "word": "a",
-          "start": 85.4,
-          "end": 85.44
+          "start": 80.66,
+          "end": 80.7
         },
         {
           "word": "ganar",
-          "start": 85.44,
-          "end": 85.86
+          "start": 80.7,
+          "end": 81.08
         }
       ]
     }

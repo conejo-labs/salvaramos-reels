@@ -27,7 +27,7 @@ clips:
 
   - id: ignacia-quien
     src: raw/IMG_1705.MOV
-    trim: [[3.55, 4.25], [5.65, 6.45]]
+    trim: [0.6, 9.35]
     nametag: "Ignacia\nU. de los Andes · Just Dance"
   - id: vicente-quien
     src: raw/IMG_1700.MOV
@@ -49,9 +49,6 @@ clips:
     cover:
       - {src: raw/IMG_1687.MOV, src_in: 3.0}
       - {src: raw/IMG_1756.MOV, src_in: 0.5}
-  - id: meme-pregunta-ramos
-    meme: the-rock-lentes-pensativo
-    trim: [0.0, 2.6]
   - id: ignacia-ramos
     src: raw/IMG_1705.MOV
     trim: [26.4, 29.8]
@@ -64,9 +61,6 @@ clips:
   - id: voley-ramos
     src: raw/IMG_1724.MOV
     trim: [42.1, 46.9]
-  - id: meme-contradiccion
-    meme: youtuber-que
-    trim: [0.0, 2.8]
   - id: pedro-ramos
     src: raw/IMG_1763.MOV
     trim: [30.5, 37.0]
@@ -107,9 +101,6 @@ clips:
   - id: vicente-favorita
     src: raw/IMG_1700.MOV
     trim: [30.4, 39.0]
-  - id: meme-aplicados
-    meme: esqueletos-riendo
-    trim: [5.0, 8.0]
   - id: voley-favorita
     src: raw/IMG_1724.MOV
     trim: [27.2, 28.3]
@@ -128,7 +119,7 @@ clips:
 
 texts:
   - style: promo
-    text: "¿Ramos o final?\nCon SalvaRamos, las dos"
+    text: "¿Pasar el ramo o ganar la final?\nCon SalvaRamos, las dos"
     at: {clip: cta}
   - style: promo
     text: "Prepara tus exámenes\nlink en la bio"
