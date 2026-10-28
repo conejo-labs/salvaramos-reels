@@ -2,7 +2,7 @@ title: "JING 2026 — ¿Ramos o final?"
 
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
-               Universidad de los Andes, Adolfo Ibáñez, Santa María]
+               Universidad de los Andes, Adolfo Ibáñez, Santa María, la K, cábala]
 
 clips:
   - id: hook
@@ -38,6 +38,33 @@ clips:
   - id: pedro
     src: raw/IMG_1763.MOV
     trim: [30.5, 37.0]
+  - id: broll-voley
+    src: raw/IMG_1745.MOV
+    trim: [3.0, 4.3]
+    broll: true
+  - id: broll-pickleball
+    src: raw/IMG_1747.MOV
+    trim: [2.0, 3.3]
+    broll: true
+  - id: broll-futsal
+    src: raw/IMG_1737.MOV
+    trim: [5.0, 6.3]
+    broll: true
+  - id: montserrat
+    src: raw/IMG_0648.MOV
+    trim: [17.9, 24.5]
+  - id: tomas
+    src: raw/IMG_1693.MOV
+    trim: [23.8, 27.5]
+  - id: branco
+    src: raw/IMG_0653.MOV
+    trim: [27.5, 33.6]
+  - id: martin
+    src: raw/IMG_1697.MOV
+    trim: [7.3, 24.2]
+  - id: nicolas
+    src: raw/IMG_1766.MOV
+    trim: [58.1, 72.0]
   - id: cta
     src: raw/IMG_0653.MOV
     trim: [66.8, 70.6]
@@ -55,16 +82,6 @@ inserts:
     src: raw/IMG_1707.MOV
     at: {clip: intro, offset: 4.0}
     until: {clip: intro}
-  - type: pip
-    src: raw/IMG_1742.MOV
-    src_in: 3.0
-    at: {word: minuto}
-    duration: 1.5
-  - type: pip
-    src: raw/IMG_1687.MOV
-    src_in: 8.0
-    at: {clip: pedro, offset: 0.3}
-    duration: 2.5
   - type: fullscreen
     src: raw/IMG_1756.MOV
     src_in: 2.0
@@ -76,6 +93,10 @@ texts:
     text: "¿PASAR TODOS LOS RAMOS\nO GANAR LA FINAL?"
     at: {clip: broll-futbol}
     until: {clip: broll-esports}
+  - style: title
+    text: "¿BUEN CÁLCULO O ENTREGA\nA ÚLTIMA HORA?"
+    at: {clip: broll-voley}
+    until: {clip: broll-futsal}
   - style: promo
-    text: "18% DESCUENTO CON EL CÓDIGO:\n18SALVARAMOS"
+    text: "PREPARA TUS EXÁMENES\nLINK EN LA BIO"
     at: {clip: endcard}
