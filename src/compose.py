@@ -64,10 +64,28 @@ def resolve_source(project: Project, src: str) -> Path:
     return memes.resolve(src) if memes.is_giphy(src) else project.path(src)
 
 
+def cover_overlays(project: Project, spec: dict, span: dict) -> list:
+    covers, overlays = spec.get("cover", []), []
+    share = (span["end"] - span["start"]) / max(1, len(covers))
+    for k, cover in enumerate(covers):
+        start = round(span["start"] + k * share, 3)
+        end = round(span["end"] if k == len(covers) - 1 else start + share, 3)
+        src_in = cover.get("src_in", 0.0)
+        path = normalize(project, resolve_source(project, cover["src"]), [src_in, src_in + end - start])
+        overlays.append({"type": "fullscreen", "src": str(path), "start": start, "end": end,
+                         "rect": overlay_rect("fullscreen", project, path), "chroma": None, "flash": k == 0})
+    return overlays
+
+
+def clip_texts(spec: dict, span: dict) -> list:
+    return [{"style": style, "text": spec[style], "start": round(span["start"], 3), "end": round(span["end"], 3)}
+            for style in ("nametag", "title") if spec.get(style)]
+
+
 def flash_spans(project: Project, cut_map: dict, overlays: list) -> list:
     transitions = project.style["transitions"]
     length = transitions["flash_frames"] / project.style["canvas"]["fps"]
-    starts = {o["start"] for o in overlays if o["type"] == "fullscreen"}
+    starts = {o["start"] for o in overlays if o["type"] == "fullscreen" and o["flash"]}
     previous_broll = True
     for clip in sorted(cut_map["clips"].values(), key=lambda c: c["start"]):
         if clip["broll"] and not previous_broll:
@@ -86,9 +104,13 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         path = normalize(project, resolve_source(project, spec["src"]), [src_in, src_in + end - start],
                          box=box, loop=spec.get("loop", memes.is_giphy(spec["src"])))
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
-                         "rect": overlay_rect(spec["type"], project, path), "chroma": spec.get("chroma")})
+                         "rect": overlay_rect(spec["type"], project, path), "chroma": spec.get("chroma"),
+                         "flash": spec.get("flash", spec["type"] == "fullscreen")})
         if spec.get("text"):
             texts.append({"style": spec.get("text_style", "promo"), "text": spec["text"], "start": start, "end": end})
+    for spec in project.config["clips"]:
+        overlays += cover_overlays(project, spec, cut_map["clips"][spec["id"]])
+        texts += clip_texts(spec, cut_map["clips"][spec["id"]])
     for spec in project.config.get("texts", []):
         start, end = resolve_span(spec, cut_map, words)
         texts.append({"style": spec["style"], "text": spec["text"], "start": start, "end": end})

@@ -7,9 +7,10 @@ from pathlib import Path
 from captions import write_ass
 from compose import build_timeline, export, save_timeline
 from cut import auto_editor_bin, cut
+from minutaje import write_minutaje
 from normalize import normalize
 from probe import probe
-from project import Project, load
+from project import Project, load, trim_ranges
 from review import contact_sheet
 from transcribe import StaleTranscript, transcribe
 
@@ -40,14 +41,20 @@ def normalized_clips(project: Project) -> list:
     clips = []
     for spec in project.config["clips"]:
         broll = spec.get("broll", False)
-        path = normalize(project, project.path(spec["src"]), spec.get("trim"),
+        ranges = trim_ranges(spec.get("trim"))
+        span = [ranges[0][0], ranges[-1][1]] if ranges else None
+        path = normalize(project, project.path(spec["src"]), span,
                          spec.get("gain_db", broll_gain if broll else 0.0))
+        keep = [(round((a - span[0]) * fps), round((b - span[0]) * fps)) for a, b in ranges] \
+            if len(ranges) > 1 else None
+        has_own_text = bool(spec.get("nametag") or spec.get("title"))
         clips.append({
             "id": spec["id"],
             "path": path,
             "frames": round(probe(path)["duration"] * fps),
+            "keep": keep,
             "silence": spec.get("silence_cut", not broll),
-            "captions": spec.get("captions", not broll),
+            "captions": spec.get("captions", not (broll or has_own_text)),
             "broll": broll,
         })
     return clips
@@ -81,6 +88,7 @@ def main() -> None:
     started = step("compose")
     timeline = build_timeline(project, cut_path, cut_map, transcript)
     save_timeline(project, timeline)
+    write_minutaje(project, cut_map, transcript, timeline)
     ass_path = write_ass(project, timeline, project.build / "subtitles.ass")
     output = export(project, timeline, ass_path, cut_map["key"], args.preview)
     done(started, f"→ {output}")

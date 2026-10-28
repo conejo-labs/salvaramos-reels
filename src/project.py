@@ -43,6 +43,12 @@ class Project:
         return self.fonts_dir / name
 
 
+def trim_ranges(trim) -> list:
+    if not trim:
+        return []
+    return [tuple(trim)] if isinstance(trim[0], (int, float)) else [tuple(r) for r in trim]
+
+
 def load(project_dir: Path, style_path: Path = ROOT / "presets/style.yaml") -> Project:
     project_dir = project_dir.resolve()
     config = yaml.safe_load((project_dir / "config.yaml").read_text())

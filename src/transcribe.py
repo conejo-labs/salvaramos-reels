@@ -38,7 +38,7 @@ def muted_spans(cut_map: dict) -> list:
 
 def keep_word(word: dict, muted: list) -> bool:
     middle = (word["start"] + word["end"]) / 2
-    return not any(start <= middle < end for start, end in muted)
+    return not any(start <= middle < end or start <= word["start"] < end for start, end in muted)
 
 
 def run_whisper(project: Project, audio_source: Path, cut_map: dict) -> dict:

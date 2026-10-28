@@ -83,6 +83,7 @@ def test_normalize_text_ignores_case_accents_and_punctuation():
 def test_keep_word_drops_words_inside_muted_spans():
     assert not keep_word(w("gracias", 5.0, 5.4), [(4.0, 6.0)])
     assert keep_word(w("hola", 1.0, 1.2), [(4.0, 6.0)])
+    assert not keep_word(w("Concepción", 5.8, 6.4), [(4.0, 6.0)])
 
 
 CUT_MAP = {"duration": 30.0, "clips": {"intro": {"start": 5.0, "end": 12.0}}}

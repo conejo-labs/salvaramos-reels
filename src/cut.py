@@ -73,7 +73,8 @@ def segment_filter(source: str, n: int, start: int, end: int, fps: int, fade: fl
 def cut(project: Project, clips: list) -> tuple[Path, dict]:
     settings, canvas = project.style["cut"], project.style["canvas"]
     transitions, fps = project.style["transitions"], canvas["fps"]
-    key = digest([(c["id"], file_signature(c["path"]), c["silence"], c["captions"], c["broll"]) for c in clips],
+    key = digest([(c["id"], file_signature(c["path"]), c["keep"], c["silence"], c["captions"], c["broll"])
+                  for c in clips],
                  settings, transitions, canvas, code_signature(__file__))
     output, map_path = project.build / "cut.mkv", project.build / "cut_map.json"
     if is_fresh(output, key) and map_path.exists():
@@ -82,7 +83,12 @@ def cut(project: Project, clips: list) -> tuple[Path, dict]:
     plan = []
     for index, clip in enumerate(clips):
         whole = [(0, clip["frames"])]
-        ranges = loud_ranges(project, clip["path"], clip["frames"]) if clip["silence"] and settings["silence"] else whole
+        if clip["keep"]:
+            ranges = [(a, min(b, clip["frames"])) for a, b in clip["keep"]]
+        elif clip["silence"] and settings["silence"]:
+            ranges = loud_ranges(project, clip["path"], clip["frames"])
+        else:
+            ranges = whole
         plan.append((index, clip, ranges or whole))
 
     inputs, graph, labels, segments, clip_spans = [], [], [], [], {}

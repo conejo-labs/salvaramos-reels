@@ -145,20 +145,24 @@ def caption_events(project: Project, pages: list, layout: Layout) -> list:
 
 
 def text_events(project: Project, texts: list, layout: Layout) -> list:
+    pop = project.style["transitions"]
     events = []
     for item in texts:
         style = project.style["texts"][item["style"]]
         lines = [display(line, style["uppercase"]) for line in item["text"].split("\n")]
         if len(lines) > style.get("max_lines", len(lines)):
             raise SafeZoneError(f"El texto '{item['text']}' tiene más de {style['max_lines']} líneas")
+        scales = [1.0] + [style.get("secondary_scale", 1.0)] * (len(lines) - 1)
         font = project.font_file(style["font_file"])
-        widest = max(text_width(font, line, style["size"]) for line in lines)
+        widest = max(text_width(font, line, style["size"] * s) for line, s in zip(lines, scales))
         fit = layout.fit(widest + 2 * style["outline"])
         center_y = layout.height * style["center_y"]
-        layout.check_bottom(center_y, len(lines) * style["size"] * fit, f"El texto '{item['text']}'")
-        tags = scale_tags(fit, project.style["transitions"])
-        prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f}){tags}}}"
-        events.append((item["start"], item["end"], item["style"], prefix + "\\N".join(lines)))
+        layout.check_bottom(center_y, sum(scales) * style["size"] * fit, f"El texto '{item['text']}'")
+        secondary = ass_color(style.get("secondary_color", style["color"]))
+        body = lines[0] + "".join(f"\\N{{\\c{secondary}&{scale_tags(fit * s, pop)}}}{line}"
+                                  for line, s in zip(lines[1:], scales[1:]))
+        prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f}){scale_tags(fit, pop)}}}"
+        events.append((item["start"], item["end"], item["style"], prefix + body))
     return events
 
 

@@ -38,6 +38,18 @@ texts:
     outline: 8
     outline_color: "#000000"
     center_y: 0.22
+  nametag:
+    font: Montserrat Black
+    font_file: Montserrat-Black.ttf
+    size: 96
+    uppercase: true
+    color: "#FFD400"
+    secondary_color: "#FFFFFF"
+    secondary_scale: 0.5
+    outline: 7
+    outline_color: "#000000"
+    center_y: 0.68
+    max_lines: 2
   promo:
     font: Anton
     font_file: Anton-Regular.ttf
