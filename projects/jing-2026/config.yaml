@@ -1,0 +1,81 @@
+title: "JING 2026 — ¿Ramos o final?"
+
+transcription:
+  vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
+               Universidad de los Andes, Adolfo Ibáñez, Santa María]
+
+clips:
+  - id: hook
+    src: raw/IMG_1699.MOV
+    trim: [14.0, 23.8]
+  - id: intro
+    src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
+    trim: [0.6, 8.6]
+  - id: broll-futbol
+    src: raw/IMG_1687.MOV
+    trim: [8.0, 9.3]
+    broll: true
+  - id: broll-handbol
+    src: raw/IMG_1742.MOV
+    trim: [3.0, 4.3]
+    broll: true
+  - id: broll-esports
+    src: raw/IMG_1756.MOV
+    trim: [0.5, 1.8]
+    broll: true
+  - id: ignacia
+    src: raw/IMG_1705.MOV
+    trim: [23.0, 29.8]
+  - id: vicente
+    src: raw/IMG_1700.MOV
+    trim: [47.2, 52.8]
+  - id: voley
+    src: raw/IMG_1724.MOV
+    trim: [42.1, 46.9]
+  - id: sebastian
+    src: raw/IMG_1752.MOV
+    trim: [43.7, 48.0]
+  - id: pedro
+    src: raw/IMG_1763.MOV
+    trim: [30.5, 37.0]
+  - id: cta
+    src: raw/IMG_0653.MOV
+    trim: [66.8, 70.6]
+  - id: endcard
+    src: raw/IMG_1760.MOV
+    trim: [0.0, 3.0]
+    broll: true
+
+inserts:
+  - type: fullscreen
+    src: raw/IMG_0650.MOV
+    at: {clip: intro}
+    duration: 4.0
+  - type: fullscreen
+    src: raw/IMG_1707.MOV
+    at: {clip: intro, offset: 4.0}
+    until: {clip: intro}
+  - type: pip
+    src: raw/IMG_1742.MOV
+    src_in: 3.0
+    at: {word: minuto}
+    duration: 1.5
+  - type: pip
+    src: raw/IMG_1687.MOV
+    src_in: 8.0
+    at: {clip: pedro, offset: 0.3}
+    duration: 2.5
+  - type: fullscreen
+    src: raw/IMG_1756.MOV
+    src_in: 2.0
+    at: {clip: cta}
+    text: "¿RAMOS O FINAL?\nCON SALVARAMOS, LAS DOS"
+
+texts:
+  - style: title
+    text: "¿PASAR TODOS LOS RAMOS\nO GANAR LA FINAL?"
+    at: {clip: broll-futbol}
+    until: {clip: broll-esports}
+  - style: promo
+    text: "18% DESCUENTO CON EL CÓDIGO:\n18SALVARAMOS"
+    at: {clip: endcard}
