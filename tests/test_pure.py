@@ -37,6 +37,12 @@ def test_page_breaks_when_duration_exceeded():
 def test_page_breaks_after_sentence_end_and_at_clip_boundary():
     assert len(paginate([w("Hola.", 0, 0.2), w("chao", 0.25, 0.4)], PAGING)) == 2
     assert len(paginate([w("a", 0, 0.2), w("b", 0.25, 0.4)], PAGING, boundaries=[0.22])) == 2
+    assert len(paginate([w("a", 0, 0.2), w("b", 0.19, 0.4)], PAGING, boundaries=[0.22])) == 2
+
+
+def test_page_breaks_where_whisper_starts_a_segment():
+    words = [w("ramos", 0, 0.2), dict(w("Una", 0.25, 0.4), starts_segment=True)]
+    assert len(paginate(words, PAGING)) == 2
 
 
 def test_page_extends_until_next_when_gap_is_short():
@@ -95,3 +101,8 @@ def test_resolve_span_defaults_to_clip_end_and_clamps_to_duration():
     assert resolve_span({"at": {"clip": "intro"}}, CUT_MAP, WORDS) == (5.0, 12.0)
     assert resolve_span({"at": 28.0, "duration": 5}, CUT_MAP, WORDS) == (28.0, 30.0)
     assert resolve_span({"at": 1.0, "until": {"clip": "intro"}}, CUT_MAP, WORDS) == (1.0, 12.0)
+
+
+def test_page_does_not_spill_into_next_clip():
+    pages = paginate([w("UdeC", 1.0, 1.4)], PAGING, boundaries=[0.0, 1.45])
+    assert pages[0]["end"] == 1.45

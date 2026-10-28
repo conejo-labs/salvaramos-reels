@@ -87,4 +87,4 @@ def transcribe(project: Project, audio_source: Path, cut_map: dict, retranscribe
 
 
 def words_of(transcript: dict) -> list:
-    return [w for segment in transcript["segments"] for w in segment["words"]]
+    return [dict(w, starts_segment=i == 0) for segment in transcript["segments"] for i, w in enumerate(segment["words"])]

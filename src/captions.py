@@ -14,12 +14,17 @@ class SafeZoneError(Exception):
     pass
 
 
+def midpoint(word: dict) -> float:
+    return (word["start"] + word["end"]) / 2
+
+
 def _breaks_page(current: list, word: dict, paging: dict, boundaries: list) -> bool:
-    crosses_clip = any(current[-1]["start"] < b <= word["start"] for b in boundaries)
+    crosses_clip = any(midpoint(current[-1]) < b <= midpoint(word) for b in boundaries)
     return (len(current) >= paging["max_words"]
             or word["end"] - current[0]["start"] > paging["max_duration"]
             or word["start"] - current[-1]["end"] > paging["break_gap"]
             or current[-1]["word"].endswith(SENTENCE_END)
+            or word.get("starts_segment", False)
             or crosses_clip)
 
 
@@ -39,6 +44,8 @@ def paginate(words: list, paging: dict, boundaries: list = ()) -> list:
         next_start = groups[k + 1][0]["start"] if k + 1 < len(groups) else None
         holds_until_next = next_start is not None and next_start - last_end <= paging["break_gap"]
         end = next_start if holds_until_next else last_end + paging["tail"]
+        clip_end = min((b for b in boundaries if b > midpoint(group[-1])), default=end)
+        end = max(min(end, clip_end), last_end)
         pages.append({"start": round(group[0]["start"], 3), "end": round(end, 3), "words": group})
     return pages
 
@@ -103,6 +110,14 @@ class Layout:
             raise SafeZoneError(f"{what} invade el {round((1 - self.max_bottom / self.height) * 100)} % inferior")
 
 
+def scale_tags(scale: float, pop: dict | None = None) -> str:
+    final = f"\\fscx{scale * 100:.0f}\\fscy{scale * 100:.0f}"
+    if not pop:
+        return final
+    initial = scale * pop["pop_from"] * 100
+    return f"\\fscx{initial:.0f}\\fscy{initial:.0f}\\t(0,{pop['pop_ms']},{final})"
+
+
 def caption_events(project: Project, pages: list, layout: Layout) -> list:
     style = project.style["captions"]
     font = project.font_file(style["font_file"])
@@ -111,6 +126,7 @@ def caption_events(project: Project, pages: list, layout: Layout) -> list:
     center_y = layout.height * style["center_y"]
     layout.check_bottom(center_y, size * scale + 2 * outline, "Los subtítulos")
 
+    pop = project.style["transitions"]
     events = []
     for page in pages:
         texts = [caption_word(w["word"], style["uppercase"]) for w in page["words"]]
@@ -118,9 +134,10 @@ def caption_events(project: Project, pages: list, layout: Layout) -> list:
         space = text_width(font, " ", size)
         widest = max(sum(widths) + space * (len(texts) - 1) + widths[i] * (scale - 1) for i in range(len(texts)))
         fit = layout.fit(widest + 2 * outline)
-        normal = f"\\c{base}&\\fscx{fit * 100:.0f}\\fscy{fit * 100:.0f}"
-        big = f"\\c{active}&\\fscx{fit * scale * 100:.0f}\\fscy{fit * scale * 100:.0f}"
         for i, (start, end) in enumerate(word_states(page)):
+            entering = pop if i == 0 else None
+            normal = f"\\c{base}&{scale_tags(fit, entering)}"
+            big = f"\\c{active}&{scale_tags(fit * scale, entering)}"
             body = " ".join("{" + (big if j == i else normal) + "}" + t for j, t in enumerate(texts))
             prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f})}}"
             events.append((start, end, "caption", prefix + body))
@@ -139,7 +156,8 @@ def text_events(project: Project, texts: list, layout: Layout) -> list:
         fit = layout.fit(widest + 2 * style["outline"])
         center_y = layout.height * style["center_y"]
         layout.check_bottom(center_y, len(lines) * style["size"] * fit, f"El texto '{item['text']}'")
-        prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f})\\fscx{fit * 100:.0f}\\fscy{fit * 100:.0f}}}"
+        tags = scale_tags(fit, project.style["transitions"])
+        prefix = f"{{\\an5\\pos({layout.center_x:.0f},{center_y:.0f}){tags}}}"
         events.append((item["start"], item["end"], item["style"], prefix + "\\N".join(lines)))
     return events
 
