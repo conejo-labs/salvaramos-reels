@@ -39,20 +39,42 @@ def loud_ranges(project: Project, clip_path: Path, total_frames: int) -> list:
     return merge_ranges(ranges, round(settings["min_gap"] * fps), round(settings["min_keep"] * fps), total_frames)
 
 
-def segment_filter(source: str, n: int, start: int, end: int, fps: int, fade: float) -> str:
+def segment_motion(clip_index: int, range_index: int, jump_cuts: bool) -> str | None:
+    if range_index == 0 and clip_index > 0:
+        return "entry"
+    if jump_cuts and range_index % 2 == 1:
+        return "punch"
+    return None
+
+
+def motion_filter(motion: str | None, transitions: dict, canvas: dict) -> str:
+    width, height, fps = canvas["width"], canvas["height"], canvas["fps"]
+    if motion == "punch":
+        zoom = transitions["punch_in"]
+        return f",scale={round(width * zoom / 2) * 2}:{round(height * zoom / 2) * 2},crop={width}:{height}"
+    if motion == "entry":
+        zoom, frames = transitions["entry_zoom"], transitions["entry_frames"]
+        ease_out = f"1+{zoom - 1:.4f}*pow(max(0,1-on/{frames}),2)"
+        return (f",zoompan=z='{ease_out}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)'"
+                f":d=1:s={width}x{height}:fps={fps}")
+    return ""
+
+
+def segment_filter(source: str, n: int, start: int, end: int, fps: int, fade: float, motion: str = "") -> str:
     samples_per_frame = SAMPLE_RATE // fps
     duration = (end - start) / fps
     return (
-        f"[v{source}]trim=start_frame={start}:end_frame={end},setpts=PTS-STARTPTS[sv{n}];"
+        f"[v{source}]trim=start_frame={start}:end_frame={end},setpts=PTS-STARTPTS{motion},setsar=1[sv{n}];"
         f"[a{source}]atrim=start_sample={start * samples_per_frame}:end_sample={end * samples_per_frame},"
         f"asetpts=PTS-STARTPTS,afade=t=in:d={fade},afade=t=out:st={max(0.0, duration - fade):.4f}:d={fade}[sa{n}]"
     )
 
 
 def cut(project: Project, clips: list) -> tuple[Path, dict]:
-    settings, fps = project.style["cut"], project.style["canvas"]["fps"]
-    key = digest([(c["id"], file_signature(c["path"]), c["silence"], c["captions"]) for c in clips],
-                 settings, fps, code_signature(__file__))
+    settings, canvas = project.style["cut"], project.style["canvas"]
+    transitions, fps = project.style["transitions"], canvas["fps"]
+    key = digest([(c["id"], file_signature(c["path"]), c["silence"], c["captions"], c["broll"]) for c in clips],
+                 settings, transitions, canvas, code_signature(__file__))
     output, map_path = project.build / "cut.mkv", project.build / "cut_map.json"
     if is_fresh(output, key) and map_path.exists():
         return output, read_json(map_path)
@@ -72,13 +94,15 @@ def cut(project: Project, clips: list) -> tuple[Path, dict]:
         graph.append(f"[{index}:a]asplit={count}" + "".join(f"[a{index}_{n}]" for n in range(count)))
         for k, (start, end) in enumerate(ranges):
             n = len(segments)
-            graph.append(segment_filter(f"{index}_{k}", n, start, end, fps, settings["fade"]))
+            motion = segment_motion(index, k, jump_cuts=count > 1)
+            graph.append(segment_filter(f"{index}_{k}", n, start, end, fps, settings["fade"],
+                                        motion_filter(motion, transitions, canvas)))
             labels.append(f"[sv{n}][sa{n}]")
             segments.append({"clip": clip["id"], "src_start": start / fps, "src_end": end / fps,
-                             "start": cursor / fps, "end": (cursor + end - start) / fps})
+                             "start": cursor / fps, "end": (cursor + end - start) / fps, "motion": motion})
             cursor += end - start
         clip_spans[clip["id"]] = {"start": segments[-count]["start"], "end": cursor / fps,
-                                  "captions": clip["captions"]}
+                                  "captions": clip["captions"], "broll": clip["broll"]}
     graph.append("".join(labels) + f"concat=n={len(segments)}:v=1:a=1[v][a]")
 
     ffmpeg(*inputs, "-filter_complex", ";".join(graph), "-map", "[v]", "-map", "[a]",

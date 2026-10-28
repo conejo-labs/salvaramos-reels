@@ -51,16 +51,27 @@ texts:
 
 pip:
   width: 0.45
+  max_height: 0.3
   left: 0.04
   bottom: 0.20
 
 cut:
   silence: true
   threshold: 0.04
-  margin: 0.12
+  margin: 0.2
   min_gap: 0.15
   min_keep: 0.25
   fade: 0.01
+
+transitions:
+  punch_in: 1.12
+  entry_zoom: 1.15
+  entry_frames: 6
+  flash_frames: 2
+  flash_color: "#FFFFFF"
+  flash_opacity: 0.85
+  pop_from: 0.8
+  pop_ms: 90
 
 audio:
   broll_gain_db: -10
