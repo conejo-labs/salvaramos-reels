@@ -47,17 +47,25 @@ def resolve_span(spec: dict, cut_map: dict, words: list) -> tuple[float, float]:
     return round(start, 3), round(min(end, cut_map["duration"]), 3)
 
 
-def pip_box(project: Project) -> tuple[int, int]:
-    canvas, pip = project.style["canvas"], project.style["pip"]
-    return even(canvas["width"] * pip["width"]), even(canvas["height"] * pip["max_height"])
+def pip_layout(project: Project, position: str | None) -> dict:
+    pip = project.style["pip"]
+    return pip["positions"][position] if position else pip
 
 
-def overlay_rect(kind: str, project: Project, source: Path) -> list:
+def pip_box(project: Project, position: str | None = None) -> tuple[int, int]:
+    canvas, layout = project.style["canvas"], pip_layout(project, position)
+    return even(canvas["width"] * layout["width"]), even(canvas["height"] * layout["max_height"])
+
+
+def overlay_rect(kind: str, project: Project, source: Path, position: str | None = None) -> list:
     width, height = project.style["canvas"]["width"], project.style["canvas"]["height"]
     if kind == "fullscreen":
         return [0, 0, width, height]
-    pip, info = project.style["pip"], probe(source)
-    return [round(width * pip["left"]), round(height * (1 - pip["bottom"])) - info["height"],
+    layout, info = pip_layout(project, position), probe(source)
+    if "center_y" in layout:
+        return [round(width * layout["center_x"] - info["width"] / 2),
+                round(height * layout["center_y"] - info["height"] / 2), info["width"], info["height"]]
+    return [round(width * layout["left"]), round(height * (1 - layout["bottom"])) - info["height"],
             info["width"], info["height"]]
 
 
@@ -98,12 +106,13 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
     for spec in project.config.get("inserts", []):
         start, end = resolve_span(spec, cut_map, words)
         src_in = spec.get("src_in", 0.0)
-        box = pip_box(project) if spec["type"] == "pip" else None
+        box = pip_box(project, spec.get("position")) if spec["type"] == "pip" else None
         source = memes.path_of(spec["meme"]) if spec.get("meme") else project.path(spec["src"])
         path = normalize(project, source, [src_in, src_in + end - start],
                          box=box, loop=spec.get("loop", False))
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
-                         "rect": overlay_rect(spec["type"], project, path), "chroma": spec.get("chroma"),
+                         "rect": overlay_rect(spec["type"], project, path, spec.get("position")),
+                         "chroma": spec.get("chroma"),
                          "flash": spec.get("flash", spec["type"] == "fullscreen")})
         if spec.get("text"):
             texts.append({"style": spec.get("text_style", "promo"), "text": spec["text"], "start": start, "end": end})
