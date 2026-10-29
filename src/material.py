@@ -61,9 +61,9 @@ def whatsapp_version(video: Path) -> Path:
     return output
 
 
-def deliver(project_dir: Path, upload_to_drive: bool) -> None:
+def deliver(project_dir: Path, upload_to_drive: bool, version: str | None = None) -> None:
     project = load(project_dir)
-    video = project.build / f"{project.slug}.mp4"
+    video = project.build / f"{'.'.join(filter(None, (project.slug, version)))}.mp4"
     if not video.exists():
         sys.exit(f"Primero renderiza: .venv/bin/python src/render.py {project_dir}")
     compressed = whatsapp_version(video)
@@ -83,6 +83,7 @@ def main() -> None:
     deliver_parser = commands.add_parser("deliver", help="versión para WhatsApp y subida a entregas/")
     deliver_parser.add_argument("project", type=Path)
     deliver_parser.add_argument("--local", action="store_true", help="solo comprime, no sube a Drive")
+    deliver_parser.add_argument("--version", help="entrega build/<reel>.<version>.mp4 en vez del render principal")
     args = parser.parse_args()
     if args.command == "pull":
         pull(args.event)
@@ -93,7 +94,7 @@ def main() -> None:
     elif args.command == "upload-sfx":
         upload_sfx()
     else:
-        deliver(args.project, upload_to_drive=not args.local)
+        deliver(args.project, upload_to_drive=not args.local, version=args.version)
 
 
 if __name__ == "__main__":

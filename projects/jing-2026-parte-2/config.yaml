@@ -6,7 +6,7 @@ speed: 1.0
 sfx:
   auto: true
   cues:
-    - {sound: boom-rizz, at: {clip: hook-congelado}}
+    - {sound: boom-rizz, at: {clip: hook-congelado}, gain_db: 3}
 
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
@@ -145,6 +145,5 @@ inserts:
 texts:
   - style: headline
     text: "SalvaRamos\nen los JING"
-    at: {clip: hook}
+    at: {clip: hook-congelado}
     until: {clip: hook-congelado}
-    reveal: 3.8

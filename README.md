@@ -69,6 +69,7 @@ export SALVARAMOS_DRIVE="otro-remoto:Carpeta"
 .venv/bin/python src/material.py upload-sfx                # sube media/sfx/pack
 .venv/bin/python src/material.py deliver projects/jing-2026-parte-1          # versión WhatsApp + sube a entregas/
 .venv/bin/python src/material.py deliver projects/jing-2026-parte-1 --local  # solo la versión WhatsApp
+.venv/bin/python src/material.py deliver projects/jing-2026-parte-1 --version sonido --local  # de otra versión
 ```
 
 Todos usan `rclone copy`: suben o bajan lo que falta y **nunca borran** nada en Drive ni en tu máquina.
