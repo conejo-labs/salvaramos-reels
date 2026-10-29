@@ -7,10 +7,10 @@ sfx:
   auto: true
   cues:
     - {sound: boom-rizz, at: {clip: hook-congelado}, gain_db: 3}
-    - {sound: coro-angelical, at: {word: aplicada}, align: start, duration: 1.6, gain_db: -3}
+    - {sound: coro-angelical, at: {word: aplicada}, align: start, duration: 1.6, gain_db: 5}
     - {sound: mentality, at: {word: espíritu, occurrence: 2, offset: 0.4}}
     - {sound: bruh, at: {word: ramos, occurrence: 4, offset: 0.45}}
-    - {sound: illuminati, at: {word: común, offset: 0.25}, align: start, duration: 2.5, gain_db: -4}
+    - {sound: illuminati, at: {word: común, offset: 0.25}, align: start, duration: 2.5, gain_db: 2}
     - {sound: awww, at: {word: nosotros, offset: 0.3}}
 
 transcription:
