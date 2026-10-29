@@ -125,11 +125,13 @@ clips:
 inserts:
   - type: pip
     meme: perro-cara-cerca
+    position: arriba
     src_in: 0
     at: {word: PUC, offset: -0.2}
     duration: 5.0
   - type: pip
     meme: bateman-sonrisa
+    position: arriba
     src_in: 0
     at: {word: aplicados, offset: -3.5}
     until: {clip: vicente-favorita}
