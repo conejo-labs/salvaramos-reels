@@ -173,7 +173,8 @@ cortar silencios), `captions`, `gain_db`, `look`.
 corte, el meme se mueve con la palabra.
 
 **Inserts:** `type: pip` o `fullscreen`, `src` o `meme`, `src_in` (desde qué segundo del archivo), `position: arriba`
-para los PiP, `text` para un texto promo encima de un fullscreen.
+para los PiP, `text` para un texto promo encima de un fullscreen, `audio: true` para que suene el audio del insert
+(los memes se nivelan como los de pausa; un PiP con su propio audio no lleva el efecto de `sfx.rules`).
 
 **Estilos de texto:** `title`, `headline`, `nametag`, `promo` en `presets/style.yaml`.
 
@@ -187,6 +188,10 @@ sfx:
   cues:
     - {sound: reloj, at: {clip: hook}, gain_db: -6}
 ```
+
+Un cue acepta `gain_db`, `duration` (usa solo los primeros segundos del recorte) y `align: start` (arranca en `at`
+en vez de hacer caer ahí el pico: para música o coros, cuyo pico llega tarde). Para una reacción inmediata, ancla
+el cue a la última palabra del remate con un `offset` de unas décimas.
 
 Cada efecto se ubica para que su pico caiga justo en el momento `at`, y su volumen pico se iguala con `sfx.levels`
 según su categoría. Sin bloque `sfx`, el reel no lleva efectos.

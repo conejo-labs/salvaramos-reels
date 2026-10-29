@@ -14,6 +14,7 @@ from util import ffmpeg, is_fresh, read_json, seal, write_json
 
 OVERLAY_STACKING = {"pip": 0, "fullscreen": 1}
 FLASHED_KINDS = {"broll", "meme"}
+FADE_OUT = 0.06
 
 
 def even(value: float) -> int:
@@ -103,7 +104,7 @@ def flash_spans(project: Project, cut_map: dict, overlays: list) -> list:
 
 def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: dict) -> dict:
     words = words_of(transcript, cut_map, project.config.get("transcription", {}).get("corrections", []))
-    overlays, texts = [], []
+    overlays, texts, insert_audio = [], [], []
     for spec in project.config.get("inserts", []):
         start, end = resolve_span(spec, cut_map, words)
         src_in = spec.get("src_in", 0.0)
@@ -114,7 +115,9 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
                          "rect": overlay_rect(spec["type"], project, path, spec.get("position")),
                          "chroma": spec.get("chroma"),
-                         "flash": spec.get("flash", spec["type"] == "fullscreen")})
+                         "flash": spec.get("flash", spec["type"] == "fullscreen"), "audio": bool(spec.get("audio"))})
+        if spec.get("audio"):
+            insert_audio.append(own_audio(project, spec, source, start, end))
         if spec.get("text"):
             texts.append({"style": spec.get("text_style", "promo"), "text": spec["text"], "start": start, "end": end})
     for spec in project.config["clips"]:
@@ -130,7 +133,7 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
     boundaries = [clip["start"] for clip in cut_map["clips"].values()]
     pages = [p for p in paginate(words, project.style["captions"]["paging"], boundaries) if not overlaps(p, hidden)]
     overlays.sort(key=lambda o: OVERLAY_STACKING[o["type"]])
-    cues = sound_cues(project, cut_map, words, overlays, texts)
+    cues = sorted(sound_cues(project, cut_map, words, overlays, texts) + insert_audio, key=lambda c: c["start"])
     return {
         "canvas": project.style["canvas"],
         "duration": cut_map["duration"],
@@ -142,6 +145,14 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         "captions": {"pages": pages},
         "sfx": cues,
     }
+
+
+def own_audio(project: Project, spec: dict, source: Path, start: float, end: float) -> dict:
+    src_in = spec.get("src_in", 0.0)
+    gain = memes.gain_for(spec["meme"], project.style["memes"]["target_mean_db"]) if spec.get("meme") else 0.0
+    return {"sound": spec.get("meme", source.stem), "event": "insert", "at": start, "start": start,
+            "trim": [src_in, round(src_in + end - start, 3)], "gain_db": round(gain + spec.get("gain_db", 0.0), 1),
+            "src": str(source)}
 
 
 def sound_cues(project: Project, cut_map: dict, words: list, overlays: list, texts: list) -> list:
@@ -216,8 +227,10 @@ def audio_graph(timeline: dict, project: Project, measured: dict, first_input: i
     graph, labels = [f"{speech}[speech]"], "[speech]"
     for k, cue in enumerate(cues):
         delay = round(cue["start"] / speed * 1000)
+        length = cue["trim"][1] - cue["trim"][0]
         graph.append(f"[{first_input + k}:a]aresample={settings['sample_rate']},aformat=channel_layouts=stereo,"
-                     f"volume={cue['gain_db']}dB,adelay={delay}|{delay}[sfx{k}]")
+                     f"volume={cue['gain_db']}dB,afade=t=out:st={max(0.0, length - FADE_OUT):.3f}:d={FADE_OUT},"
+                     f"adelay={delay}|{delay}[sfx{k}]")
         labels += f"[sfx{k}]"
     limit = 10 ** (project.style["sfx"]["limit_db"] / 20)
     graph.append(f"{labels}amix=inputs={len(cues) + 1}:normalize=0:duration=first,"

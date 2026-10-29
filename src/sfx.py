@@ -48,7 +48,7 @@ def timeline_events(clips: dict, overlays: list, texts: list) -> list:
     title_starts = {t["start"] for t in texts if t["style"] == "title"}
     events = [(t["style"], t["start"]) for t in texts if t["style"] in TEXT_EVENTS]
     for overlay in overlays:
-        if overlay["type"] == "pip":
+        if overlay["type"] == "pip" and not overlay.get("audio"):
             events.append(("pip", overlay["start"]))
         elif overlay.get("flash") and overlay["start"] not in title_starts:
             events.append(("cover", overlay["start"]))
@@ -58,7 +58,8 @@ def timeline_events(clips: dict, overlays: list, texts: list) -> list:
 
 def planned_cues(events: list, rules: dict, manual: list) -> list:
     cues = [{"sound": sound, "at": at, "event": kind} for kind, at in events for sound in rules.get(kind, [])]
-    cues += [{"sound": c["sound"], "at": c["at"], "event": "manual", "gain_db": c.get("gain_db", 0.0)} for c in manual]
+    cues += [{"sound": c["sound"], "at": c["at"], "event": "manual", "gain_db": c.get("gain_db", 0.0),
+              "duration": c.get("duration"), "align": c.get("align", "peak")} for c in manual]
     kept = []
     for cue in sorted(cues, key=lambda c: c["at"]):
         if not any(k["sound"] == cue["sound"] and abs(k["at"] - cue["at"]) < DEDUPE_SECONDS for k in kept):
@@ -68,7 +69,9 @@ def planned_cues(events: list, rules: dict, manual: list) -> list:
 
 def placed(cue: dict, entry: dict, level_db: float) -> dict:
     trim_start, trim_end = entry["recorte"]
-    start = cue["at"] - lead_in(entry)
+    if cue.get("duration"):
+        trim_end = min(trim_end, trim_start + cue["duration"])
+    start = cue["at"] if cue.get("align") == "start" else cue["at"] - lead_in(entry)
     if start < 0:
         trim_start, start = trim_start - start, 0.0
     return {**cue, "at": round(cue["at"], 3), "start": round(start, 3), "trim": [round(trim_start, 3), trim_end],

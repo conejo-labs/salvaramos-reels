@@ -199,3 +199,23 @@ def test_sfx_cue_starts_early_so_its_peak_lands_on_the_event_and_is_clipped_at_z
     assert placed({"sound": "x", "at": 10.0}, entry, -20.0)["start"] == 8.5
     early = placed({"sound": "x", "at": 0.5}, entry, -20.0)
     assert early["start"] == 0.0 and early["trim"] == [2.0, 3.0]
+
+
+def test_sfx_pip_with_its_own_audio_gets_no_extra_effect():
+    from sfx import timeline_events
+    overlays = [{"type": "pip", "start": 3.0, "audio": True}, {"type": "pip", "start": 9.0, "audio": False}]
+    assert timeline_events({}, overlays, []) == [("pip", 9.0)]
+
+
+def test_sfx_manual_duration_shortens_the_sound(monkeypatch):
+    import sfx
+    entry = {"recorte": [1.0, 6.0], "pico": 1.0, "volumen_pico_db": -20.0}
+    monkeypatch.setattr(sfx, "sound", lambda _id: entry)
+    assert sfx.placed({"sound": "x", "at": 4.0, "duration": 2.0}, entry, -20.0)["trim"] == [1.0, 3.0]
+
+
+def test_sfx_start_alignment_begins_the_sound_on_the_word(monkeypatch):
+    import sfx
+    entry = {"recorte": [1.0, 6.0], "pico": 5.0, "volumen_pico_db": -20.0}
+    monkeypatch.setattr(sfx, "sound", lambda _id: entry)
+    assert sfx.placed({"sound": "x", "at": 10.0, "align": "start"}, entry, -20.0)["start"] == 10.0
