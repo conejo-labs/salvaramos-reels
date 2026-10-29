@@ -58,7 +58,7 @@ def normalized_clip(project: Project, spec: dict, kind: str, span: list | None) 
         sfx = ROOT / "assets/sfx" / f"{spec['sfx']}.wav" if spec.get("sfx") else None
         at = spec["freeze"]
         return normalize(project, project.path(spec["src"]), [at, at + spec["duration"]], spec.get("gain_db", 0.0),
-                         look=look, freeze=True, audio_src=sfx)
+                         look=look, freeze=True, audio_src=sfx, silent=sfx is None)
     if kind == "card":
         return render_card(project, spec)
     gain = spec.get("gain_db", project.style["audio"]["broll_gain_db"] if kind == "broll" else 0.0)

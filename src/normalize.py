@@ -67,7 +67,7 @@ def level_gain(src: Path, ranges: list, target_lufs: float) -> float:
 
 def normalize(project: Project, src: Path, trim: list | None = None, gain_db: float = 0.0,
               box: tuple[int, int] | None = None, loop: bool = False, framing: str = "fill",
-              look: str | None = None, freeze: bool = False, audio_src: Path | None = None,
+              look: str | None = None, freeze: bool = False, audio_src: Path | None = None, silent: bool = False,
               level_to: float | None = None, level_ranges: list | None = None) -> Path:
     canvas, settings = project.style["canvas"], project.style["normalize"]
     info = probe(src)
@@ -79,7 +79,7 @@ def normalize(project: Project, src: Path, trim: list | None = None, gain_db: fl
     look_filter = project.style["looks"][look] if look else None
     graph = framing_filter(framing, canvas, box, project.style["memes"]["blur"])
     key = digest(file_signature(src), start, end, gain_db, level_to, level_ranges, graph, look_filter, loop, freeze,
-                 file_signature(audio_src) if audio_src else None, canvas, settings, code_signature(__file__))
+                 file_signature(audio_src) if audio_src else None, silent, canvas, settings, code_signature(__file__))
     output = project.build / "norm" / f"{src.stem}_{key}.mkv"
     if is_fresh(output, key):
         return output
@@ -90,7 +90,7 @@ def normalize(project: Project, src: Path, trim: list | None = None, gain_db: fl
     looping = ["-stream_loop", "-1"] if loop else []
     if audio_src:
         audio_input, audio_map = ["-i", audio_src], "1:a:0"
-    elif info["has_audio"]:
+    elif info["has_audio"] and not silent:
         audio_input, audio_map = [], "0:a:0"
     else:
         audio_input, audio_map = ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"], "1:a:0"

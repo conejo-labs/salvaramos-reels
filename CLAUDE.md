@@ -41,7 +41,8 @@ si el hash no cambió, se salta.
   - por defecto, **voz**: se corta por silencio y lleva subtítulos;
   - `broll: true`: sin corte de silencio ni subtítulos, con el audio bajado (`audio.broll_gain_db`);
   - `meme: <id>`: pausa con el audio del meme, centrado sobre una copia desenfocada; `trim` es dentro del meme;
-  - `freeze: <segundo>` + `duration`: congela ese frame, con `look` (p. ej. `bw`) y `sfx` de `assets/sfx/`.
+  - `freeze: <segundo>` + `duration`: congela ese frame, con `look` (p. ej. `bw`) y `sfx` de `assets/sfx/`;
+    sin `sfx` queda en silencio.
 - Un clip con `nametag` o `title` no lleva subtítulos (el texto los reemplaza). `cover` tapa el clip con b-roll
   repartido en partes iguales y deja su audio: así se presentan las preguntas con la voz del entrevistador.
 - `trim` acepta varios rangos (`[[a, b], [c, d]]`) para armar una frase con palabras exactas del mismo raw.

@@ -161,7 +161,7 @@ texts:
 | (ninguna) | Voz: se cortan los silencios, se nivela el volumen y lleva subtítulos |
 | `broll: true` | Toma de ambiente: sin cortes ni subtítulos, con el audio más bajo |
 | `meme: <id>` | Pausa con el meme centrado sobre una copia desenfocada y con su audio |
-| `freeze: <seg>` + `duration` | Congela ese frame; admite `look: bw` y `sfx: suspenso` |
+| `freeze: <seg>` + `duration` | Congela ese frame; admite `look: bw` y `sfx: suspenso`; sin `sfx`, en silencio |
 | `card: <nombre>` | Cortina animada (`outro`, `cierre`) definida en `style.yaml` |
 
 **Claves opcionales de un clip:** `nametag` (presentación: nombre y, en la segunda línea, universidad · deporte),
