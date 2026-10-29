@@ -52,8 +52,12 @@ si el hash no cambió, se salta.
   iguala su volumen. Solo memes conocidos en Chile: los que no, se sacan del pack y del catálogo.
 - `assets/sfx/catalog.yaml` describe el pack de efectos por categoría: `recorte` es el tramo útil dentro del archivo
   y `pico` el segundo, también del archivo, que se sincroniza con el evento: el sonido arranca `pico - recorte[0]`
-  antes. `src/sfx.py` genera `assets/sfx/catalogo.html` (fuera de git) con rutas a la carpeta real, porque el
+  antes. Se nivelan por `volumen_pico_db` (máximo RMS en ventanas de 100 ms dentro del recorte) contra
+  `sfx.levels` de su categoría, no por el volumen medio como los memes. `src/sfx.py` genera `assets/sfx/catalogo.html` (fuera de git) con rutas a la carpeta real, porque el
   navegador de Windows no sigue los symlinks de WSL.
+- Los efectos van en `timeline.json` como `sfx`, ya resueltos (`start` en tiempo sin acelerar, `trim` dentro del
+  archivo, `gain_db`) y se mezclan **después** del `loudnorm` de la voz, con un `alimiter` al final: así no mueven la
+  medición de sonoridad que se hace sobre el corte base.
 - `assets/sfx/suspenso.wav` es sintético (generado con ffmpeg): reemplázalo por uno real con el mismo nombre.
 
 ## Entorno (WSL)

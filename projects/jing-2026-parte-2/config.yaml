@@ -3,6 +3,11 @@ event: jing-2026
 
 speed: 1.0
 
+sfx:
+  auto: true
+  cues:
+    - {sound: boom-rizz, at: {clip: hook-congelado}}
+
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
                Universidad de los Andes, Santa María, vóleibol]

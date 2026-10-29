@@ -180,6 +180,23 @@ audio:
   true_peak: -1
   lra: 11
 
+sfx:
+  limit_db: -1
+  levels:
+    transicion: -18
+    golpe: -15
+    tension: -20
+    reaccion: -14
+  rules:
+    title: [whoosh-corto, golpe]
+    meme: [whoosh-corto]
+    cover: [whoosh-corto]
+    nametag: [pop]
+    pip: [boom-rizz]
+    headline: [golpe]
+    promo: [golpe]
+    card: [flashback]
+
 transcription:
   model: large-v3-turbo
   language: es

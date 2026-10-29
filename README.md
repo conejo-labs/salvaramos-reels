@@ -77,7 +77,7 @@ Para agregar un meme: déjalo en `media/memes/pack/`, súmalo a `assets/memes/ca
 sirve, `volumen_medio_db`) y corre `upload-memes`. Solo memes que se conozcan en Chile.
 
 Para agregar un efecto: déjalo en `media/sfx/pack/` como `<id>.wav`, súmalo a `assets/sfx/catalog.yaml` con su
-categoría, `recorte`, `pico` y `volumen_medio_db`, y corre `upload-sfx`. Para escucharlos todos,
+categoría, `recorte`, `pico`, `volumen_medio_db` y `volumen_pico_db`, y corre `upload-sfx`. Para escucharlos todos,
 `.venv/bin/python src/sfx.py` genera `assets/sfx/catalogo.html`.
 
 ## Hacer un reel
@@ -175,6 +175,23 @@ corte, el meme se mueve con la palabra.
 para los PiP, `text` para un texto promo encima de un fullscreen.
 
 **Estilos de texto:** `title`, `headline`, `nametag`, `promo` en `presets/style.yaml`.
+
+**Efectos de sonido:** un bloque `sfx` en el config los activa. Con `auto: true`, cada evento del reel lleva el efecto
+que dice `sfx.rules` en `presets/style.yaml` (whoosh en los cortes con flash, golpe en las preguntas y la promo, pop
+en los nametags, boom en los PiP, riser antes de la cortina). `cues` suma efectos a mano:
+
+```yaml
+sfx:
+  auto: true
+  cues:
+    - {sound: reloj, at: {clip: hook}, gain_db: -6}
+```
+
+Cada efecto se ubica para que su pico caiga justo en el momento `at`, y su volumen pico se iguala con `sfx.levels`
+según su categoría. Sin bloque `sfx`, el reel no lleva efectos.
+
+**Otra versión sin pisar la actual:** `render.py projects/<reel> --version sonido` escribe
+`build/<reel>.sonido.mp4` y deja intacto `build/<reel>.mp4`.
 
 ## Problemas comunes
 
