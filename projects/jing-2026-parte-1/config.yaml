@@ -109,9 +109,9 @@ clips:
 inserts:
   - type: pip
     meme: the-rock-ceja
-    src_in: 1.5
-    at: {word: discapacitado}
-    duration: 2.7
+    src_in: 0
+    at: {word: livianito, offset: -3.0}
+    duration: 4.7
 
 texts:
   - style: promo
