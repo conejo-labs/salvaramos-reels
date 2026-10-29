@@ -7,7 +7,8 @@ sfx:
   auto: true
   cues:
     - {sound: boom-rizz, at: {clip: hook-congelado}, gain_db: 3}
-    - {sound: flashback, at: {clip: intro}}
+    - {sound: mentality, at: {clip: hook-congelado, offset: 1.0}, gain_db: 2}
+    - {sound: flashback, at: {clip: intro}, gain_db: 4}
     - {sound: boom-rizz, at: {clip: intro}}
     - {sound: coro-angelical, at: {word: aplicada}, align: start, duration: 1.6, gain_db: 5}
     - {sound: mentality, at: {word: espíritu, occurrence: 2, offset: 0.4}}
