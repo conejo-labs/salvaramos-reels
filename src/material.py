@@ -27,6 +27,7 @@ def copy(source: str | Path, destination: str | Path) -> None:
 def pull(event: str) -> None:
     copy(f"{DRIVE}/eventos/{event}/raw", MEDIA / "eventos" / event / "raw")
     copy(f"{DRIVE}/memes/pack", MEDIA / "memes" / "pack")
+    copy(f"{DRIVE}/sfx/pack", MEDIA / "sfx" / "pack")
 
 
 def upload(event: str) -> None:
@@ -38,6 +39,10 @@ def upload(event: str) -> None:
 
 def upload_memes() -> None:
     copy(MEDIA / "memes" / "pack", f"{DRIVE}/memes/pack")
+
+
+def upload_sfx() -> None:
+    copy(MEDIA / "sfx" / "pack", f"{DRIVE}/sfx/pack")
 
 
 def whatsapp_version(video: Path) -> Path:
@@ -71,9 +76,10 @@ def deliver(project_dir: Path, upload_to_drive: bool) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=f"Material compartido en Google Drive ({DRIVE})")
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("pull", help="baja los raws de un evento y el pack de memes").add_argument("event")
+    commands.add_parser("pull", help="baja los raws de un evento y los packs de memes y efectos").add_argument("event")
     commands.add_parser("upload", help="sube a Drive los raws locales de un evento").add_argument("event")
     commands.add_parser("upload-memes", help="sube a Drive el pack de memes local")
+    commands.add_parser("upload-sfx", help="sube a Drive el pack de efectos local")
     deliver_parser = commands.add_parser("deliver", help="versión para WhatsApp y subida a entregas/")
     deliver_parser.add_argument("project", type=Path)
     deliver_parser.add_argument("--local", action="store_true", help="solo comprime, no sube a Drive")
@@ -84,6 +90,8 @@ def main() -> None:
         upload(args.event)
     elif args.command == "upload-memes":
         upload_memes()
+    elif args.command == "upload-sfx":
+        upload_sfx()
     else:
         deliver(args.project, upload_to_drive=not args.local)
 
