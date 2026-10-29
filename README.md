@@ -176,7 +176,8 @@ corte, el meme se mueve con la palabra.
 para los PiP, `text` para un texto promo encima de un fullscreen, `audio: true` para que suene el audio del insert
 (los memes se nivelan como los de pausa; un PiP con su propio audio no lleva el efecto de `sfx.rules`).
 
-**Estilos de texto:** `title`, `headline`, `nametag`, `promo` en `presets/style.yaml`.
+**Estilos de texto:** `title`, `headline`, `nametag`, `promo` en `presets/style.yaml`. Un texto de `texts` puede
+cambiar la altura de su estilo con `center_y` (fracción del alto).
 
 **Efectos de sonido:** un bloque `sfx` en el config los activa. Con `auto: true`, cada evento del reel lleva el efecto
 que dice `sfx.rules` en `presets/style.yaml` (whoosh en los cortes con flash, golpe en las preguntas y la promo, pop

@@ -126,7 +126,7 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
     for spec in project.config.get("texts", []):
         start, end = resolve_span(spec, cut_map, words)
         texts.append({"style": spec["style"], "text": spec["text"], "start": start, "end": end,
-                      "reveal": spec.get("reveal")})
+                      "reveal": spec.get("reveal"), "center_y": spec.get("center_y")})
 
     hidden = [(t["start"], t["end"]) for t in texts if t["style"] == "promo"] \
         if project.style["captions"]["hide_during_promo"] else []

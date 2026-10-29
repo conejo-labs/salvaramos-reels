@@ -70,7 +70,7 @@ def planned_cues(events: list, rules: dict, manual: list) -> list:
 def placed(cue: dict, entry: dict, level_db: float) -> dict:
     trim_start, trim_end = entry["recorte"]
     if cue.get("duration"):
-        trim_end = min(trim_end, trim_start + cue["duration"])
+        trim_end = round(min(trim_end, trim_start + cue["duration"]), 3)
     start = cue["at"] if cue.get("align") == "start" else cue["at"] - lead_in(entry)
     if start < 0:
         trim_start, start = trim_start - start, 0.0

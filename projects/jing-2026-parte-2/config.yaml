@@ -157,5 +157,6 @@ texts:
     until: {clip: hook-congelado}
   - style: promo
     text: "Parte 2"
+    center_y: 0.33
     at: {clip: hook-congelado, offset: 1.0}
     until: {clip: hook-congelado}
