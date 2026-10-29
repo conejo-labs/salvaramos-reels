@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+MEDIA = ROOT / "media"
 
 
 def run(cmd, **kwargs) -> subprocess.CompletedProcess:

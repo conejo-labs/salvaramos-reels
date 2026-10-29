@@ -1,10 +1,9 @@
 .venv/
 __pycache__/
 .pytest_cache/
-projects/*/raw/
-projects/*/build/
 .env
-assets/memes/giphy/
-assets/memes/pack/
+media/
+projects/*/build/
+projects/*/raw
 projects/*/transcript.*.bak.json
 assets/memes/thumbs/

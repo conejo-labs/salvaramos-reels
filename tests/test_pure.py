@@ -140,3 +140,11 @@ def test_voice_threshold_follows_the_noise_floor_within_limits():
     assert voice_threshold(np.full(100, -60.0), settings) == -50.0
     assert voice_threshold(np.full(100, -20.0), settings) == -36.0
     assert voice_threshold(np.full(100, -75.0), settings) == -52.0
+
+
+def test_raw_sources_resolve_inside_the_event_media_folder():
+    from project import Project
+    from util import MEDIA
+    project = Project(dir=Path("/tmp/projects/reel-1"), config={"event": "jing-2026"}, style={})
+    assert project.path("raw/IMG_1.MOV") == MEDIA / "eventos" / "jing-2026" / "raw" / "IMG_1.MOV"
+    assert Project(dir=Path("/tmp/projects/solo"), config={}, style={}).event == "solo"

@@ -1,6 +1,6 @@
 fuente: "Pack De Memes (Ayuda Para YouFubers).zip (sha256 a0b0f398be6dcb403049955e2aef3c375c87797312628c56db0582d15ea3a115)"
 verificado: "2026-10-27: 76 MP4 válidos, sin ejecutables ni datos ocultos; Windows Defender sin amenazas"
-carpeta: assets/memes/pack
+carpeta: media/memes/pack
 
 memes:
   - id: aguanta-la-risa-gorra
@@ -27,30 +27,6 @@ memes:
     tono: [risa, contener]
     uso: "Escuchar una excusa absurda sin poder reírse."
     original: "km_Pack Continuo_1080p_60f_20241229_114131.mp4"
-  - id: alien-dientes
-    archivo: alien-dientes.mp4
-    duracion: 8.6
-    resolucion: 1920x1080
-    encuadre: fullscreen
-    chiste_en: imagen
-    que_es: "Alien de máscara se pone dientes postizos y sonríe."
-    audio: "«¿Eh?»"
-    volumen_medio_db: -17.9
-    tono: [absurdo, confusión]
-    uso: "Un resultado que no tiene sentido; una respuesta incomprensible."
-    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121208.mp4"
-  - id: aplauso-calvo
-    archivo: aplauso-calvo.mp4
-    duracion: 4.5
-    resolucion: 1920x1080
-    encuadre: fullscreen
-    chiste_en: imagen
-    que_es: "Hombre calvo frente a una biblioteca aplaudiendo con sonrisa satisfecha."
-    audio: "Aplausos suaves; volumen bajo."
-    volumen_medio_db: -31.3
-    tono: [aprobación, sarcasmo]
-    uso: "Felicitar al alumno que resolvió el ejercicio, o aplaudir con ironía una mala idea."
-    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_120857.mp4"
   - id: auronplay-fiesta-de-la-luna
     archivo: auronplay-fiesta-de-la-luna.mp4
     duracion: 20.1
@@ -423,18 +399,6 @@ memes:
     tono: [curiosidad, absurdo]
     uso: "Mirar de cerca un ejercicio que no se entiende."
     original: "km_Pack Continuo-Copiar_1080p_60f_20241229_115841.mp4"
-  - id: perro-era-bait
-    archivo: perro-era-bait.mp4
-    duracion: 5.8
-    resolucion: 1920x1080
-    encuadre: pip
-    chiste_en: ambos
-    que_es: "Perro de cara larga con subtítulos quemados: «No se we tranquilo… Todo era bait»."
-    audio: "Canción de fondo."
-    volumen_medio_db: -11.2
-    tono: [broma, alivio]
-    uso: "Cerrar un falso susto («se suspendió la prueba… mentira»). Pip: el subtítulo se corta en fullscreen."
-    original: "km_20241228-Copiar-Copiar_1080p_60f_20241229_121817.mp4"
   - id: perro-feliz-a-serio
     archivo: perro-feliz-a-serio.mp4
     duracion: 13.6
@@ -471,18 +435,6 @@ memes:
     tono: [sospecha, incomodidad]
     uso: "Cuando un compañero te pide la tarea."
     original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_115402.mp4"
-  - id: perro-no-digas-eso
-    archivo: perro-no-digas-eso.mp4
-    duracion: 5.4
-    resolucion: 1920x1080
-    encuadre: pip
-    chiste_en: ambos
-    que_es: "Perro con subtítulos quemados: «Ey ey ey… Pequeña no digas eso… No digas eso, eres perfecta»."
-    audio: "«Ey, ey, ey, pequeña, no digas eso. No digas eso, eres perfecta.»"
-    volumen_medio_db: -18.2
-    tono: [consuelo, ternura]
-    uso: "Responder a «soy malo para las matemáticas». Pip: el subtítulo se corta en fullscreen."
-    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114835.mp4"
   - id: perro-sonrisa-incomoda
     archivo: perro-sonrisa-incomoda.mp4
     duracion: 7.1
@@ -531,30 +483,6 @@ memes:
     tono: [alivio, alegría]
     uso: "Se suspendió la prueba; el ejercicio salió."
     original: "km_Pack Continuo-Copiar_1080p_60f_20241229_112152.mp4"
-  - id: que-estas-haciendo-chamaco
-    archivo: que-estas-haciendo-chamaco.mp4
-    duracion: 4.8
-    resolucion: 1920x1080
-    encuadre: pip
-    chiste_en: audio
-    que_es: "Chico riéndose junto a un hombre sobre fondo rojo."
-    audio: "«¿Qué estás haciendo, chamaco?» y risa."
-    volumen_medio_db: -14.9
-    tono: [risa, regaño]
-    uso: "Pillar a alguien copiando o haciendo trampa en el ejercicio."
-    original: "km_Pack Continuo-Copiar_1080p_60f_20241229_120007.mp4"
-  - id: quien-sabe
-    archivo: quien-sabe.mp4
-    duracion: 4.5
-    resolucion: 1920x1080
-    encuadre: fullscreen
-    chiste_en: audio
-    que_es: "Hombre entrevistado en la calle por un noticiero."
-    audio: "«¿Quién sabe? Ahí sí no te puedo decir nada.»"
-    volumen_medio_db: -24.5
-    tono: [duda]
-    uso: "Cuando te preguntan cuánto da el ejercicio."
-    original: "km_Pack Continuo-Copiar-Copiar_1080p_60f_20241229_114904.mp4"
   - id: risa-podcast
     archivo: risa-podcast.mp4
     duracion: 4.1

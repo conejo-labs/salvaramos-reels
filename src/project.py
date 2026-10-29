@@ -3,7 +3,7 @@ from pathlib import Path
 
 import yaml
 
-from util import ROOT
+from util import MEDIA, ROOT
 
 
 def deep_merge(base: dict, override: dict) -> dict:
@@ -36,7 +36,13 @@ class Project:
     def fonts_dir(self) -> Path:
         return ROOT / self.style["fonts_dir"]
 
+    @property
+    def event(self) -> str:
+        return self.config.get("event", self.slug)
+
     def path(self, relative: str) -> Path:
+        if relative.startswith("raw/"):
+            return MEDIA / "eventos" / self.event / relative
         return (self.dir / relative).resolve()
 
     def font_file(self, name: str) -> Path:

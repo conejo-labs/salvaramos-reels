@@ -6,36 +6,36 @@ En cada parte, escribe en la columna **¿Cuál?** el id del meme que quieres des
 
 | Reel | Después de | Qué se dice | Meme actual | ¿Cuál? |
 |---|---|---|---|---|
-| 00:08.6 | hook | ¿Qué es más difícil? ¿Un certamen de cálculo o meter un punto en el último minuto? Un certamen de cálculo | mirada-hacia-arriba | |
-| 00:40.1 | pregunta-calculo | ¿Buen cálculo o entrega a última hora? |  | |
-| 00:41.6 | montserrat-calculo | No, como una entrega a última hora |  | |
-| 00:43.9 | tomas-calculo | Como un buen cálculo Siempre buscamos... |  | |
-| 00:49.7 | branco-calculo | Depende del día, en general, tal vez una entrega a última hora, pero hoy día anduvimos mejor, así debería un buen cálculo |  | |
-| 00:52.9 | pregunta-cabala | ¿Qué cábala tienes antes de competir? |  | |
-| 00:54.6 | tomas-cabala | Ninguna, yo voy al partido y lo |  | |
-| 01:06.8 | martin-cabala | que... Bueno, la voy a ir al baño discapacitado de la K, al que esté libre ¿Y de cuándo sigue eso? Desde siempre, desde que entré a la universidad para pruebas, para lo que sea Ahí va a ir livianito a la que sea que tenga que hacer | ibai-carcajada | |
-| 01:12.8 | pregunta-rival | ¿Qué le dirías al rival en una frase? |  | |
-| 01:15.9 | montserrat-rival | con mi dupla Ojito Ojito, ojito |  | |
-| 01:21.2 | branco-rival | Nah, que pasémoslo bien, pero... Venimos a competir, ya vamos a ganar | messi-que-mira-bobo | |
+| 00:08.1 | hook | ¿Qué es más difícil? ¿Un certamen de cálculo o meter un punto en el último minuto? Un certamen de cálculo. | diablo-que-dificil | |
+| 00:38.1 | pregunta-calculo | ¿Buen cálculo o entrega a última hora? |  | |
+| 00:39.6 | montserrat-calculo | No, como una entrega a última hora |  | |
+| 00:43.8 | tomas-calculo | Como un buen cálculo, siempre buscamos lo estético, lo bonito |  | |
+| 00:49.6 | branco-calculo | Depende del día, en general, tal vez una entrega a última hora, pero hoy día anduvimos mejor, así debería un buen cálculo |  | |
+| 00:52.8 | pregunta-cabala | ¿Qué cábala tienes antes de competir? |  | |
+| 00:55.3 | tomas-cabala | Ninguna, yo voy al partido y lo que salga |  | |
+| 01:07.4 | martin-cabala | Bueno, la mía es ir al baño discapacitado de la K, al que esté libre. ¿Y de cuándo sigue eso? Desde siempre, desde que entré a la universidad para las pruebas, para lo que sea, ahí va a ir livianito a la que sea que tenga que hacer |  | |
+| 01:10.9 | pregunta-rival | ¿Qué le dirías al rival en una frase? |  | |
+| 01:13.7 | montserrat-rival | Ojo con mi dupla, ojito Ojito, ojito |  | |
+| 01:18.9 | branco-rival | Nah, que pasémoslo bien, pero primero va a competir, ya vamos a ganar | messi-que-mira-bobo | |
 
 ## JING 2026 · Parte 2 — ¿Ramos o final?
 
 | Reel | Después de | Qué se dice | Meme actual | ¿Cuál? |
 |---|---|---|---|---|
-| 00:31.3 | pregunta-ramos | ¿Pasar todos los ramos o ganar la final? |  | |
-| 00:34.7 | ignacia-ramos | No, va a pasar mis ramos. Una persona aplicada. |  | |
-| 00:39.8 | vicente-ramos | Igual estaría bueno pasar todos los ramos, pero no, va a ganar la final, ganar la final. Es el espíritu. Me encanta el espíritu. | speed-grito | |
-| 00:46.7 | voley-ramos | ¿Pasar todos los ramos? ¿La final? ¡Ah! No, yo voy a pasar todos los ramos. |  | |
-| 00:52.7 | pedro-ramos | Igual. No, ganar la final. Yo creo que es más importante... Ya. 100 % comprometido aquí con... Con la UdeC. | shia-aplauso-lento | |
-| 00:58.7 | pregunta-rival | ¿A qué universidad quieren ganarle sí o sí? |  | |
-| 01:02.7 | ignacia-rival | Yo creo que a la Cato. Todos tienen un rival en común. |  | |
-| 01:07.4 | voley-rival | La Chile. La Chile. ¿La Chile? ¿Son muy buenos en volei? Sí, sí, sí. |  | |
-| 01:09.7 | pedro-rival | A la Puc. ¡Ah! ¡Rivalidad! | perro-mirada-de-reojo | |
-| 01:18.2 | pregunta-favorita | ¿Quién llega como favorita y quién puede sorprender? |  | |
-| 01:22.2 | ignacia-favorita | De favorita, yo creo que... La de los Andes. Sorprender, la de las Andes. |  | |
-| 01:28.0 | vicente-favorita | Yo creo que la Cato siempre es la favorita. Mira la instalación aquí. Sí. Obviamente los mejores estudiantes, los más aplicados. |  | |
-| 01:28.8 | voley-favorita | Sí, la Cato. |  | |
-| 01:35.6 | pedro-favorita | Yo creo que la favorita debe ser la local. Ya. La Puc. Está acá con su gente. Deberían ganar. Y ojalá la sorpresa darla, ¿no? Y ojalá la sorpresa |  | |
+| 00:29.0 | pregunta-ramos | ¿Pasar todos los ramos o ganar la final? | diablo-que-dificil | |
+| 00:34.9 | ignacia-ramos | No, pasar mis ramos, una persona aplicada |  | |
+| 00:40.5 | vicente-ramos | estaría bueno pasar todos los ramos, pero no, ganar la final, ganar la final. Ese es el espíritu, me encanta tu espíritu. |  | |
+| 00:44.9 | voley-ramos | Pasar todos los ramos La final ¡Ahhh! ¡Ya pasar todos los ramos! |  | |
+| 00:50.8 | pedro-ramos | No, ganar la final de fútbol, yo creo que es más importante Ya, 100 % comprometido aquí con la UdeC | basile-los-genios-hacen-eso | |
+| 00:55.8 | pregunta-rival | ¿A qué universidad quieren ganarle sí o sí? |  | |
+| 00:59.7 | ignacia-rival | Yo creo que a la Cato, todos tienen un rival en común |  | |
+| 01:04.5 | voley-rival | La Chile, la Chile, la Chile, la Chile, ¿está muy buena en vólei? Sí, sí, sí, sí |  | |
+| 01:07.0 | pedro-rival | A la PUC ¡Ah! Rivalidad |  | |
+| 01:12.5 | pregunta-favorita | ¿Quién llega como favorita y quién puede sorprender? |  | |
+| 01:18.3 | ignacia-favorita | De favorita yo creo que la de los Andes y sorprender la de la Santa María |  | |
+| 01:26.1 | vicente-favorita | Yo creo que la Cato siempre, la Cato siempre es mi favorita, mira las instalaciones que tenemos, obviamente los mejores estudiantes, los más aplicados |  | |
+| 01:27.1 | voley-favorita | Sí, la Cato. |  | |
+| 01:35.3 | pedro-favorita | Yo creo que la favorita debe ser la local, la PUC está acá con su gente, entonces deberían ganar y ojalá la sorpresa darle a nosotros |  | |
 
 ## Catálogo
 
@@ -43,8 +43,6 @@ En cada parte, escribe en la columna **¿Cuál?** el id del meme que quieres des
 |---|---|---|---|---|---|
 | ![](thumbs/aguanta-la-risa-gorra.jpg) | `aguanta-la-risa-gorra` | 5.7 s | Hombre de gorra mira serio, aguanta y estalla de risa. | Risa. | Cuando alguien dice que va a estudiar todo el ramo el día antes. |
 | ![](thumbs/aguantar-la-risa-terapia.jpg) | `aguantar-la-risa-terapia` | 11.2 s | Sketch: hombre aguanta la risa en una sesión de terapia mientras otro se va. | «Bleh.» | Escuchar una excusa absurda sin poder reírse. |
-| ![](thumbs/alien-dientes.jpg) | `alien-dientes` | 8.6 s | Alien de máscara se pone dientes postizos y sonríe. | «¿Eh?» | Un resultado que no tiene sentido; una respuesta incomprensible. |
-| ![](thumbs/aplauso-calvo.jpg) | `aplauso-calvo` | 4.5 s | Hombre calvo frente a una biblioteca aplaudiendo con sonrisa satisfecha. | Aplausos suaves; volumen bajo. | Felicitar al alumno que resolvió el ejercicio, o aplaudir con ironía una mala idea. |
 | ![](thumbs/auronplay-fiesta-de-la-luna.jpg) | `auronplay-fiesta-de-la-luna` | 20.1 s | Auronplay saluda y baila con luces RGB que cambian de color. | «Venga, vámonos chicos, estáis todos invitados a la fiesta de la luna» y luego música. | Aprobar el ramo, cerrar el semestre. Es largo (20 s): recortar con src_in. |
 | ![](thumbs/basile-los-genios-hacen-eso.jpg) | `basile-los-genios-hacen-eso` | 5.5 s | Alfio «Coco» Basile sonriendo en una entrevista en vivo. | «Tiene que cerrar el estadio. Los genios hacen eso.» Volumen bajo. | Celebrar una resolución brillante o un truco de cálculo. |
 | ![](thumbs/bateman-sonrisa.jpg) | `bateman-sonrisa` | 5.5 s | Patrick Bateman (American Psycho) con sonrisa satisfecha. | Sin voz. | Cuando el ejercicio sale a la primera. |
@@ -76,17 +74,13 @@ En cada parte, escribe en la columna **¿Cuál?** el id del meme que quieres des
 | ![](thumbs/nino-llora-videojuego.jpg) | `nino-llora-videojuego` | 8.2 s | Niño jugando consola se pone a llorar. | Gritos: «¡Anthony!» | Perder puntos por un error tonto. |
 | ![](thumbs/peluche-como-que-no.jpg) | `peluche-como-que-no` | 4.0 s | Títere de peluche mira a cámara. | «¿Qué? ¿Cómo que no?» | Cuando te dicen que no hay prueba recuperativa. |
 | ![](thumbs/perro-cara-cerca.jpg) | `perro-cara-cerca` | 5.0 s | Perro blanco con la nariz pegada a la cámara. | Sin voz. | Mirar de cerca un ejercicio que no se entiende. |
-| ![](thumbs/perro-era-bait.jpg) | `perro-era-bait` | 5.8 s | Perro de cara larga con subtítulos quemados: «No se we tranquilo… Todo era bait». | Canción de fondo. | Cerrar un falso susto («se suspendió la prueba… mentira»). Pip: el subtítulo se corta en fullscreen. |
 | ![](thumbs/perro-feliz-a-serio.jpg) | `perro-feliz-a-serio` | 13.6 s | Perro negro contento que pasa a mirada seria en blanco y negro. | Sin voz. | Antes y después de ver la nota. |
 | ![](thumbs/perro-gritando.jpg) | `perro-gritando` | 5.2 s | Perro blanco ladrando y gritando contra la cámara. | Ladridos. | Cuando el ejercicio no da por tercera vez. |
 | ![](thumbs/perro-mirada-de-reojo.jpg) | `perro-mirada-de-reojo` | 8.2 s | Perro café mira de reojo, nervioso. | Sin voz. | Cuando un compañero te pide la tarea. |
-| ![](thumbs/perro-no-digas-eso.jpg) | `perro-no-digas-eso` | 5.4 s | Perro con subtítulos quemados: «Ey ey ey… Pequeña no digas eso… No digas eso, eres perfecta». | «Ey, ey, ey, pequeña, no digas eso. No digas eso, eres perfecta.» | Responder a «soy malo para las matemáticas». Pip: el subtítulo se corta en fullscreen. |
 | ![](thumbs/perro-sonrisa-incomoda.jpg) | `perro-sonrisa-incomoda` | 7.1 s | Beagle con una sonrisa forzada mientras la cámara le hace zoom. | Sin voz. | Cuando te preguntan si estudiaste y dices que sí. |
 | ![](thumbs/pingu-noot.jpg) | `pingu-noot` | 8.8 s | Pingu en blanco y negro y luego un zoom a su boca abierta. | Bocina «noot noot». | Corte cómico o interrupción. |
 | ![](thumbs/pokebola-atrapada.jpg) | `pokebola-atrapada` | 5.3 s | Chico con una pokébola; la pokébola cae en el pasto. | «Ay, atrapada, ay, ayuda.» | Cuando el ramo te atrapa y no hay salida. |
 | ![](thumbs/que-bendicion.jpg) | `que-bendicion` | 5.9 s | Chico con audífonos hablando a cámara. | «¡Qué bendición!» | Se suspendió la prueba; el ejercicio salió. |
-| ![](thumbs/que-estas-haciendo-chamaco.jpg) | `que-estas-haciendo-chamaco` | 4.8 s | Chico riéndose junto a un hombre sobre fondo rojo. | «¿Qué estás haciendo, chamaco?» y risa. | Pillar a alguien copiando o haciendo trampa en el ejercicio. |
-| ![](thumbs/quien-sabe.jpg) | `quien-sabe` | 4.5 s | Hombre entrevistado en la calle por un noticiero. | «¿Quién sabe? Ahí sí no te puedo decir nada.» | Cuando te preguntan cuánto da el ejercicio. |
 | ![](thumbs/risa-podcast.jpg) | `risa-podcast` | 4.1 s | Chico en un podcast riéndose a carcajadas. | «¡JAJAJAJA!» | Reacción a una excusa o a un error ridículo. |
 | ![](thumbs/shia-aplauso-lento.jpg) | `shia-aplauso-lento` | 6.1 s | Shia LaBeouf aplaudiendo solo en un teatro vacío; los primeros 2 s son un plano oscuro y abierto. | Aplausos; volumen bajo. | Aplauso lento a una solución elegante. Usar src_in: 2 para partir en el primer plano. |
 | ![](thumbs/speed-grito.jpg) | `speed-grito` | 10.5 s | IShowSpeed grita con la lengua afuera, pegado a la cámara. | «Again.» | Reacción exagerada a una nota o a un resultado. |
