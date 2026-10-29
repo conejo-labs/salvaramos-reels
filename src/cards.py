@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 from project import Project
 from util import ROOT, code_signature, digest, ffmpeg, file_signature, is_fresh, seal
@@ -33,6 +33,39 @@ def rasterized_logo(project: Project, svg: Path, width: int) -> Image.Image:
     return Image.open(target).convert("RGBA")
 
 
+def text_sprite(spec: dict, max_width: float) -> Image.Image:
+    lines = spec["text"].upper().split("\n")
+    font_path = str(ROOT / "assets/fonts" / spec["font_file"])
+    size = spec["size"]
+    font = ImageFont.truetype(font_path, size)
+    widest = max(font.getlength(line) for line in lines)
+    padding = spec.get("padding", 0)
+    if widest + 2 * padding > max_width:
+        size = int(size * (max_width - 2 * padding) / widest)
+        font = ImageFont.truetype(font_path, size)
+        widest = max(font.getlength(line) for line in lines)
+    ascent, descent = font.getmetrics()
+    line_height = round((ascent + descent) * spec.get("line_spacing", 1.0))
+    sprite = Image.new("RGBA", (round(widest + 2 * padding), line_height * len(lines) + 2 * padding), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(sprite)
+    if spec.get("pill"):
+        draw.rounded_rectangle([0, 0, sprite.width - 1, sprite.height - 1], radius=sprite.height // 2, fill=spec["pill"])
+    for i, line in enumerate(lines):
+        draw.text(((sprite.width - font.getlength(line)) / 2, padding + i * line_height), line, font=font,
+                  fill=spec["color"])
+    return sprite
+
+
+def paste_faded(frame: Image.Image, sprite: Image.Image, center: tuple, amount: float, rise: float) -> None:
+    if amount <= 0:
+        return
+    faded = sprite.copy()
+    faded.putalpha(sprite.getchannel("A").point(lambda a: round(a * amount)))
+    x = round(center[0] - sprite.width / 2)
+    y = round(center[1] - sprite.height / 2 + (1 - amount) * rise)
+    frame.paste(faded, (x, y), faded)
+
+
 def sweep_band(draw: ImageDraw.ImageDraw, width: int, height: int, amount: float, color: str) -> None:
     band = width * 0.35
     left = -band - height * 0.4 + amount * (width + band + height * 0.8)
@@ -40,7 +73,7 @@ def sweep_band(draw: ImageDraw.ImageDraw, width: int, height: int, amount: float
                  fill=color)
 
 
-def outro_frame(canvas: dict, style: dict, logo: Image.Image, t: float) -> Image.Image:
+def outro_frame(canvas: dict, style: dict, logo: Image.Image, texts: list, t: float) -> Image.Image:
     width, height = canvas["width"], canvas["height"]
     frame = Image.new("RGB", (width, height), style["background"])
     draw = ImageDraw.Draw(frame)
@@ -62,6 +95,9 @@ def outro_frame(canvas: dict, style: dict, logo: Image.Image, t: float) -> Image
         top = center_y + logo.height * (1 + style["drift"]) / 2 + style["line_gap"]
         draw.rectangle([center_x - line / 2, top, center_x + line / 2, top + style["line_thickness"]],
                        fill=style["accent"])
+    for spec, sprite in texts:
+        amount = ease_out_cubic(progress(t, spec["at"], spec["seconds"]))
+        paste_faded(frame, sprite, (center_x, height * spec["center_y"]), amount, style["text_rise"])
     return frame
 
 
@@ -70,16 +106,20 @@ def render_card(project: Project, spec: dict) -> Path:
     style = {**project.style["cards"][spec["card"]], **{k: v for k, v in spec.items() if k == "duration"}}
     svg = ROOT / style["logo"]
     sfx = ROOT / "assets/sfx" / f"{style['sfx']}.wav" if style.get("sfx") else None
-    key = digest(style, canvas, file_signature(svg), file_signature(sfx) if sfx else None, code_signature(__file__))
+    fonts = sorted({spec["font_file"] for spec in style.get("texts", [])})
+    key = digest(style, canvas, file_signature(svg), [file_signature(ROOT / "assets/fonts" / f) for f in fonts], file_signature(sfx) if sfx else None, code_signature(__file__))
     output = project.build / "cards" / f"{spec['card']}_{key}.mkv"
     if is_fresh(output, key):
         return output
     frames_dir = output.with_suffix("")
     frames_dir.mkdir(parents=True, exist_ok=True)
     logo = rasterized_logo(project, svg, round(canvas["width"] * style["logo_width"]))
+    safe = project.style["safe_zone"]
+    max_width = canvas["width"] * (1 - 2 * max(safe["left"], safe["right"]))
+    texts = [(spec, text_sprite(spec, max_width)) for spec in style.get("texts", [])]
     total = round(style["duration"] * canvas["fps"])
     for index in range(total):
-        outro_frame(canvas, style, logo, index / canvas["fps"]).save(frames_dir / f"{index:04d}.png")
+        outro_frame(canvas, style, logo, texts, index / canvas["fps"]).save(frames_dir / f"{index:04d}.png")
 
     audio = ["-i", sfx] if sfx else ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
     ffmpeg("-framerate", canvas["fps"], "-i", frames_dir / "%04d.png", *audio, "-map", "0:v:0", "-map", "1:a:0",

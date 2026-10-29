@@ -124,7 +124,35 @@ cards:
     line_width: 0.55
     line_gap: 40
     line_thickness: 10
+    text_rise: 40
     sfx: whoosh
+  cierre:
+    duration: 4.5
+    background: "#29422C"
+    accent: "#DCD1BF"
+    logo: assets/brand/imagotipo-crema.svg
+    logo_width: 0.55
+    center_y: 0.41
+    sweep_seconds: 0.45
+    logo_at: 0.2
+    pop_seconds: 0.55
+    drift: 0.03
+    line_at: 0.65
+    line_seconds: 0.45
+    line_width: 0.55
+    line_gap: 30
+    line_thickness: 8
+    text_rise: 40
+    sfx: whoosh
+    texts:
+      - {text: "¿Pasar el ramo\no ganar la final?", font_file: Anton-Regular.ttf, size: 120, color: "#DCD1BF",
+         center_y: 0.2, at: 0.55, seconds: 0.4, line_spacing: 1.05}
+      - {text: "Con SalvaRamos, las dos", font_file: Montserrat-Black.ttf, size: 84, color: "#DCD1BF",
+         center_y: 0.57, at: 1.1, seconds: 0.4}
+      - {text: "Prepara tus exámenes", font_file: Montserrat-Black.ttf, size: 64, color: "#DCD1BF",
+         center_y: 0.64, at: 1.6, seconds: 0.4}
+      - {text: "Link en la bio", font_file: Montserrat-Black.ttf, size: 64, color: "#29422C", pill: "#DCD1BF",
+         padding: 28, center_y: 0.72, at: 2.0, seconds: 0.35}
 
 looks:
   bw: "hue=s=0,eq=contrast=1.2"
