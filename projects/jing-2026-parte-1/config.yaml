@@ -109,6 +109,7 @@ clips:
 inserts:
   - type: pip
     meme: the-rock-ceja
+    position: arriba
     src_in: 0
     at: {word: livianito, offset: -3.0}
     duration: 4.7
