@@ -18,12 +18,14 @@ clips:
   - id: hook
     src: raw/IMG_1699.MOV
     trim: [14.0, 23.8]
+    remove: [[19.86, 20.38]]
   - id: meme-hook
-    meme: mirada-hacia-arriba
-    trim: [2.0, 4.8]
+    meme: diablo-que-dificil
+    trim: [0.5, 3.2]
   - id: intro
     src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
     trim: [0.6, 8.6]
+    cover_from: 2.5
     cover:
       - {src: raw/IMG_1687.MOV, src_in: 8.0}
       - {src: raw/IMG_1742.MOV, src_in: 3.0}
@@ -38,6 +40,7 @@ clips:
     src: raw/IMG_1693.MOV
     trim: [[5.15, 6.6], [9.3, 11.5]]
     nametag: "Tomás\nUC · Fútbol"
+    gain_db: 1
   - id: branco-quien
     src: raw/IMG_0653.MOV
     trim: [5.95, 7.6]
@@ -78,9 +81,6 @@ clips:
   - id: martin-cabala
     src: raw/IMG_1697.MOV
     trim: [[10.7, 15.25], [16.6, 24.2]]
-  - id: meme-bano
-    meme: ibai-carcajada
-    trim: [0.0, 2.8]
 
   - id: pregunta-rival
     src: raw/IMG_0653.MOV
@@ -103,6 +103,15 @@ clips:
     src: raw/IMG_1760.MOV
     trim: [0.0, 3.5]
     broll: true
+  - id: cortina
+    card: outro
+
+inserts:
+  - type: pip
+    meme: the-rock-ceja
+    src_in: 1.5
+    at: {word: discapacitado}
+    duration: 2.7
 
 texts:
   - style: promo

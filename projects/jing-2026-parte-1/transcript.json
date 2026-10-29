@@ -2,7 +2,7 @@
   "model": "large-v3-turbo",
   "clips": {
     "hook": {
-      "key": "b1a173a3d76040a0",
+      "key": "799a6b9de8c87ac6",
       "segments": [
         {
           "words": [
@@ -49,42 +49,42 @@
             {
               "word": "o",
               "start": 2.82,
-              "end": 3.72
+              "end": 3.74
             },
             {
               "word": "meter",
-              "start": 3.72,
+              "start": 3.74,
               "end": 4.92
             },
             {
               "word": "un",
               "start": 4.92,
-              "end": 5.78
+              "end": 5.3
             },
             {
               "word": "punto",
-              "start": 5.78,
-              "end": 6.0
+              "start": 5.3,
+              "end": 5.5
             },
             {
               "word": "en",
-              "start": 6.0,
-              "end": 6.12
+              "start": 5.5,
+              "end": 5.62
             },
             {
               "word": "el",
-              "start": 6.12,
-              "end": 6.22
+              "start": 5.62,
+              "end": 5.72
             },
             {
               "word": "último",
-              "start": 6.22,
-              "end": 6.5
+              "start": 5.72,
+              "end": 6.0
             },
             {
               "word": "minuto?",
-              "start": 6.5,
-              "end": 7.06
+              "start": 6.0,
+              "end": 6.56
             }
           ]
         },
@@ -92,23 +92,23 @@
           "words": [
             {
               "word": "Un",
-              "start": 7.2,
-              "end": 7.44
+              "start": 6.66,
+              "end": 6.9
             },
             {
               "word": "certamen",
-              "start": 7.44,
-              "end": 7.82
+              "start": 6.9,
+              "end": 7.28
             },
             {
               "word": "de",
-              "start": 7.82,
-              "end": 7.94
+              "start": 7.28,
+              "end": 7.4
             },
             {
               "word": "cálculo.",
-              "start": 7.94,
-              "end": 8.26
+              "start": 7.4,
+              "end": 7.74
             }
           ]
         }
@@ -239,39 +239,39 @@
       ]
     },
     "montserrat-calculo": {
-      "key": "796c79747756efd1",
+      "key": "d9bab8d1691cdb59",
       "segments": [
         {
           "words": [
             {
               "word": "No,",
               "start": 0.0,
-              "end": 0.4
+              "end": 0.16
             },
             {
               "word": "como",
-              "start": 0.52,
-              "end": 0.64
+              "start": 0.3,
+              "end": 0.42
             },
             {
               "word": "una",
-              "start": 0.64,
-              "end": 0.78
+              "start": 0.42,
+              "end": 0.54
             },
             {
               "word": "entrega",
-              "start": 0.78,
-              "end": 1.0
+              "start": 0.54,
+              "end": 0.76
             },
             {
               "word": "última",
-              "start": 1.0,
-              "end": 1.12
+              "start": 0.76,
+              "end": 0.88
             },
             {
               "word": "hora",
-              "start": 1.12,
-              "end": 1.42
+              "start": 0.88,
+              "end": 1.18
             }
           ]
         }
@@ -451,54 +451,54 @@
       ]
     },
     "tomas-cabala": {
-      "key": "34fe1a16fe2e373a",
+      "key": "575c4da1c68f1365",
       "segments": [
         {
           "words": [
             {
               "word": "Ninguna,",
               "start": 0.0,
-              "end": 0.34
+              "end": 0.38
             },
             {
               "word": "yo",
-              "start": 0.54,
-              "end": 0.62
+              "start": 0.92,
+              "end": 1.02
             },
             {
               "word": "voy",
-              "start": 0.62,
-              "end": 0.8
+              "start": 1.02,
+              "end": 1.2
             },
             {
               "word": "al",
-              "start": 0.8,
-              "end": 0.92
+              "start": 1.2,
+              "end": 1.32
             },
             {
               "word": "partido",
-              "start": 0.92,
-              "end": 1.26
+              "start": 1.32,
+              "end": 1.68
             },
             {
               "word": "y",
-              "start": 1.26,
-              "end": 1.4
+              "start": 1.68,
+              "end": 1.8
             },
             {
               "word": "lo",
-              "start": 1.4,
-              "end": 1.5
+              "start": 1.8,
+              "end": 1.9
             },
             {
               "word": "que",
-              "start": 1.5,
-              "end": 1.6
+              "start": 1.9,
+              "end": 2.0
             },
             {
               "word": "salga",
-              "start": 1.6,
-              "end": 1.88
+              "start": 2.0,
+              "end": 2.28
             }
           ]
         }
@@ -754,34 +754,34 @@
       ]
     },
     "montserrat-rival": {
-      "key": "a7974a1ddea2d6fd",
+      "key": "9299c6c7da9891c6",
       "segments": [
         {
           "words": [
             {
               "word": "Ojo",
               "start": 0.0,
-              "end": 0.54
+              "end": 0.34
             },
             {
               "word": "con",
-              "start": 0.54,
-              "end": 0.76
+              "start": 0.34,
+              "end": 0.56
             },
             {
               "word": "mi",
-              "start": 0.76,
-              "end": 0.94
+              "start": 0.56,
+              "end": 0.74
             },
             {
               "word": "dupla,",
-              "start": 0.94,
-              "end": 1.22
+              "start": 0.74,
+              "end": 1.0
             },
             {
               "word": "ojito",
-              "start": 1.42,
-              "end": 1.84
+              "start": 1.24,
+              "end": 1.6
             }
           ]
         },
@@ -789,13 +789,13 @@
           "words": [
             {
               "word": "Ojito,",
-              "start": 1.84,
-              "end": 2.5
+              "start": 1.6,
+              "end": 2.24
             },
             {
               "word": "ojito",
-              "start": 2.6,
-              "end": 3.04
+              "start": 2.32,
+              "end": 2.78
             }
           ]
         }
@@ -878,89 +878,89 @@
   },
   "previous": {
     "hook": {
-      "key": "a1a36f4f9183a055",
+      "key": "b1a173a3d76040a0",
       "segments": [
         {
           "words": [
             {
               "word": "¿Qué",
-              "start": 0.08,
-              "end": 0.56
+              "start": 0.0,
+              "end": 0.18
             },
             {
               "word": "es",
-              "start": 0.56,
-              "end": 0.72
+              "start": 0.18,
+              "end": 0.34
             },
             {
               "word": "más",
-              "start": 0.72,
-              "end": 0.84
+              "start": 0.34,
+              "end": 0.44
             },
             {
               "word": "difícil?",
-              "start": 0.84,
-              "end": 1.34
+              "start": 0.44,
+              "end": 0.92
             },
             {
               "word": "¿Un",
-              "start": 1.54,
-              "end": 1.84
+              "start": 1.16,
+              "end": 1.44
             },
             {
               "word": "certamen",
-              "start": 1.84,
-              "end": 2.42
+              "start": 1.44,
+              "end": 2.02
             },
             {
               "word": "de",
-              "start": 2.42,
-              "end": 2.66
+              "start": 2.02,
+              "end": 2.28
             },
             {
               "word": "cálculo",
-              "start": 2.66,
-              "end": 3.22
+              "start": 2.28,
+              "end": 2.82
             },
             {
               "word": "o",
-              "start": 3.22,
-              "end": 4.12
+              "start": 2.82,
+              "end": 3.72
             },
             {
               "word": "meter",
-              "start": 4.12,
-              "end": 5.32
+              "start": 3.72,
+              "end": 4.92
             },
             {
               "word": "un",
-              "start": 5.32,
-              "end": 6.18
+              "start": 4.92,
+              "end": 5.78
             },
             {
               "word": "punto",
-              "start": 6.18,
-              "end": 6.4
+              "start": 5.78,
+              "end": 6.0
             },
             {
               "word": "en",
-              "start": 6.4,
-              "end": 6.52
+              "start": 6.0,
+              "end": 6.12
             },
             {
               "word": "el",
-              "start": 6.52,
-              "end": 6.62
+              "start": 6.12,
+              "end": 6.22
             },
             {
               "word": "último",
-              "start": 6.62,
-              "end": 6.9
+              "start": 6.22,
+              "end": 6.5
             },
             {
               "word": "minuto?",
-              "start": 6.9,
-              "end": 7.48
+              "start": 6.5,
+              "end": 7.06
             }
           ]
         },
@@ -968,23 +968,23 @@
           "words": [
             {
               "word": "Un",
-              "start": 7.72,
-              "end": 8.08
+              "start": 7.2,
+              "end": 7.44
             },
             {
               "word": "certamen",
-              "start": 8.08,
-              "end": 8.48
+              "start": 7.44,
+              "end": 7.82
             },
             {
               "word": "de",
-              "start": 8.48,
-              "end": 8.6
+              "start": 7.82,
+              "end": 7.94
             },
             {
-              "word": "cálculo",
-              "start": 8.6,
-              "end": 8.92
+              "word": "cálculo.",
+              "start": 7.94,
+              "end": 8.26
             }
           ]
         }
@@ -1115,44 +1115,39 @@
       ]
     },
     "montserrat-calculo": {
-      "key": "1d696c9607ac16d6",
+      "key": "796c79747756efd1",
       "segments": [
         {
           "words": [
             {
               "word": "No,",
-              "start": 0.08,
-              "end": 0.56
+              "start": 0.0,
+              "end": 0.4
             },
             {
               "word": "como",
-              "start": 0.7,
-              "end": 0.82
+              "start": 0.52,
+              "end": 0.64
             },
             {
               "word": "una",
-              "start": 0.82,
-              "end": 0.96
+              "start": 0.64,
+              "end": 0.78
             },
             {
               "word": "entrega",
-              "start": 0.96,
-              "end": 1.16
-            },
-            {
-              "word": "a",
-              "start": 1.16,
-              "end": 1.2
+              "start": 0.78,
+              "end": 1.0
             },
             {
               "word": "última",
-              "start": 1.2,
-              "end": 1.3
+              "start": 1.0,
+              "end": 1.12
             },
             {
               "word": "hora",
-              "start": 1.3,
-              "end": 1.56
+              "start": 1.12,
+              "end": 1.42
             }
           ]
         }
@@ -1327,83 +1322,88 @@
       ]
     },
     "tomas-cabala": {
-      "key": "fce223b95f338637",
+      "key": "34fe1a16fe2e373a",
       "segments": [
         {
           "words": [
             {
-              "word": "Yo",
-              "start": 0.38,
-              "end": 0.72
+              "word": "Ninguna,",
+              "start": 0.0,
+              "end": 0.34
+            },
+            {
+              "word": "yo",
+              "start": 0.54,
+              "end": 0.62
             },
             {
               "word": "voy",
-              "start": 0.72,
-              "end": 0.9
+              "start": 0.62,
+              "end": 0.8
             },
             {
               "word": "al",
-              "start": 0.9,
-              "end": 1.06
+              "start": 0.8,
+              "end": 0.92
             },
             {
               "word": "partido",
-              "start": 1.06,
-              "end": 1.4
+              "start": 0.92,
+              "end": 1.26
             },
             {
               "word": "y",
-              "start": 1.4,
-              "end": 1.52
+              "start": 1.26,
+              "end": 1.4
             },
             {
               "word": "lo",
-              "start": 1.52,
-              "end": 1.64
+              "start": 1.4,
+              "end": 1.5
             },
             {
               "word": "que",
-              "start": 1.64,
-              "end": 1.74
+              "start": 1.5,
+              "end": 1.6
             },
             {
               "word": "salga",
-              "start": 1.74,
-              "end": 2.04
+              "start": 1.6,
+              "end": 1.88
             }
           ]
         }
       ]
     },
     "montserrat-rival": {
-      "key": "619e783e821852bf",
+      "key": "a7974a1ddea2d6fd",
       "segments": [
         {
           "words": [
             {
               "word": "Ojo",
-              "start": 0.02,
-              "end": 0.68
+              "start": 0.0,
+              "end": 0.54
             },
             {
               "word": "con",
-              "start": 0.68,
-              "end": 0.9
+              "start": 0.54,
+              "end": 0.76
             },
             {
               "word": "mi",
-              "start": 0.9,
-              "end": 1.06
+              "start": 0.76,
+              "end": 0.94
             },
             {
               "word": "dupla,",
-              "start": 1.06,
-              "end": 1.34
+              "start": 0.94,
+              "end": 1.22
             },
             {
               "word": "ojito",
-              "start": 1.58,
-              "end": 2.02
+              "start": 1.42,
+              "end": 1.84
             }
           ]
         },
@@ -1411,13 +1411,13 @@
           "words": [
             {
               "word": "Ojito,",
-              "start": 2.02,
-              "end": 2.86
+              "start": 1.84,
+              "end": 2.5
             },
             {
               "word": "ojito",
-              "start": 2.96,
-              "end": 3.4
+              "start": 2.6,
+              "end": 3.04
             }
           ]
         }
