@@ -1,9 +1,14 @@
+import json
+import math
+import re
+import subprocess
 from pathlib import Path
 
 from probe import probe
 from project import Project
 from util import code_signature, digest, ffmpeg, file_signature, is_fresh, seal
 
+MAX_LEVEL_GAIN_DB = 15.0
 TONEMAP_TO_SDR = ("zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,"
                   "tonemap=hable:desat=0,zscale=t=bt709:m=bt709:r=tv")
 
@@ -39,9 +44,31 @@ def video_filter(info: dict, framing: str, look: str | None, fps: int) -> str:
     return ",".join(chain)
 
 
+def integrated_loudness(src: Path, start: float, seconds: float) -> float | None:
+    result = subprocess.run(["ffmpeg", "-hide_banner", "-nostdin", "-ss", f"{start:.3f}", "-t", f"{seconds:.3f}",
+                             "-i", str(src), "-vn", "-af", "loudnorm=print_format=json", "-f", "null", "-"],
+                            capture_output=True, text=True, check=True)
+    measured = json.loads(re.search(r"\{[^{}]*\}\s*$", result.stderr).group(0))["input_i"]
+    return None if measured == "-inf" else float(measured)
+
+
+def level_gain(src: Path, ranges: list, target_lufs: float) -> float:
+    energy = duration = 0.0
+    for start, end in ranges:
+        measured = integrated_loudness(src, start, end - start)
+        if measured is not None:
+            energy += (end - start) * 10 ** (measured / 10)
+            duration += end - start
+    if not duration:
+        return 0.0
+    measured = 10 * math.log10(energy / duration)
+    return max(-MAX_LEVEL_GAIN_DB, min(MAX_LEVEL_GAIN_DB, target_lufs - measured))
+
+
 def normalize(project: Project, src: Path, trim: list | None = None, gain_db: float = 0.0,
               box: tuple[int, int] | None = None, loop: bool = False, framing: str = "fill",
-              look: str | None = None, freeze: bool = False, audio_src: Path | None = None) -> Path:
+              look: str | None = None, freeze: bool = False, audio_src: Path | None = None,
+              level_to: float | None = None, level_ranges: list | None = None) -> Path:
     canvas, settings = project.style["canvas"], project.style["normalize"]
     info = probe(src)
     start, end = trim if trim else (0.0, info["duration"])
@@ -51,12 +78,14 @@ def normalize(project: Project, src: Path, trim: list | None = None, gain_db: fl
     read_seconds = 1 / canvas["fps"] if freeze else end - start
     look_filter = project.style["looks"][look] if look else None
     graph = framing_filter(framing, canvas, box, project.style["memes"]["blur"])
-    key = digest(file_signature(src), start, end, gain_db, graph, look_filter, loop, freeze,
+    key = digest(file_signature(src), start, end, gain_db, level_to, level_ranges, graph, look_filter, loop, freeze,
                  file_signature(audio_src) if audio_src else None, canvas, settings, code_signature(__file__))
     output = project.build / "norm" / f"{src.stem}_{key}.mkv"
     if is_fresh(output, key):
         return output
     output.parent.mkdir(exist_ok=True)
+    if level_to is not None:
+        gain_db += level_gain(src, level_ranges or [(start, end)], level_to)
 
     looping = ["-stream_loop", "-1"] if loop else []
     if audio_src:

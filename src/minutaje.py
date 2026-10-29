@@ -21,13 +21,19 @@ def clip_content(spec: dict, words: list, span: dict) -> str:
         return f"Meme: {spec['meme']}"
     if "freeze" in spec:
         return f"Congelado {spec['duration']} s" + (f" + {spec['sfx']}" if spec.get("sfx") else "")
+    if spec.get("card"):
+        return "Cortina con el logo"
     if spec.get("broll"):
         return "b-roll"
     return spoken_in(words, span["start"], span["end"])
 
 
 def source_name(spec: dict) -> str:
-    return f"memes/{spec['meme']}" if spec.get("meme") else Path(spec["src"]).name
+    if spec.get("meme"):
+        return f"memes/{spec['meme']}"
+    if spec.get("card"):
+        return f"cortina/{spec['card']}"
+    return Path(spec["src"]).name
 
 
 def raw_ranges(spec: dict) -> str:

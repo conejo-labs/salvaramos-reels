@@ -8,6 +8,7 @@ from util import code_signature, digest, ffmpeg, file_signature, is_fresh, read_
 
 SAMPLE_RATE = 48000
 HOP_SECONDS = 0.01
+STILL_KINDS = {"card"}
 
 
 def merge_ranges(ranges: list, min_gap: int, min_keep: int, total: int) -> list:
@@ -19,6 +20,21 @@ def merge_ranges(ranges: list, min_gap: int, min_keep: int, total: int) -> list:
         else:
             merged.append([start, end])
     return [(s, e) for s, e in merged if e - s >= min_keep]
+
+
+def without(ranges: list, removed: list) -> list:
+    for cut_start, cut_end in removed:
+        kept = []
+        for start, end in ranges:
+            if cut_end <= start or end <= cut_start:
+                kept.append((start, end))
+                continue
+            if start < cut_start:
+                kept.append((start, cut_start))
+            if cut_end < end:
+                kept.append((cut_end, end))
+        ranges = kept
+    return ranges
 
 
 def level_db(clip_path: Path) -> np.ndarray:
@@ -82,7 +98,7 @@ def segment_filter(source: str, n: int, start: int, end: int, fps: int, fade: fl
 def cut(project: Project, clips: list) -> tuple[Path, dict]:
     settings, canvas = project.style["cut"], project.style["canvas"]
     transitions, fps = project.style["transitions"], canvas["fps"]
-    key = digest([(c["id"], file_signature(c["path"]), c["keep"], c["silence"], c["captions"], c["kind"])
+    key = digest([(c["id"], file_signature(c["path"]), c["keep"], c["remove"], c["silence"], c["captions"], c["kind"])
                   for c in clips],
                  settings, transitions, canvas, code_signature(__file__))
     output, map_path = project.build / "cut.mkv", project.build / "cut_map.json"
@@ -98,7 +114,7 @@ def cut(project: Project, clips: list) -> tuple[Path, dict]:
             ranges = voiced_ranges(project, clip["path"], clip["frames"])
         else:
             ranges = whole
-        plan.append((index, clip, ranges or whole))
+        plan.append((index, clip, without(ranges or whole, clip["remove"])))
 
     inputs, graph, labels, segments, clip_spans = [], [], [], [], {}
     cursor = 0
@@ -109,7 +125,7 @@ def cut(project: Project, clips: list) -> tuple[Path, dict]:
         graph.append(f"[{index}:a]asplit={count}" + "".join(f"[a{index}_{n}]" for n in range(count)))
         for k, (start, end) in enumerate(ranges):
             n = len(segments)
-            motion = segment_motion(index, k, jump_cuts=count > 1)
+            motion = None if clip["kind"] in STILL_KINDS else segment_motion(index, k, jump_cuts=count > 1)
             graph.append(segment_filter(f"{index}_{k}", n, start, end, fps, settings["fade"],
                                         motion_filter(motion, transitions, canvas)))
             labels.append(f"[sv{n}][sa{n}]")

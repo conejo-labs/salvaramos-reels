@@ -107,10 +107,30 @@ memes:
     radius: 30
     brightness: -0.15
 
+cards:
+  outro:
+    duration: 2.5
+    background: "#29422C"
+    accent: "#DCD1BF"
+    logo: assets/brand/imagotipo-crema.svg
+    logo_width: 0.7
+    center_y: 0.45
+    sweep_seconds: 0.45
+    logo_at: 0.2
+    pop_seconds: 0.55
+    drift: 0.04
+    line_at: 0.65
+    line_seconds: 0.45
+    line_width: 0.55
+    line_gap: 40
+    line_thickness: 10
+    sfx: whoosh
+
 looks:
   bw: "hue=s=0,eq=contrast=1.2"
 
 audio:
+  speech_lufs: -18
   broll_gain_db: -10
   loudness: -14
   true_peak: -1

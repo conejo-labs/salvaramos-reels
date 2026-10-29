@@ -5,6 +5,7 @@ import time
 from pathlib import Path
 
 from captions import write_ass
+from cards import render_card
 from compose import build_timeline, export, save_timeline
 from cut import cut
 import memes
@@ -41,6 +42,8 @@ def clip_kind(spec: dict) -> str:
         return "meme"
     if "freeze" in spec:
         return "freeze"
+    if spec.get("card"):
+        return "card"
     return "broll" if spec.get("broll") else "speech"
 
 
@@ -56,8 +59,12 @@ def normalized_clip(project: Project, spec: dict, kind: str, span: list | None) 
         at = spec["freeze"]
         return normalize(project, project.path(spec["src"]), [at, at + spec["duration"]], spec.get("gain_db", 0.0),
                          look=look, freeze=True, audio_src=sfx)
+    if kind == "card":
+        return render_card(project, spec)
     gain = spec.get("gain_db", project.style["audio"]["broll_gain_db"] if kind == "broll" else 0.0)
-    return normalize(project, project.path(spec["src"]), span, gain, look=look)
+    level = project.style["audio"]["speech_lufs"] if kind == "speech" else None
+    return normalize(project, project.path(spec["src"]), span, gain, look=look, level_to=level,
+                     level_ranges=trim_ranges(spec.get("trim")))
 
 
 def normalized_clips(project: Project) -> list:
@@ -70,12 +77,14 @@ def normalized_clips(project: Project) -> list:
         path = normalized_clip(project, spec, kind, span)
         keep = [(round((a - span[0]) * fps), round((b - span[0]) * fps)) for a, b in ranges] \
             if len(ranges) > 1 else None
+        removed = [(round((a - span[0]) * fps), round((b - span[0]) * fps)) for a, b in spec.get("remove", [])]
         has_own_text = bool(spec.get("nametag") or spec.get("title"))
         clips.append({
             "id": spec["id"],
             "path": path,
             "frames": round(probe(path)["duration"] * fps),
             "keep": keep,
+            "remove": removed,
             "kind": kind,
             "silence": spec.get("silence_cut", kind == "speech"),
             "captions": spec.get("captions", kind == "speech" and not has_own_text),

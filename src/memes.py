@@ -52,7 +52,7 @@ def thumbnail(meme_id: str) -> Path:
 def is_meme_slot(spec: dict) -> bool:
     if spec.get("title"):
         return True
-    skipped = ("meme", "nametag", "broll", "freeze", "cover")
+    skipped = ("meme", "nametag", "broll", "freeze", "cover", "card")
     return not any(key in spec for key in skipped)
 
 
