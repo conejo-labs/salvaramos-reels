@@ -11,7 +11,7 @@ Stack: Python + ffmpeg (libass) + faster-whisper. No hay editor gráfico: se edi
 | Qué | Dónde |
 |---|---|
 | Código, estilo, configs de cada reel, transcripciones, catálogo de memes, logos, fuentes, sonidos | Este repo |
-| Videos crudos de cada evento y pack de memes | Unidad de Google Drive **SalvaRamos Reels** |
+| Videos crudos de cada evento y packs de memes y efectos | Unidad de Google Drive **SalvaRamos Reels** |
 | Videos terminados | Drive, en `entregas/<evento>/` |
 
 En Drive:
@@ -20,10 +20,12 @@ En Drive:
 SalvaRamos Reels/
   eventos/<evento>/raw/   ← lo que se grabó, tal cual sale del celular; nunca se edita
   memes/pack/             ← los memes que describe assets/memes/catalog.yaml
+  sfx/pack/               ← los efectos que describe assets/sfx/catalog.yaml
   entregas/<evento>/      ← versiones finales y para WhatsApp
 ```
 
-En tu máquina eso se refleja en `media/` (fuera de git): `media/eventos/<evento>/raw/` y `media/memes/pack/`.
+En tu máquina eso se refleja en `media/` (fuera de git): `media/eventos/<evento>/raw/`, `media/memes/pack/`
+y `media/sfx/pack/`.
 
 ## Instalación
 
@@ -61,9 +63,10 @@ export SALVARAMOS_DRIVE="otro-remoto:Carpeta"
 ## Material
 
 ```bash
-.venv/bin/python src/material.py pull jing-2026            # baja los raws del evento y el pack de memes
+.venv/bin/python src/material.py pull jing-2026            # baja los raws del evento y los packs
 .venv/bin/python src/material.py upload jing-2026          # sube los raws que tengas en media/eventos/jing-2026/raw
 .venv/bin/python src/material.py upload-memes              # sube media/memes/pack
+.venv/bin/python src/material.py upload-sfx                # sube media/sfx/pack
 .venv/bin/python src/material.py deliver projects/jing-2026-parte-1          # versión WhatsApp + sube a entregas/
 .venv/bin/python src/material.py deliver projects/jing-2026-parte-1 --local  # solo la versión WhatsApp
 ```
@@ -72,6 +75,10 @@ Todos usan `rclone copy`: suben o bajan lo que falta y **nunca borran** nada en 
 
 Para agregar un meme: déjalo en `media/memes/pack/`, súmalo a `assets/memes/catalog.yaml` (qué es, audio, para qué
 sirve, `volumen_medio_db`) y corre `upload-memes`. Solo memes que se conozcan en Chile.
+
+Para agregar un efecto: déjalo en `media/sfx/pack/` como `<id>.wav`, súmalo a `assets/sfx/catalog.yaml` con su
+categoría, `recorte`, `pico` y `volumen_medio_db`, y corre `upload-sfx`. Para escucharlos todos,
+`.venv/bin/python src/sfx.py` genera `assets/sfx/catalogo.html`.
 
 ## Hacer un reel
 

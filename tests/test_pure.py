@@ -148,3 +148,22 @@ def test_raw_sources_resolve_inside_the_event_media_folder():
     project = Project(dir=Path("/tmp/projects/reel-1"), config={"event": "jing-2026"}, style={})
     assert project.path("raw/IMG_1.MOV") == MEDIA / "eventos" / "jing-2026" / "raw" / "IMG_1.MOV"
     assert Project(dir=Path("/tmp/projects/solo"), config={}, style={}).event == "solo"
+
+
+def test_sfx_catalog_is_consistent():
+    from sfx import catalog, lead_in
+    data = catalog()
+    for sound_id, entry in data["sounds"].items():
+        start, end = entry["recorte"]
+        assert entry["categoria"] in data["categories"], sound_id
+        assert 0 <= start < end, sound_id
+        assert start <= entry["pico"] <= end, sound_id
+        assert entry["duracion"] == pytest.approx(end - start, abs=0.02), sound_id
+        assert entry["archivo"] == f"{sound_id}.wav", sound_id
+        assert lead_in(entry) >= 0
+
+
+def test_sfx_gain_matches_target_and_is_capped():
+    from sfx import gain_for
+    assert gain_for("golpe", -19.2) == 0.0
+    assert gain_for("yeet", -30) == -12.0

@@ -46,10 +46,14 @@ si el hash no cambió, se salta.
   repartido en partes iguales y deja su audio: así se presentan las preguntas con la voz del entrevistador.
 - `trim` acepta varios rangos (`[[a, b], [c, d]]`) para armar una frase con palabras exactas del mismo raw.
 - **El material binario vive en Google Drive y se refleja en `media/`** (fuera de git): `media/eventos/<evento>/raw/`
-  y `media/memes/pack/`. `src/material.py` lo sincroniza con `rclone copy`, nunca con `sync`. Un config declara
+  `media/memes/pack/` y `media/sfx/pack/`. `src/material.py` lo sincroniza con `rclone copy`, nunca con `sync`. Un config declara
   `event` y su `src: raw/...` se resuelve en `media/eventos/<event>/raw/`.
 - `assets/memes/catalog.yaml` describe el pack (qué es, audio, encuadre, uso); `volumen_medio_db` fija la ganancia que
   iguala su volumen. Solo memes conocidos en Chile: los que no, se sacan del pack y del catálogo.
+- `assets/sfx/catalog.yaml` describe el pack de efectos por categoría: `recorte` es el tramo útil dentro del archivo
+  y `pico` el segundo, también del archivo, que se sincroniza con el evento: el sonido arranca `pico - recorte[0]`
+  antes. `src/sfx.py` genera `assets/sfx/catalogo.html` (fuera de git) con rutas a la carpeta real, porque el
+  navegador de Windows no sigue los symlinks de WSL.
 - `assets/sfx/suspenso.wav` es sintético (generado con ffmpeg): reemplázalo por uno real con el mismo nombre.
 
 ## Entorno (WSL)

@@ -1,9 +1,10 @@
-.venv/
+.venv
 __pycache__/
 .pytest_cache/
 .env
-media/
+media
 projects/*/build/
 projects/*/raw
 projects/*/transcript.*.bak.json
 assets/memes/thumbs/
+assets/sfx/catalogo.html
