@@ -1,6 +1,7 @@
 import re
 from pathlib import Path
 
+import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
 from project import Project
@@ -66,6 +67,46 @@ def paste_faded(frame: Image.Image, sprite: Image.Image, center: tuple, amount: 
     frame.paste(faded, (x, y), faded)
 
 
+def hex_rgb(color: str) -> np.ndarray:
+    return np.array([int(color[i:i + 2], 16) for i in (1, 3, 5)], dtype=float)
+
+
+def textured_background(canvas: dict, style: dict) -> Image.Image:
+    width, height = canvas["width"], canvas["height"]
+    texture = style.get("texture")
+    if not texture:
+        return Image.new("RGB", (width, height), style["background"])
+    rows, cols = np.mgrid[0:height, 0:width]
+    distance = np.hypot((cols - width / 2) / (width / 2), (rows - height * style["center_y"]) / (height / 2))
+    blend = np.clip(distance, 0, 1)[..., None] ** 1.5
+    center, edge = hex_rgb(texture["highlight"]), hex_rgb(style["background"]) * (1 - texture["vignette"])
+    return Image.fromarray((center * (1 - blend) + edge * blend).astype(np.uint8))
+
+
+def pattern_layer(project: Project, canvas: dict, texture: dict) -> tuple[Image.Image, int]:
+    mark = rasterized_logo(project, ROOT / texture["pattern"], texture["pattern_size"])
+    tint = Image.new("RGBA", mark.size, texture["pattern_color"])
+    tint.putalpha(mark.getchannel("A").point(lambda a: round(a * texture["pattern_opacity"])))
+    cell = texture["pattern_size"] + texture["pattern_gap"]
+    layer = Image.new("RGBA", (canvas["width"] + 2 * cell, canvas["height"] + 2 * cell), (0, 0, 0, 0))
+    for row, top in enumerate(range(0, layer.height, cell)):
+        shift = cell // 2 if row % 2 else 0
+        for left in range(shift, layer.width, cell):
+            layer.alpha_composite(tint, (left, top))
+    return layer, cell
+
+
+def drifted(layer: Image.Image, cell: int, canvas: dict, offset: float) -> Image.Image:
+    shift = round(offset % cell)
+    return layer.crop((cell - shift, cell - shift, cell - shift + canvas["width"], cell - shift + canvas["height"]))
+
+
+def with_grain(frame: Image.Image, amount: int, rng: np.random.Generator) -> Image.Image:
+    pixels = np.asarray(frame, dtype=np.int16)
+    noise = rng.integers(-amount, amount + 1, size=pixels.shape[:2] + (1,), dtype=np.int16)
+    return Image.fromarray(np.clip(pixels + noise, 0, 255).astype(np.uint8))
+
+
 def sweep_band(draw: ImageDraw.ImageDraw, width: int, height: int, amount: float, color: str) -> None:
     band = width * 0.35
     left = -band - height * 0.4 + amount * (width + band + height * 0.8)
@@ -73,9 +114,13 @@ def sweep_band(draw: ImageDraw.ImageDraw, width: int, height: int, amount: float
                  fill=color)
 
 
-def outro_frame(canvas: dict, style: dict, logo: Image.Image, texts: list, t: float) -> Image.Image:
+def outro_frame(canvas: dict, style: dict, logo: Image.Image, texts: list, backdrop: dict, t: float) -> Image.Image:
     width, height = canvas["width"], canvas["height"]
-    frame = Image.new("RGB", (width, height), style["background"])
+    frame = backdrop["background"].copy()
+    if backdrop["pattern"]:
+        layer, cell = backdrop["pattern"]
+        marks = drifted(layer, cell, canvas, t * style["texture"]["drift"])
+        frame.paste(marks, (0, 0), marks)
     draw = ImageDraw.Draw(frame)
     sweep_band(draw, width, height, ease_out_cubic(progress(t, 0.0, style["sweep_seconds"])), style["accent"])
 
@@ -98,6 +143,8 @@ def outro_frame(canvas: dict, style: dict, logo: Image.Image, texts: list, t: fl
     for spec, sprite in texts:
         amount = ease_out_cubic(progress(t, spec["at"], spec["seconds"]))
         paste_faded(frame, sprite, (center_x, height * spec["center_y"]), amount, style["text_rise"])
+    if style.get("texture"):
+        frame = with_grain(frame, style["texture"]["grain"], backdrop["rng"])
     return frame
 
 
@@ -107,7 +154,8 @@ def render_card(project: Project, spec: dict) -> Path:
     svg = ROOT / style["logo"]
     sfx = ROOT / "assets/sfx" / f"{style['sfx']}.wav" if style.get("sfx") else None
     fonts = sorted({spec["font_file"] for spec in style.get("texts", [])})
-    key = digest(style, canvas, file_signature(svg), [file_signature(ROOT / "assets/fonts" / f) for f in fonts], file_signature(sfx) if sfx else None, code_signature(__file__))
+    pattern = [file_signature(ROOT / style["texture"]["pattern"])] if style.get("texture") else []
+    key = digest(style, canvas, file_signature(svg), pattern, [file_signature(ROOT / "assets/fonts" / f) for f in fonts], file_signature(sfx) if sfx else None, code_signature(__file__))
     output = project.build / "cards" / f"{spec['card']}_{key}.mkv"
     if is_fresh(output, key):
         return output
@@ -117,9 +165,13 @@ def render_card(project: Project, spec: dict) -> Path:
     safe = project.style["safe_zone"]
     max_width = canvas["width"] * (1 - 2 * max(safe["left"], safe["right"]))
     texts = [(spec, text_sprite(spec, max_width)) for spec in style.get("texts", [])]
+    texture = style.get("texture")
+    backdrop = {"background": textured_background(canvas, style),
+                "pattern": pattern_layer(project, canvas, texture) if texture else None,
+                "rng": np.random.default_rng(7)}
     total = round(style["duration"] * canvas["fps"])
     for index in range(total):
-        outro_frame(canvas, style, logo, texts, index / canvas["fps"]).save(frames_dir / f"{index:04d}.png")
+        outro_frame(canvas, style, logo, texts, backdrop, index / canvas["fps"]).save(frames_dir / f"{index:04d}.png")
 
     audio = ["-i", sfx] if sfx else ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
     ffmpeg("-framerate", canvas["fps"], "-i", frames_dir / "%04d.png", *audio, "-map", "0:v:0", "-map", "1:a:0",

@@ -136,6 +136,16 @@ cards:
     duration: 4.5
     background: "#29422C"
     accent: "#DCD1BF"
+    texture:
+      highlight: "#355A3A"
+      vignette: 0.35
+      pattern: assets/brand/isotipo.svg
+      pattern_size: 90
+      pattern_gap: 80
+      pattern_color: "#DCD1BF"
+      pattern_opacity: 0.06
+      drift: 24
+      grain: 5
     logo: assets/brand/imagotipo-crema.svg
     logo_width: 0.55
     center_y: 0.41
