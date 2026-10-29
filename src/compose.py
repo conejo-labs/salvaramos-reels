@@ -3,6 +3,7 @@ import re
 import subprocess
 from pathlib import Path
 
+import memes
 from captions import overlaps, paginate
 from normalize import normalize
 from probe import probe
@@ -62,9 +63,10 @@ def overlay_rect(kind: str, project: Project, source: Path) -> list:
 
 def cover_overlays(project: Project, spec: dict, span: dict) -> list:
     covers, overlays = spec.get("cover", []), []
-    share = (span["end"] - span["start"]) / max(1, len(covers))
+    covered_from = span["start"] + spec.get("cover_from", 0.0)
+    share = (span["end"] - covered_from) / max(1, len(covers))
     for k, cover in enumerate(covers):
-        start = round(span["start"] + k * share, 3)
+        start = round(covered_from + k * share, 3)
         end = round(span["end"] if k == len(covers) - 1 else start + share, 3)
         src_in = cover.get("src_in", 0.0)
         path = normalize(project, project.path(cover["src"]), [src_in, src_in + end - start])
@@ -97,7 +99,8 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         start, end = resolve_span(spec, cut_map, words)
         src_in = spec.get("src_in", 0.0)
         box = pip_box(project) if spec["type"] == "pip" else None
-        path = normalize(project, project.path(spec["src"]), [src_in, src_in + end - start],
+        source = memes.path_of(spec["meme"]) if spec.get("meme") else project.path(spec["src"])
+        path = normalize(project, source, [src_in, src_in + end - start],
                          box=box, loop=spec.get("loop", False))
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
                          "rect": overlay_rect(spec["type"], project, path), "chroma": spec.get("chroma"),
@@ -172,7 +175,7 @@ def video_graph(timeline: dict, ass_path: Path, project: Project, preview: dict 
         x, y, w, h = overlay["rect"]
         start, end = overlay["start"], overlay["end"]
         graph.append(f"[{k}:v]setpts=PTS-STARTPTS+{start}/TB,scale={w}:{h}{chroma_key(overlay.get('chroma'))}[ov{k}]")
-        graph.append(f"[{current}][ov{k}]overlay={x}:{y}:eof_action=pass:enable='between(t,{start},{end})'[base{k}]")
+        graph.append(f"[{current}][ov{k}]overlay={x}:{y}:eof_action=repeat:enable='between(t,{start},{end})'[base{k}]")
         current = f"base{k}"
     flashes = flash_boxes(timeline["flashes"], project.style["transitions"])
     speed = f",setpts=PTS/{timeline['speed']}" if timeline["speed"] != 1 else ""
