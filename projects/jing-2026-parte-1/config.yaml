@@ -3,6 +3,15 @@ event: jing-2026
 
 speed: 1.0
 
+sfx:
+  auto: true
+  cues:
+    - {sound: reloj, at: {clip: hook}, gain_db: -6}
+    - {sound: boom-rizz, at: {word: bonito, offset: 0.35}, duration: 1.0}
+    - {sound: nope, at: {word: ninguna, offset: 0.45}, gain_db: -2}
+    - {sound: among-us, at: {word: K, offset: 0.3}, duration: 2.0}
+    - {sound: spiderman-3, at: {word: ojito, occurrence: 3, offset: 0.5}, duration: 2.6, gain_db: 1}
+
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, la K, cábala, spikeball, dodgeball]
   corrections:
@@ -110,6 +119,7 @@ clips:
 inserts:
   - type: pip
     meme: the-rock-ceja
+    audio: true
     position: arriba
     src_in: 0
     at: {word: livianito, offset: -3.0}

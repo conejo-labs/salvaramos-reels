@@ -165,5 +165,57 @@ def test_sfx_catalog_is_consistent():
 
 def test_sfx_gain_matches_target_and_is_capped():
     from sfx import gain_for
-    assert gain_for("golpe", -19.2) == 0.0
+    assert gain_for("golpe", -10.1) == 0.0
+    assert gain_for("golpe", -15) == -4.9
     assert gain_for("yeet", -30) == -12.0
+
+
+def test_sfx_events_skip_the_cover_flash_of_a_title_and_include_memes_and_cards():
+    from sfx import timeline_events
+    clips = {"a": {"kind": "speech", "start": 0.0}, "m": {"kind": "meme", "start": 5.0},
+             "c": {"kind": "card", "start": 20.0}}
+    overlays = [{"type": "fullscreen", "start": 10.0, "flash": True},
+                {"type": "fullscreen", "start": 12.0, "flash": False},
+                {"type": "fullscreen", "start": 15.0, "flash": True},
+                {"type": "pip", "start": 16.0}]
+    texts = [{"style": "title", "start": 10.0}, {"style": "nametag", "start": 1.0}]
+    assert timeline_events(clips, overlays, texts) == [
+        ("nametag", 1.0), ("meme", 5.0), ("title", 10.0), ("cover", 15.0), ("pip", 16.0), ("card", 20.0)]
+
+
+def test_sfx_cues_follow_rules_add_manual_ones_and_drop_repeats():
+    from sfx import planned_cues
+    rules = {"title": ["whoosh-corto", "golpe"], "meme": ["whoosh-corto"]}
+    events = [("title", 10.0), ("meme", 10.1)]
+    cues = planned_cues(events, rules, [{"sound": "reloj", "at": 0.0, "gain_db": -6}])
+    assert [(c["sound"], c["at"]) for c in cues] == [("reloj", 0.0), ("whoosh-corto", 10.0), ("golpe", 10.0)]
+
+
+def test_sfx_cue_starts_early_so_its_peak_lands_on_the_event_and_is_clipped_at_zero(monkeypatch):
+    import sfx
+    from sfx import placed
+    entry = {"recorte": [1.0, 3.0], "pico": 2.5, "volumen_pico_db": -20.0}
+    monkeypatch.setattr(sfx, "sound", lambda _id: entry)
+    assert placed({"sound": "x", "at": 10.0}, entry, -20.0)["start"] == 8.5
+    early = placed({"sound": "x", "at": 0.5}, entry, -20.0)
+    assert early["start"] == 0.0 and early["trim"] == [2.0, 3.0]
+
+
+def test_sfx_pip_with_its_own_audio_gets_no_extra_effect():
+    from sfx import timeline_events
+    overlays = [{"type": "pip", "start": 3.0, "audio": True}, {"type": "pip", "start": 9.0, "audio": False}]
+    assert timeline_events({}, overlays, []) == [("pip", 9.0)]
+
+
+def test_sfx_manual_duration_shortens_the_sound(monkeypatch):
+    import sfx
+    entry = {"recorte": [1.0, 6.0], "pico": 1.0, "volumen_pico_db": -20.0}
+    monkeypatch.setattr(sfx, "sound", lambda _id: entry)
+    assert sfx.placed({"sound": "x", "at": 4.0, "duration": 2.0}, entry, -20.0)["trim"] == [1.0, 3.0]
+
+
+def test_sfx_start_alignment_begins_the_sound_on_the_word(monkeypatch):
+    import sfx
+    entry = {"recorte": [1.0, 6.0], "pico": 5.0, "volumen_pico_db": -20.0}
+    monkeypatch.setattr(sfx, "sound", lambda _id: entry)
+    assert sfx.placed({"sound": "x", "at": 10.0, "align": "start"}, entry, -20.0)["start"] == 10.0

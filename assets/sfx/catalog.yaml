@@ -16,6 +16,7 @@ sonidos:
     recorte: [0.43, 0.70]
     pico: 0.51
     volumen_medio_db: -25.8
+    volumen_pico_db: -18.5
     que_es: "Whoosh corto y limpio."
     uso: "Flash, inserto a pantalla completa, entrada de un PiP."
     original: "whoosh sound effect.mp3"
@@ -26,6 +27,7 @@ sonidos:
     recorte: [0.27, 1.12]
     pico: 0.67
     volumen_medio_db: -16.6
+    volumen_pico_db: -8.4
     que_es: "Barrido de caricatura."
     uso: "Cambio de tema con tono de chiste."
     original: "CARTOON TRANSITION.mp3"
@@ -36,6 +38,7 @@ sonidos:
     recorte: [0.00, 1.00]
     pico: 0.91
     volumen_medio_db: -13.5
+    volumen_pico_db: -6.9
     que_es: "Interferencia digital muy aguda que crece hasta el final."
     uso: "Corte brusco, «error», cambio a otra escena."
     original: "Glitch.wav"
@@ -46,6 +49,7 @@ sonidos:
     recorte: [0.08, 0.62]
     pico: 0.14
     volumen_medio_db: -26.1
+    volumen_pico_db: -19.2
     que_es: "Obturador de cámara."
     uso: "Congelado de un frame, «captura» de un momento."
     original: "-camera-shutter.wav"
@@ -57,6 +61,7 @@ sonidos:
     recorte: [0.04, 0.65]
     pico: 0.13
     volumen_medio_db: -19.2
+    volumen_pico_db: -10.1
     que_es: "Puñetazo seco."
     uso: "Titular del hook, entrada de la promo; el golpe más versátil."
     original: "punch.mp3"
@@ -67,6 +72,7 @@ sonidos:
     recorte: [1.07, 1.55]
     pico: 1.13
     volumen_medio_db: -16.6
+    volumen_pico_db: -7.2
     que_es: "Bonk de bambú de anime."
     uso: "Una respuesta tonta o un error evidente."
     original: "Bamboo Hit.mp3 (el «Bamboo Hit (Anime/Cartoon Bonk)» del zip es el mismo sonido y se descartó)"
@@ -77,6 +83,7 @@ sonidos:
     recorte: [0.00, 0.19]
     pico: 0.03
     volumen_medio_db: -18.6
+    volumen_pico_db: -12.8
     que_es: "Pop corto."
     uso: "Elementos chicos: la pill de «Link en la bio», un nametag."
     original: "pop.mp3 (en realidad AAC)"
@@ -87,6 +94,7 @@ sonidos:
     recorte: [0.26, 0.46]
     pico: 0.29
     volumen_medio_db: -17.4
+    volumen_pico_db: -11.5
     que_es: "Corcho de botella."
     uso: "Pop más seco; algo que «salta» en pantalla."
     original: "bottle cork.mp3"
@@ -97,6 +105,7 @@ sonidos:
     recorte: [1.16, 2.63]
     pico: 1.29
     volumen_medio_db: -15.0
+    volumen_pico_db: -3.9
     que_es: "Boom grave del meme «rizz»; lo más cercano a un sub drop del pack."
     uso: "Remate de un riser, un dato que pega fuerte."
     original: "Rizz Sound Effect.mp3"
@@ -107,6 +116,7 @@ sonidos:
     recorte: [0.31, 1.09]
     pico: 0.43
     volumen_medio_db: -16.3
+    volumen_pico_db: -10.9
     que_es: "Golpe grave con cola del meme «mentality»."
     uso: "Una frase con actitud, «mentalidad de campeón»."
     original: "Core.mp3"
@@ -118,6 +128,7 @@ sonidos:
     recorte: [0.06, 2.91]
     pico: 2.34
     volumen_medio_db: -19.1
+    volumen_pico_db: -12.4
     que_es: "Riser corto de flashback."
     uso: "Antes de un meme o un congelado; volver a algo que se dijo antes."
     original: "FLASHBACK.wav"
@@ -128,6 +139,7 @@ sonidos:
     recorte: [11.02, 15.06]
     pico: 14.52
     volumen_medio_db: -15.1
+    volumen_pico_db: -11.0
     que_es: "Final de un riser largo que termina en golpe (el original dura 15 s)."
     uso: "Antes de la cortina o de la respuesta a la pregunta del hook."
     original: "Reveal Sound Effect.mp3"
@@ -138,6 +150,7 @@ sonidos:
     recorte: [0.00, 3.74]
     pico: 0.86
     volumen_medio_db: -15.3
+    volumen_pico_db: -10.2
     que_es: "Tic-tac de reloj, parejo."
     uso: "Fondo de «se acaba el tiempo»: certámenes, entregas a última hora."
     original: "Clock Ticking Sound Effect.mp3"
@@ -148,6 +161,7 @@ sonidos:
     recorte: [0.00, 4.00]
     pico: 0.07
     volumen_medio_db: -17.4
+    volumen_pico_db: -8.2
     que_es: "Música del meme «Illuminati confirmed» (el original dura 15 s)."
     uso: "Una teoría conspirativa, una conexión sospechosa."
     original: "Illuminati Confirmed.mp3"
@@ -158,6 +172,7 @@ sonidos:
     recorte: [1.33, 5.83]
     pico: 4.99
     volumen_medio_db: -22.1
+    volumen_pico_db: -15.2
     que_es: "Coro celestial (el original dura 18 s)."
     uso: "Una respuesta perfecta, el alumno que sí estudió."
     original: "Angel - Sound Effect (HD).mp3"
@@ -169,6 +184,7 @@ sonidos:
     recorte: [0.17, 0.71]
     pico: 0.25
     volumen_medio_db: -19.5
+    volumen_pico_db: -12.8
     que_es: "«Bruh»."
     uso: "Una respuesta que decepciona sin drama."
     original: "Bruh Sound Effect.mp3"
@@ -179,6 +195,7 @@ sonidos:
     recorte: [1.56, 4.19]
     pico: 2.75
     volumen_medio_db: -25.7
+    volumen_pico_db: -16.3
     que_es: "«Oh my God» del meme."
     uso: "Sorpresa ante una respuesta."
     original: "OMG meme.mp3"
@@ -189,6 +206,7 @@ sonidos:
     recorte: [0.03, 0.50]
     pico: 0.20
     volumen_medio_db: -22.7
+    volumen_pico_db: -14.1
     que_es: "«Nope»."
     uso: "Negarse a algo; una opción descartada."
     original: "Nope sound effect.mp3"
@@ -199,6 +217,7 @@ sonidos:
     recorte: [0.06, 1.64]
     pico: 0.36
     volumen_medio_db: -23.6
+    volumen_pico_db: -14.2
     que_es: "«Awww» de ternura."
     uso: "Algo tierno: una dupla, una dedicatoria."
     original: "awww.mp3"
@@ -209,6 +228,7 @@ sonidos:
     recorte: [0.50, 4.23]
     pico: 0.65
     volumen_medio_db: -15.4
+    volumen_pico_db: -5.6
     que_es: "Sonido de decepción."
     uso: "Una nota baja, un plan que no resultó."
     original: "Disappointed.mp3 (en realidad AAC)"
@@ -219,6 +239,7 @@ sonidos:
     recorte: [0.00, 2.28]
     pico: 0.25
     volumen_medio_db: -33.0
+    volumen_pico_db: -22.4
     que_es: "«Faaah» del meme."
     uso: "Fallar por poco."
     original: "faahhhhh.mp3"
@@ -229,6 +250,7 @@ sonidos:
     recorte: [0.29, 5.96]
     pico: 1.24
     volumen_medio_db: -10.6
+    volumen_pico_db: -1.9
     que_es: "Grito «AUGHH» del meme; muy fuerte y largo, conviene acortar el recorte al escucharlo."
     uso: "Desesperación: el certamen es mañana."
     original: "AUGGHH  AHHHHH sound effect.mp3"
@@ -239,6 +261,7 @@ sonidos:
     recorte: [0.02, 8.99]
     pico: 6.79
     volumen_medio_db: -17.6
+    volumen_pico_db: -9.3
     que_es: "Meme «What? (bottom text)»; 9 s, falta escucharlo y elegir el tramo."
     uso: "Una respuesta incomprensible."
     original: "_What_ Bottom Text.m4a"
@@ -249,6 +272,7 @@ sonidos:
     recorte: [0.04, 2.62]
     pico: 0.28
     volumen_medio_db: -21.5
+    volumen_pico_db: -10.8
     que_es: "«¿Eh?» confundido con reverb."
     uso: "No entender la pregunta."
     original: "Confused Reverb.m4a"
@@ -259,6 +283,7 @@ sonidos:
     recorte: [0.18, 1.81]
     pico: 0.34
     volumen_medio_db: -15.9
+    volumen_pico_db: -8.3
     que_es: "Campana de Taco Bell («bong»)."
     uso: "Remate absurdo; algo que sale mal."
     original: "taco bell.m4a"
@@ -269,6 +294,7 @@ sonidos:
     recorte: [0.39, 4.05]
     pico: 2.24
     volumen_medio_db: -29.4
+    volumen_pico_db: -24.9
     que_es: "«Buh buh buh» del meme de Spider-Man 3."
     uso: "Algo que se pone dramático de la nada."
     original: "Spider-Man 3 Meme Sound.mp3"
@@ -279,6 +305,7 @@ sonidos:
     recorte: [0.18, 4.11]
     pico: 1.07
     volumen_medio_db: -25.3
+    volumen_pico_db: -13.1
     que_es: "Sonido de «impostor» de Among Us."
     uso: "Alguien sospechoso; el que dice que no estudió y saca un 7."
     original: "Among us sound effect.mp3"
@@ -289,6 +316,7 @@ sonidos:
     recorte: [0.69, 1.31]
     pico: 1.06
     volumen_medio_db: -4.5
+    volumen_pico_db: 0.7
     que_es: "«Yeet»; viene saturado (pico en 0 dB), bajarle bastante."
     uso: "Tirar algo lejos: el cuaderno después del examen."
     original: "YEET - Sound Effect HD.mp3"
@@ -299,6 +327,7 @@ sonidos:
     recorte: [0.32, 1.87]
     pico: 0.38
     volumen_medio_db: -27.7
+    volumen_pico_db: -14.7
     que_es: "Pedo."
     uso: "Humor bajo; usar con cuidado."
     original: "Fart - Sound Effect.mp3"
@@ -309,6 +338,7 @@ sonidos:
     recorte: [0.69, 3.56]
     pico: 3.14
     volumen_medio_db: -25.1
+    volumen_pico_db: -13.5
     que_es: "Pato de goma apretado varias veces."
     uso: "Fondo cómico; alguien que no se toma nada en serio."
     original: "TOY DUCK.mp3"
@@ -319,6 +349,7 @@ sonidos:
     recorte: [1.34, 1.79]
     pico: 1.65
     volumen_medio_db: -19.1
+    volumen_pico_db: -13.8
     que_es: "Mordisco de caricatura."
     uso: "Comida, «se lo comió» (le ganó)."
     original: "Cartoon Eating Sound Effect  Non Copyrighted  PP Technical.mp3"
@@ -329,6 +360,7 @@ sonidos:
     recorte: [0.08, 1.17]
     pico: 0.26
     volumen_medio_db: -18.8
+    volumen_pico_db: -6.5
     que_es: "Silbato de juguete."
     uso: "Algo ridículo o infantil."
     original: "cartoon-toy-whistle.wav"
@@ -339,6 +371,7 @@ sonidos:
     recorte: [0.16, 5.89]
     pico: 0.71
     volumen_medio_db: -17.4
+    volumen_pico_db: -4.6
     que_es: "Jingle de Doraemon sacando un invento del bolsillo."
     uso: "Sacar la solución mágica: el resumen, la fórmula, SalvaRamos."
     original: "Doraemon Notification Sound.mp3"
@@ -349,6 +382,7 @@ sonidos:
     recorte: [1.12, 3.38]
     pico: 1.15
     volumen_medio_db: -24.7
+    volumen_pico_db: -16.1
     que_es: "Alerta de Twitch (donación o seguidor)."
     uso: "Una notificación, un logro desbloqueado."
     original: "Twitch Alert Sound Effect.m4a"
@@ -359,6 +393,7 @@ sonidos:
     recorte: [0.01, 4.94]
     pico: 0.14
     volumen_medio_db: -32.0
+    volumen_pico_db: -20.7
     que_es: "Grillos de silencio incómodo."
     uso: "Nadie responde; una pregunta que deja en blanco."
     original: "Awkward Pause.mp3"
@@ -369,6 +404,7 @@ sonidos:
     recorte: [0.00, 3.57]
     pico: 0.06
     volumen_medio_db: -29.8
+    volumen_pico_db: -18.4
     que_es: "Otra versión de los grillos, más corta."
     uso: "Igual que silencio-incomodo."
     original: "Awkward Pause 02.mp3"

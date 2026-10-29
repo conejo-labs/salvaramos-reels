@@ -58,7 +58,7 @@ def normalized_clip(project: Project, spec: dict, kind: str, span: list | None) 
         sfx = ROOT / "assets/sfx" / f"{spec['sfx']}.wav" if spec.get("sfx") else None
         at = spec["freeze"]
         return normalize(project, project.path(spec["src"]), [at, at + spec["duration"]], spec.get("gain_db", 0.0),
-                         look=look, freeze=True, audio_src=sfx)
+                         look=look, freeze=True, audio_src=sfx, silent=sfx is None)
     if kind == "card":
         return render_card(project, spec)
     gain = spec.get("gain_db", project.style["audio"]["broll_gain_db"] if kind == "broll" else 0.0)
@@ -96,6 +96,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Renderiza un reel desde projects/<slug>")
     parser.add_argument("project", type=Path)
     parser.add_argument("--preview", action="store_true", help="primeros segundos a baja resolución")
+    parser.add_argument("--version", help="escribe build/<slug>.<version>.mp4 en vez de pisar el render principal")
     parser.add_argument("--retranscribe", action="store_true", help="vuelve a transcribir todos los clips (lo anterior queda en previous)")
     args = parser.parse_args()
 
@@ -119,7 +120,7 @@ def main() -> None:
     save_timeline(project, timeline)
     write_minutaje(project, cut_map, transcript, timeline)
     ass_path = write_ass(project, timeline, project.build / "subtitles.ass")
-    output = export(project, timeline, ass_path, cut_map["key"], args.preview)
+    output = export(project, timeline, ass_path, cut_map["key"], args.preview, args.version)
     done(started, f"→ {output}")
 
     started = step("contact sheet")

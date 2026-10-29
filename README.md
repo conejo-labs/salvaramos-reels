@@ -69,6 +69,7 @@ export SALVARAMOS_DRIVE="otro-remoto:Carpeta"
 .venv/bin/python src/material.py upload-sfx                # sube media/sfx/pack
 .venv/bin/python src/material.py deliver projects/jing-2026-parte-1          # versión WhatsApp + sube a entregas/
 .venv/bin/python src/material.py deliver projects/jing-2026-parte-1 --local  # solo la versión WhatsApp
+.venv/bin/python src/material.py deliver projects/jing-2026-parte-1 --version sonido --local  # de otra versión
 ```
 
 Todos usan `rclone copy`: suben o bajan lo que falta y **nunca borran** nada en Drive ni en tu máquina.
@@ -77,7 +78,7 @@ Para agregar un meme: déjalo en `media/memes/pack/`, súmalo a `assets/memes/ca
 sirve, `volumen_medio_db`) y corre `upload-memes`. Solo memes que se conozcan en Chile.
 
 Para agregar un efecto: déjalo en `media/sfx/pack/` como `<id>.wav`, súmalo a `assets/sfx/catalog.yaml` con su
-categoría, `recorte`, `pico` y `volumen_medio_db`, y corre `upload-sfx`. Para escucharlos todos,
+categoría, `recorte`, `pico`, `volumen_medio_db` y `volumen_pico_db`, y corre `upload-sfx`. Para escucharlos todos,
 `.venv/bin/python src/sfx.py` genera `assets/sfx/catalogo.html`.
 
 ## Hacer un reel
@@ -160,7 +161,7 @@ texts:
 | (ninguna) | Voz: se cortan los silencios, se nivela el volumen y lleva subtítulos |
 | `broll: true` | Toma de ambiente: sin cortes ni subtítulos, con el audio más bajo |
 | `meme: <id>` | Pausa con el meme centrado sobre una copia desenfocada y con su audio |
-| `freeze: <seg>` + `duration` | Congela ese frame; admite `look: bw` y `sfx: suspenso` |
+| `freeze: <seg>` + `duration` | Congela ese frame; admite `look: bw` y `sfx: suspenso`; sin `sfx`, en silencio |
 | `card: <nombre>` | Cortina animada (`outro`, `cierre`) definida en `style.yaml` |
 
 **Claves opcionales de un clip:** `nametag` (presentación: nombre y, en la segunda línea, universidad · deporte),
@@ -172,9 +173,32 @@ cortar silencios), `captions`, `gain_db`, `look`.
 corte, el meme se mueve con la palabra.
 
 **Inserts:** `type: pip` o `fullscreen`, `src` o `meme`, `src_in` (desde qué segundo del archivo), `position: arriba`
-para los PiP, `text` para un texto promo encima de un fullscreen.
+para los PiP, `text` para un texto promo encima de un fullscreen, `audio: true` para que suene el audio del insert
+(los memes se nivelan como los de pausa; un PiP con su propio audio no lleva el efecto de `sfx.rules`).
 
-**Estilos de texto:** `title`, `headline`, `nametag`, `promo` en `presets/style.yaml`.
+**Estilos de texto:** `title`, `headline`, `nametag`, `promo` en `presets/style.yaml`. Un texto de `texts` puede
+cambiar la altura de su estilo con `center_y` (fracción del alto).
+
+**Efectos de sonido:** un bloque `sfx` en el config los activa. Con `auto: true`, cada evento del reel lleva el efecto
+que dice `sfx.rules` en `presets/style.yaml` (whoosh en los cortes con flash, golpe en las preguntas y la promo, pop
+en los nametags, boom en los PiP, riser antes de la cortina). `cues` suma efectos a mano:
+
+```yaml
+sfx:
+  auto: true
+  cues:
+    - {sound: reloj, at: {clip: hook}, gain_db: -6}
+```
+
+Un cue acepta `gain_db`, `duration` (usa solo los primeros segundos del recorte) y `align: start` (arranca en `at`
+en vez de hacer caer ahí el pico: para música o coros, cuyo pico llega tarde). Para una reacción inmediata, ancla
+el cue a la última palabra del remate con un `offset` de unas décimas.
+
+Cada efecto se ubica para que su pico caiga justo en el momento `at`, y su volumen pico se iguala con `sfx.levels`
+según su categoría. Sin bloque `sfx`, el reel no lleva efectos.
+
+**Otra versión sin pisar la actual:** `render.py projects/<reel> --version sonido` escribe
+`build/<reel>.sonido.mp4` y deja intacto `build/<reel>.mp4`.
 
 ## Problemas comunes
 

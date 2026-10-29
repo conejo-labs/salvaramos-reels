@@ -3,6 +3,21 @@ event: jing-2026
 
 speed: 1.0
 
+sfx:
+  auto: true
+  cues:
+    - {sound: boom-rizz, at: {clip: hook-congelado}, gain_db: 3}
+    - {sound: mentality, at: {clip: hook-congelado, offset: 1.0}, gain_db: 2}
+    - {sound: flashback, at: {clip: intro}, gain_db: 4}
+    - {sound: boom-rizz, at: {clip: intro}}
+    - {sound: coro-angelical, at: {word: aplicada}, align: start, duration: 1.6, gain_db: 5}
+    - {sound: mentality, at: {word: espíritu, occurrence: 2, offset: 0.4}}
+    - {sound: bruh, at: {word: ramos, occurrence: 4, offset: 0.45}}
+    - {sound: illuminati, at: {word: común, offset: 0.25}, align: start, duration: 2.5, gain_db: 2}
+    - {sound: taco-bell, at: {word: sí, occurrence: 4, offset: 0.2}, duration: 0.4, gain_db: -2}
+    - {sound: omg, at: {word: maría, offset: 0.25}, align: start, gain_db: -2}
+    - {sound: awww, at: {word: nosotros, offset: 0.3}}
+
 transcription:
   vocabulary: [JING, Juegos de Ingeniería, la Cato, la PUC, la Chile, UdeC, Universidad de Concepción,
                Universidad de los Andes, Santa María, vóleibol]
@@ -27,9 +42,8 @@ clips:
   - id: hook-congelado
     src: raw/7adfe5c0-1511-4a4e-89e7-6103e43878fc.mp4
     freeze: 39.15
-    duration: 1.4
+    duration: 3.0
     look: bw
-    sfx: suspenso
   - id: intro
     src: "raw/WhatsApp Video 2026-10-27 at 20.18.45.mp4"
     trim: [0.5, 8.6]
@@ -140,6 +154,10 @@ inserts:
 texts:
   - style: headline
     text: "SalvaRamos\nen los JING"
-    at: {clip: hook}
+    at: {clip: hook-congelado}
     until: {clip: hook-congelado}
-    reveal: 3.8
+  - style: promo
+    text: "Parte 2"
+    center_y: 0.33
+    at: {clip: hook-congelado, offset: 1.0}
+    until: {clip: hook-congelado}

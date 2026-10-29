@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path
 
 import memes
+import sfx
 from captions import overlaps, paginate
 from normalize import normalize
 from probe import probe
@@ -13,6 +14,7 @@ from util import ffmpeg, is_fresh, read_json, seal, write_json
 
 OVERLAY_STACKING = {"pip": 0, "fullscreen": 1}
 FLASHED_KINDS = {"broll", "meme"}
+FADE_OUT = 0.06
 
 
 def even(value: float) -> int:
@@ -102,7 +104,7 @@ def flash_spans(project: Project, cut_map: dict, overlays: list) -> list:
 
 def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: dict) -> dict:
     words = words_of(transcript, cut_map, project.config.get("transcription", {}).get("corrections", []))
-    overlays, texts = [], []
+    overlays, texts, insert_audio = [], [], []
     for spec in project.config.get("inserts", []):
         start, end = resolve_span(spec, cut_map, words)
         src_in = spec.get("src_in", 0.0)
@@ -113,7 +115,9 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         overlays.append({"type": spec["type"], "src": str(path), "start": start, "end": end,
                          "rect": overlay_rect(spec["type"], project, path, spec.get("position")),
                          "chroma": spec.get("chroma"),
-                         "flash": spec.get("flash", spec["type"] == "fullscreen")})
+                         "flash": spec.get("flash", spec["type"] == "fullscreen"), "audio": bool(spec.get("audio"))})
+        if spec.get("audio"):
+            insert_audio.append(own_audio(project, spec, source, start, end))
         if spec.get("text"):
             texts.append({"style": spec.get("text_style", "promo"), "text": spec["text"], "start": start, "end": end})
     for spec in project.config["clips"]:
@@ -122,13 +126,14 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
     for spec in project.config.get("texts", []):
         start, end = resolve_span(spec, cut_map, words)
         texts.append({"style": spec["style"], "text": spec["text"], "start": start, "end": end,
-                      "reveal": spec.get("reveal")})
+                      "reveal": spec.get("reveal"), "center_y": spec.get("center_y")})
 
     hidden = [(t["start"], t["end"]) for t in texts if t["style"] == "promo"] \
         if project.style["captions"]["hide_during_promo"] else []
     boundaries = [clip["start"] for clip in cut_map["clips"].values()]
     pages = [p for p in paginate(words, project.style["captions"]["paging"], boundaries) if not overlaps(p, hidden)]
     overlays.sort(key=lambda o: OVERLAY_STACKING[o["type"]])
+    cues = sorted(sound_cues(project, cut_map, words, overlays, texts) + insert_audio, key=lambda c: c["start"])
     return {
         "canvas": project.style["canvas"],
         "duration": cut_map["duration"],
@@ -138,7 +143,26 @@ def build_timeline(project: Project, cut_path: Path, cut_map: dict, transcript: 
         "texts": texts,
         "flashes": flash_spans(project, cut_map, overlays),
         "captions": {"pages": pages},
+        "sfx": cues,
     }
+
+
+def own_audio(project: Project, spec: dict, source: Path, start: float, end: float) -> dict:
+    src_in = spec.get("src_in", 0.0)
+    gain = memes.gain_for(spec["meme"], project.style["memes"]["target_mean_db"]) if spec.get("meme") else 0.0
+    return {"sound": spec.get("meme", source.stem), "event": "insert", "at": start, "start": start,
+            "trim": [src_in, round(src_in + end - start, 3)], "gain_db": round(gain + spec.get("gain_db", 0.0), 1),
+            "src": str(source)}
+
+
+def sound_cues(project: Project, cut_map: dict, words: list, overlays: list, texts: list) -> list:
+    settings = project.config.get("sfx")
+    if not settings:
+        return []
+    events = sfx.timeline_events(cut_map["clips"], overlays, texts) if settings.get("auto", True) else []
+    manual = [{**c, "at": round(resolve_point(c["at"], cut_map, words), 3)} for c in settings.get("cues", [])]
+    cues = sfx.resolve_cues(events, manual, project.style["sfx"])
+    return [{**c, "src": str(sfx.path_of(c["sound"]))} for c in cues]
 
 
 def measure_loudness(project: Project, source: Path, key: str) -> dict:
@@ -193,17 +217,48 @@ def video_graph(timeline: dict, ass_path: Path, project: Project, preview: dict 
     return graph
 
 
-def export(project: Project, timeline: dict, ass_path: Path, cut_key: str, preview: bool) -> Path:
+def audio_graph(timeline: dict, project: Project, measured: dict, first_input: int) -> list:
+    settings, speed = project.style["export"], timeline["speed"]
+    tempo = f"atempo={speed}," if speed != 1 else ""
+    speech = f"[0:a]{tempo}{loudnorm_filter(project, measured)},aresample={settings['sample_rate']}"
+    cues = timeline.get("sfx", [])
+    if not cues:
+        return [f"{speech}[aout]"]
+    graph, labels = [f"{speech}[speech]"], "[speech]"
+    for k, cue in enumerate(cues):
+        delay = round(cue["start"] / speed * 1000)
+        length = cue["trim"][1] - cue["trim"][0]
+        graph.append(f"[{first_input + k}:a]aresample={settings['sample_rate']},aformat=channel_layouts=stereo,"
+                     f"volume={cue['gain_db']}dB,afade=t=out:st={max(0.0, length - FADE_OUT):.3f}:d={FADE_OUT},"
+                     f"adelay={delay}|{delay}[sfx{k}]")
+        labels += f"[sfx{k}]"
+    limit = 10 ** (project.style["sfx"]["limit_db"] / 20)
+    graph.append(f"{labels}amix=inputs={len(cues) + 1}:normalize=0:duration=first,"
+                 f"alimiter=limit={limit:.3f}:level=false[aout]")
+    return graph
+
+
+def sfx_inputs(timeline: dict) -> list:
+    inputs = []
+    for cue in timeline.get("sfx", []):
+        start, end = cue["trim"]
+        inputs += ["-ss", f"{start:.3f}", "-t", f"{end - start:.3f}", "-i", cue["src"]]
+    return inputs
+
+
+def export(project: Project, timeline: dict, ass_path: Path, cut_key: str, preview: bool,
+           version: str | None = None) -> Path:
     settings = project.style["export"]
     preview_settings = project.style["preview"] if preview else None
     measured = measure_loudness(project, Path(timeline["base"]), cut_key)
     graph = video_graph(timeline, ass_path, project, preview_settings)
-    tempo = f"atempo={timeline['speed']}," if timeline["speed"] != 1 else ""
-    graph.append(f"[0:a]{tempo}{loudnorm_filter(project, measured)},aresample={settings['sample_rate']}[aout]")
+    graph += audio_graph(timeline, project, measured, first_input=1 + len(timeline["overlays"]))
     inputs = ["-i", timeline["base"]]
     for overlay in timeline["overlays"]:
         inputs += ["-i", overlay["src"]]
-    output = project.build / (f"{project.slug}.preview.mp4" if preview else f"{project.slug}.mp4")
+    inputs += sfx_inputs(timeline)
+    name = ".".join(part for part in (project.slug, version, "preview" if preview else None) if part)
+    output = project.build / f"{name}.mp4"
     limit = ["-t", preview_settings["seconds"]] if preview else []
     ffmpeg(*inputs, "-filter_complex", ";".join(graph), "-map", "[vout]", "-map", "[aout]", *limit,
            "-r", project.style["canvas"]["fps"], "-c:v", "libx264", "-profile:v", "high", "-pix_fmt", "yuv420p",

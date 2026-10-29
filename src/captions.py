@@ -150,7 +150,7 @@ def text_events(project: Project, texts: list, layout: Layout) -> list:
     pop = project.style["transitions"]
     events = []
     for item in texts:
-        style = project.style["texts"][item["style"]]
+        style = {**project.style["texts"][item["style"]], **({"center_y": item["center_y"]} if item.get("center_y") else {})}
         lines = [display(line, style["uppercase"]) for line in item["text"].split("\n")]
         if len(lines) > style.get("max_lines", len(lines)):
             raise SafeZoneError(f"El texto '{item['text']}' tiene más de {style['max_lines']} líneas")

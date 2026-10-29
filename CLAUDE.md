@@ -41,7 +41,8 @@ si el hash no cambió, se salta.
   - por defecto, **voz**: se corta por silencio y lleva subtítulos;
   - `broll: true`: sin corte de silencio ni subtítulos, con el audio bajado (`audio.broll_gain_db`);
   - `meme: <id>`: pausa con el audio del meme, centrado sobre una copia desenfocada; `trim` es dentro del meme;
-  - `freeze: <segundo>` + `duration`: congela ese frame, con `look` (p. ej. `bw`) y `sfx` de `assets/sfx/`.
+  - `freeze: <segundo>` + `duration`: congela ese frame, con `look` (p. ej. `bw`) y `sfx` de `assets/sfx/`;
+    sin `sfx` queda en silencio.
 - Un clip con `nametag` o `title` no lleva subtítulos (el texto los reemplaza). `cover` tapa el clip con b-roll
   repartido en partes iguales y deja su audio: así se presentan las preguntas con la voz del entrevistador.
 - `trim` acepta varios rangos (`[[a, b], [c, d]]`) para armar una frase con palabras exactas del mismo raw.
@@ -52,8 +53,12 @@ si el hash no cambió, se salta.
   iguala su volumen. Solo memes conocidos en Chile: los que no, se sacan del pack y del catálogo.
 - `assets/sfx/catalog.yaml` describe el pack de efectos por categoría: `recorte` es el tramo útil dentro del archivo
   y `pico` el segundo, también del archivo, que se sincroniza con el evento: el sonido arranca `pico - recorte[0]`
-  antes. `src/sfx.py` genera `assets/sfx/catalogo.html` (fuera de git) con rutas a la carpeta real, porque el
+  antes. Se nivelan por `volumen_pico_db` (máximo RMS en ventanas de 100 ms dentro del recorte) contra
+  `sfx.levels` de su categoría, no por el volumen medio como los memes. `src/sfx.py` genera `assets/sfx/catalogo.html` (fuera de git) con rutas a la carpeta real, porque el
   navegador de Windows no sigue los symlinks de WSL.
+- Los efectos van en `timeline.json` como `sfx`, ya resueltos (`start` en tiempo sin acelerar, `trim` dentro del
+  archivo, `gain_db`) y se mezclan **después** del `loudnorm` de la voz, con un `alimiter` al final: así no mueven la
+  medición de sonoridad que se hace sobre el corte base.
 - `assets/sfx/suspenso.wav` es sintético (generado con ffmpeg): reemplázalo por uno real con el mismo nombre.
 
 ## Entorno (WSL)
